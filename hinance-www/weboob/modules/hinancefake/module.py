@@ -5,7 +5,7 @@ __all__ = ['HinanceFakeModule']
 
 class HinanceFakeModule(Module, CapBank, CapShop):
     NAME = 'hinancefake'
-    MAINTAINER = u'Hinance Guy'
+    MAINTAINER = u'Fake Maintainer'
     EMAIL = 'contact@hinance.org'
     VERSION = '1.1'
     LICENSE = 'AGPLv3+'
