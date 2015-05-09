@@ -1,0 +1,23 @@
+[fakebank1]
+_module = hinancefake
+
+[fakebank2]
+_module = hinancefake
+
+[fakeshop1]
+_module = hinancefake
+
+[fakeshopcard1]
+_module = hinancefake
+
+[fakeshop2]
+_module = hinancefake
+
+[fakeshopcard2]
+_module = hinancefake
+
+[fakeshop3]
+_module = hinancefake
+
+[fakeshop4]
+_module = hinancefake
