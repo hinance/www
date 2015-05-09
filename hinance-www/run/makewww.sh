@@ -5,7 +5,7 @@ set -e
 TMPDIR=/var/tmp/hinance-www
 
 # main static content
-cp /hinance-www/www/* $TMPDIR
+cp -r /hinance-www/www/* $TMPDIR
 
 # bootstrap
 cd /hinance-www/bootstrap.git
