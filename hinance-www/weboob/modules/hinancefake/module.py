@@ -1,4 +1,5 @@
-from weboob.capabilities.bank import CapBank, CapShop
+from weboob.capabilities.bank import CapBank
+from weboob.capabilities.shop import CapShop
 from weboob.tools.backend import Module
 
 __all__ = ['HinanceFakeModule']
