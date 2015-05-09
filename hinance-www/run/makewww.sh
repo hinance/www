@@ -21,5 +21,8 @@ cp -r /hinance-www/jquery/node_modules/jquery/dist/cdn/* $TMPDIR
 convert $TMPDIR/oleg.jpg -strip -rotate 90 -resize 160x120 $TMPDIR/oleg-sm.jpg
 
 # examples
-cd $TMPDIR
-#TODO: add examples here
+weboob-config update
+chmod 600 /hinance-www/weboob/backends
+export WEBOOB_BACKENDS=/hinance-www/weboob/backends
+cd $TMPDIR/examples/min ; hinance
+cd $TMPDIR/examples/max ; hinance

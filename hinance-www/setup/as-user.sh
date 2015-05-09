@@ -17,3 +17,7 @@ npm install
 mkdir /hinance-www/jquery
 cd /hinance-www/jquery
 npm install jquery@1.11.2
+
+# weboob
+echo "file:///hinance-www/weboob/modules/" \
+  >> /home/user/.config/weboob/sources.list
