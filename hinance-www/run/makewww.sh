@@ -22,7 +22,14 @@ convert $TMPDIR/oleg.jpg -strip -rotate 90 -resize 160x120 $TMPDIR/oleg-sm.jpg
 
 # examples
 weboob-config update
-chmod 600 /hinance-www/weboob/backends
-export WEBOOB_BACKENDS=/hinance-www/weboob/backends
-cd $TMPDIR/examples/min ; hinance
-cd $TMPDIR/examples/max ; hinance
+cd $TMPDIR/examples/min
+hinance &
+while [ ! grep "Cycle finished" out/log/hinance.log &>/dev/null ] ; do
+  sleep 1
+done
+
+cd $TMPDIR/examples/max
+hinance &
+while [ ! grep "Cycle finished" out/log/hinance.log &>/dev/null ] ; do
+  sleep 1
+done
