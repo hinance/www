@@ -1,23 +1,23 @@
-[clappingbill]
-_module = hinancefake
+[crispybills]
+_module = fakebank
 
 [windyvault]
-_module = hinancefake
+_module = fakebank
 
 [awesome]
-_module = hinancefake
+_module = fakeshop
 
 [awesomecard]
-_module = hinancefake
+_module = fakebank
 
 [viogor]
-_module = hinancefake
+_module = fakeshop
 
 [viogorcard]
-_module = hinancefake
+_module = fakebank
 
 [megarags]
-_module = hinancefake
+_module = fakeshop
 
 [itchyback]
-_module = hinancefake
+_module = fakeshop
