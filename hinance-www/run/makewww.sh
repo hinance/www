@@ -29,7 +29,7 @@ function runexample() {
   cp /hinance-www/weboob/backends in/backends
   hinance &
   PID1=$!
-  tail -F out/log/hinance.log &
+  tail -F out/log/hinance.log 2>/dev/null &
   PID2=$!
   while ! grep "Cycle finished" out/log/hinance.log &>/dev/null ; do
     sleep 1
