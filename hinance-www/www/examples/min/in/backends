@@ -1,23 +1,23 @@
-[fakebank1]
+[clappingbill]
 _module = hinancefake
 
-[fakebank2]
+[windyvault]
 _module = hinancefake
 
-[fakeshop1]
+[awesome]
 _module = hinancefake
 
-[fakeshopcard1]
+[awesomecard]
 _module = hinancefake
 
-[fakeshop2]
+[viogor]
 _module = hinancefake
 
-[fakeshopcard2]
+[viogorcard]
 _module = hinancefake
 
-[fakeshop3]
+[megarags]
 _module = hinancefake
 
-[fakeshop4]
+[itchyback]
 _module = hinancefake
