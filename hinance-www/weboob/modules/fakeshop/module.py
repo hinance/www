@@ -11,6 +11,12 @@ class FakeShopModule(Module, CapShop):
     LICENSE = 'AGPLv3+'
     DESCRIPTION = u'Fake shop module for Hinance examples'
 
+    def _data(self):
+        if not hasattr(self, '_dataCache'):
+            with open('/hinance-www/weboob/fakedata.py') as f:
+                self._dataCache = eval(f.read())
+        return self._dataCache
+
     def get_currency(self):
         #TODO
         return 'USD'

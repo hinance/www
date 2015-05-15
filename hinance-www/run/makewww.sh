@@ -26,6 +26,7 @@ convert $TMPDIR/oleg.jpg -strip -rotate 90 -resize 160x120 $TMPDIR/oleg-sm.jpg
 
 function runexample() {
   cd $1
+  cp /hinance-www/weboob/backends in/backends
   hinance &
   PID1=$!
   tail -F out/log/hinance.log &
