@@ -2,8 +2,8 @@ module Hinance.User.Tag where
 
 data Tag = TagAsset | TagExpense | TagIncome
   -- Accounts
-  | TagAmazon1875 | TagAmzGiftAcc | TagCash | TagChecking1042 | TagMaster8385
-  | TagSavings2453 | TagVicSec7260 | TagVisa4933 | TagVisa8394 | TagVisa4307
+  | TagAwesome1875 | TagAwsGiftAcc | TagCash | TagChecking1042 | TagMaster8385
+  | TagSavings2453 | TagVioGor7260 | TagVisa4933 | TagVisa8394 | TagVisa4307
   | TagVisa0375 | TagVisa9950
   -- Categories
   | TagBooks | TagCar | TagCarInsur | TagCarMtn | TagCarPaper | TagClothes
