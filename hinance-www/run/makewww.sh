@@ -20,16 +20,22 @@ cp -r /hinance-www/jquery/node_modules/jquery/dist/cdn/* $TMPDIR
 # pics
 convert $TMPDIR/oleg.jpg -strip -rotate 90 -resize 160x120 $TMPDIR/oleg-sm.jpg
 
+#
 # examples
-weboob-config update
-cd $TMPDIR/examples/min
-hinance &
-while [ ! grep "Cycle finished" out/log/hinance.log &>/dev/null ] ; do
-  sleep 1
-done
+#
 
-cd $TMPDIR/examples/max
-hinance &
-while [ ! grep "Cycle finished" out/log/hinance.log &>/dev/null ] ; do
-  sleep 1
-done
+function runexample() {
+  cd $1
+  hinance &
+  PID1=$!
+  tail -F out/log/hinance.log &
+  PID2=$!
+  while ! grep "Cycle finished" out/log/hinance.log &>/dev/null ; do
+    sleep 1
+  done
+  kill $PID1 $PID2
+}
+
+weboob-config update
+runexample $TMPDIR/examples/min
+runexample $TMPDIR/examples/max
