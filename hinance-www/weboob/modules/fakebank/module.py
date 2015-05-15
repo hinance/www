@@ -11,14 +11,17 @@ class FakeBankModule(Module, CapBank):
     LICENSE = 'AGPLv3+'
     DESCRIPTION = u'Fake bank module for Hinance examples'
 
+    def _data(self):
+        if not hasattr(self, '_dataCache'):
+            with open('/hinance-www/weboob/fakedata.py') as f:
+                self._dataCache = eval(f.read())
+        return self._dataCache[self.name]
+
     def iter_accounts(self):
-        #TODO
-        return []
+        return self._data().iter_accounts()
 
     def get_account(self, id_):
-        #TODO
-        return None
+        return self._data().get_account(id_)
 
     def iter_history(self, account):
-        #TODO
-        return []
+        return self._data().iter_history(account)

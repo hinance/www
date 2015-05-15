@@ -15,24 +15,19 @@ class FakeShopModule(Module, CapShop):
         if not hasattr(self, '_dataCache'):
             with open('/hinance-www/weboob/fakedata.py') as f:
                 self._dataCache = eval(f.read())
-        return self._dataCache
+        return self._dataCache[self.name]
 
     def get_currency(self):
-        #TODO
-        return 'USD'
+        return self._data().get_currency()
 
     def get_order(self, id_):
-        #TODO
-        return None
+        return self._data().get_order(id_)
 
     def iter_orders(self):
-        #TODO
-        return []
+        return self._data().iter_orders()
 
     def iter_payments(self, order):
-        #TODO
-        return []
+        return self._data().iter_payments(order)
 
     def iter_items(self, order):
-        #TODO
-        return []
+        return self._data().iter_items(order)
