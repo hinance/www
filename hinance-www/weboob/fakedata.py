@@ -49,7 +49,7 @@ class FakeAccount:
     a = Account()
     for k, v in self._fields.items():
       setattr(a, k, v)
-    a.balance = sum(t.amount for t in self._transactions)
+    a.balance = Decimal(sum(t.amount for t in self._transactions))
     return a
   def transactions(self):
     return sorted(self._transactions, cmp=lambda t1, t2: cmp(t2.date, t1.date))
