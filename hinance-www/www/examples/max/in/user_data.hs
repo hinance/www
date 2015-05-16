@@ -7,6 +7,7 @@ import Hinance.User.Type
 import Hinance.Bank.Type
 import Hinance.Shop.Type
 import Hinance.Currency
+import Text.Regex.TDFA
 
 blue = "#337AB7"
 cyan = "#5BC0DE"
