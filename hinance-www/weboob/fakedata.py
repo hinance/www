@@ -169,3 +169,23 @@ for account in [checking1042, savings2453]:
       u'DEPOSIT MADE IN A BRANCH/STORE',
       u'ATM CASH DEPOSIT - %s MACH ID %i' % (date, randint(10000,99999))]))
     for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5)])
+
+# Check deposits to Windy Vault Bank.
+seed(10300)
+for account in [checking1042, savings2453]:
+  account.add(*[transaction(
+    date=date,
+    amount=Decimal(randint(20, 300)),
+    label=choice([
+      u'ATM CHECK DEPOSIT ON %s' % date,
+      u'ATM CHECK DEPOSIT - %s MACH ID %i' % (date, randint(10000,99999))]))
+    for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5)])
+
+# Check payments for Crispy Bills Bank credit card.
+seed(10400)
+for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 5):
+  amount = Decimal(randint(300,2000))
+  master8385.add(transaction(date=date, amount=amount,
+    label=u'ONLINE PAYMENT, THANK YOU'))
+  checking1042.add(transaction(date=date, amount=-amount, label=choice([
+    u'%i CHECK' % randint(1000,2000)])))

@@ -91,14 +91,17 @@ slices = [
     SliceCateg {scname="Expenses",scbg=red,scfg=white,sctags=[TagExpense]}]}]
 
 addtagged ts
-  | ast [TagOpening] = inc [TagOther]
-  | otherwise        = []
+  | ast [TagOpening]  = inc [TagOther]
+  | ast [TagCheck]    = inc [TagOther]
+  | ast [TagCheckDep] = inc [TagOther]
+  | otherwise         = []
   where ast = all (flip elem $ ts) . (++) [TagAsset]
         inc = (++) [TagIncome]
 
 canxfer tsa tsb
   | a [TagCashDep, TagWindyVault] = b [TagCashDep, TagCash]
   | a [TagCashWdw, TagWindyVault] = b [TagCashWdw, TagCash]
+  | a [TagCheck, TagChecking1042] = b [TagPayment, TagMaster8385]
   | a [TagCash, TagCash2Cash]     = b [TagCash, TagCash2Cash]
   | otherwise                 = False
   where a = all (flip elem $ tsa)
@@ -134,6 +137,9 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagCash2Cash    = l=="CASH TO CASH"
     | t==TagCashWdw      = l=~"^(ATM )?(CASH )?E?WITHDRAWAL"
     | t==TagCashDep      = l=~"^(ATM CASH )?DEPOSIT"
+    | t==TagCheck        = l=~"^([0-9]+ )?CHECK( # [0-9]+)?$"
+    | t==TagCheckDep     = l=~"^ATM CHECK DEPOSIT"
+    | t==TagPayment      = l=~"^(ONLINE )?(PAYMENT|PYMT)[, -]*(THANK YOU)?"
     -- Labels
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
     | otherwise          = False where
