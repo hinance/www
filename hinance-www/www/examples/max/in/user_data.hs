@@ -17,10 +17,6 @@ red = "#D9534F"
 white = "#FFF"
 yellow = "#F0AD4E"
 
-addtagged _ = [] :: [Tag]
-canxfer _ _ = False
-canmerge _ _ = False
-
 slices = [
   Slice {sname="Expenses", stags=[TagExpense], scategs=[
     SliceCateg {scname="Rent, Car and Recurring", scbg=red, scfg=white,
@@ -94,6 +90,20 @@ slices = [
     SliceCateg {scname="Income", scbg=blue, scfg=white, sctags=[TagIncome]},
     SliceCateg {scname="Expenses",scbg=red,scfg=white,sctags=[TagExpense]}]}]
 
+addtagged ts =
+  | ast [TagOpening] = inc [TagOther]
+  | otherwise        = []
+  where ast = all (flip elem $ ts) . (++) [TagAsset]
+        inc = (++) [TagIncome]
+
+canxfer tsa tsb
+  | a [TagCash, TagCash2Cash] = b [TagCash, TagCash2Cash]
+  | otherwise                 = False
+  where a = all (flip elem $ tsa)
+        b = all (flip elem $ tsb)
+
+canmerge _ _ = False
+
 instance Taggable (Bank, BankAcc, BankTrans) where
   tagged (Bank{bid=b}, BankAcc{baid=a}, BankTrans{btlabel=l}) t
     | t==TagAsset        = True
@@ -118,6 +128,10 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagVisa4307     = a=="1042" -- debit card
     | t==TagVisa0375     = a=~"visa0375"
     | t==TagVisa3950     = a=~"visa3950"
+    -- Transfers
+    | t==TagCash2Cash    = l=="CASH TO CASH"
+    -- Labels
+    | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
     | otherwise          = False where
 
 instance Taggable (Shop, ShopOrder, String) where
@@ -133,7 +147,23 @@ instance Patchable Shop where
   patched = id
 
 instance Patchable Bank where
-  patched = id
+  patched banks = (map patchedb banks) ++ [Bank {bid="virtual", baccs=[
+    BankAcc {baid="walletm", balabel="Mary's wallet", babalance=9600,
+             bacurrency=USD, bacard=False, balimit=Nothing, bapaymin=Nothing,
+             bapaytime=Nothing, batrans=[
+      cashto   1430870400   9600]},
+    BankAcc {baid="walletj", balabel="Joe's wallet", babalance=2000,
+             bacurrency=USD, bacard=False, balimit=Nothing, bapaymin=Nothing,
+             bapaytime=Nothing, batrans=[
+      cashfrom 1430870400   9600,
+      dep      1341600000  11600 "CASH OPENING BALANCE"]},
+    BankAcc {baid="reserve", balabel="Cash reserve", babalance=100000,
+             bacurrency=USD, bacard=False, balimit=Nothing, bapaymin=Nothing,
+             bapaytime=Nothing, batrans=[
+      dep     1341600000 100000 "CASH OPENING BALANCE"]}]}] where
+    cashfrom t a = BankTrans{bttime=t, btamount= -a, btlabel="CASH TO CASH"}
+    cashto t a = BankTrans{bttime=t, btamount=a, btlabel="CASH TO CASH"}
+    dep t a l = BankTrans{bttime=t, btamount=a, btlabel=l}
 
 planfrom = 0
 planto = 0

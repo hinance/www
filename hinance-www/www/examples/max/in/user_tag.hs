@@ -7,7 +7,9 @@ data Tag = TagAsset | TagExpense | TagIncome
   | TagVisa0375 | TagVisa3950
   -- Helpers
   | TagArpaBank | TagAwesomeCard | TagAwsGiftBnk | TagBankOfMo | TagCrispyBills
-  | TagVioGorCard | TagWindyVault
+  | TagOpening | TagVioGorCard | TagWindyVault
+  -- Transfers
+  | TagCash2Cash
   -- Categories
   | TagBooks | TagCar | TagCarInsur | TagCarMtn | TagCarPaper | TagClothes
   | TagDiscount | TagDrugs | TagEatingOut | TagElectronics | TagEnergy
