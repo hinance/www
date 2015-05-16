@@ -4,7 +4,7 @@ data Tag = TagAsset | TagExpense | TagIncome
   -- Accounts
   | TagAwesome1875 | TagAwsGiftAcc | TagCash | TagChecking1042 | TagMaster8385
   | TagSavings2453 | TagVioGor7260 | TagVisa4933 | TagVisa8394 | TagVisa4307
-  | TagVisa0375 | TagVisa9950
+  | TagVisa0375 | TagVisa3950
   -- Categories
   | TagBooks | TagCar | TagCarInsur | TagCarMtn | TagCarPaper | TagClothes
   | TagDiscount | TagDrugs | TagEatingOut | TagElectronics | TagEnergy

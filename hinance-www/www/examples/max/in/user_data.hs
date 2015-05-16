@@ -80,7 +80,7 @@ slices = [
     SliceCateg {scname="Shopping Credit", scbg=yellow, scfg=white,
       sctags=[TagAwesome1875, TagAwsGiftAcc, TagVioGor7260]},
     SliceCateg {scname="Checking and Debit", scbg=green, scfg=white,
-      sctags=[TagChecking1042, TagVisa0375, TagVisa9950]},
+      sctags=[TagChecking1042, TagVisa0375, TagVisa3950]},
     SliceCateg {scname="Savings", scbg=cyan, scfg=white,
       sctags=[TagSavings2453]},
     SliceCateg {scname="Credit Cards", scbg=blue, scfg=white,
