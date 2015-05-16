@@ -11,7 +11,7 @@ data Tag = TagAsset | TagExpense | TagIncome
   -- Transfers
   | TagCash2Cash | TagCashWdw | TagCashDep | TagCheck | TagCheckDep
   | TagOdftFr2453 | TagOdftTo1042 | TagPayment | TagPayment8394
-  | TagPaymentAwsm
+  | TagPaymentAwsm | TagPaymentCrsp
   -- Categories
   | TagBooks | TagCar | TagCarInsur | TagCarMtn | TagCarPaper | TagClothes
   | TagDiscount | TagDrugs | TagEatingOut | TagElectronics | TagEnergy

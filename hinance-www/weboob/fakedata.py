@@ -218,6 +218,16 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 5):
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
     u'%i CHECK' % randint(1000,2000)])))
 
+# Online payments for Crispy Bills Bank credit card.
+seed(88798)
+for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 15):
+  amount = Decimal(randint(300,2000))
+  master8385.add(transaction(date=date, amount=amount,
+    label=u'ONLINE PAYMENT, THANK YOU'))
+  checking1042.add(transaction(date=date, amount=-amount, label=choice([
+    u'CRISPY CARD ONLINE PAYMENT %s %i MARY DOE' % (
+      date, randint(10000,99999))])))
+
 # Payments for Awesome Stuff store card.
 seed(97051)
 for date in sample(list(datesrange((2014,5,1), (2015,5,1))), 10):
