@@ -1,6 +1,7 @@
 from weboob.capabilities.bank import Account
 from datetime import datetime
 from decimal import Decimal
+from random import seed
 
 class FakeBank:
   def __init__(self):
@@ -44,6 +45,8 @@ class FakeAccount:
       setattr(a, k, v)
     a.balance = Decimal(0) #TODO
     return a
+
+seed(12345)
 
 #
 # Banks & Shops
