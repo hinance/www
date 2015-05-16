@@ -184,17 +184,8 @@ for account in [checking1042, savings2453]:
       u'ATM CHECK DEPOSIT - %s MACH ID %i' % (date, randint(10000,99999))]))
     for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5)])
 
-# Check payments for Crispy Bills Bank credit card.
-seed(10400)
-for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 5):
-  amount = Decimal(randint(300,2000))
-  master8385.add(transaction(date=date, amount=amount,
-    label=u'ONLINE PAYMENT, THANK YOU'))
-  checking1042.add(transaction(date=date, amount=-amount, label=choice([
-    u'%i CHECK' % randint(1000,2000)])))
-
 # Overdraft protection for Windy Vault Bank.
-seed(10500)
+seed(10400)
 for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
   amount = Decimal(randint(10,100))
   savings2453.add(transaction(date=date, amount=-amount,
@@ -204,3 +195,22 @@ for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
       label=u'OVERDRAFT PROTECTION FROM %i2453' % randint(10000,99999)),
     transaction(date=date, amount=Decimal('-15.50'),
       label=u'OVERDRAFT TRANSFER FEE'))
+
+# Check payments for Crispy Bills Bank credit card.
+seed(10500)
+for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 5):
+  amount = Decimal(randint(300,2000))
+  master8385.add(transaction(date=date, amount=amount,
+    label=u'ONLINE PAYMENT, THANK YOU'))
+  checking1042.add(transaction(date=date, amount=-amount, label=choice([
+    u'%i CHECK' % randint(1000,2000)])))
+
+# Payments for Awesome Stuff store card.
+seed(10600)
+for date in sample(list(datesrange((2014,5,1), (2015,5,1))), 10):
+  amount = Decimal(randint(100,1000))
+  awesome1875.add(transaction(date=date, amount=amount,
+    label=u'ONLINE PAYMENT'))
+  checking1042.add(transaction(date=date, amount=-amount, label=choice([
+    u'PAYMENT FOR AWS STORECARD %s %i1875' % (date, randint(10000,99999)),
+    u'AWESOME CREDIT AWSC EPAY %s %i1875' % (date, randint(10000,99999))])))

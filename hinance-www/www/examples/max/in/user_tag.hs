@@ -10,7 +10,7 @@ data Tag = TagAsset | TagExpense | TagIncome
   | TagFee | TagOpening | TagVioGorCard | TagWindyVault
   -- Transfers
   | TagCash2Cash | TagCashWdw | TagCashDep | TagCheck | TagCheckDep
-  | TagOdftFr2453 | TagOdftTo1042 | TagPayment
+  | TagOdftFr2453 | TagOdftTo1042 | TagPayment | TagPaymentAwsm
   -- Categories
   | TagBooks | TagCar | TagCarInsur | TagCarMtn | TagCarPaper | TagClothes
   | TagDiscount | TagDrugs | TagEatingOut | TagElectronics | TagEnergy
