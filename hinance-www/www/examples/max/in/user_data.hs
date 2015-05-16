@@ -90,7 +90,7 @@ slices = [
     SliceCateg {scname="Income", scbg=blue, scfg=white, sctags=[TagIncome]},
     SliceCateg {scname="Expenses",scbg=red,scfg=white,sctags=[TagExpense]}]}]
 
-addtagged ts =
+addtagged ts
   | ast [TagOpening] = inc [TagOther]
   | otherwise        = []
   where ast = all (flip elem $ ts) . (++) [TagAsset]
@@ -147,7 +147,7 @@ instance Patchable Shop where
   patched = id
 
 instance Patchable Bank where
-  patched banks = (map patchedb banks) ++ [Bank {bid="virtual", baccs=[
+  patched banks = banks ++ [Bank {bid="virtual", baccs=[
     BankAcc {baid="walletm", balabel="Mary's wallet", babalance=9600,
              bacurrency=USD, bacard=False, balimit=Nothing, bapaymin=Nothing,
              bapaytime=Nothing, batrans=[
