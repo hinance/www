@@ -35,6 +35,7 @@ function runexample() {
     sleep 1
   done
   kill $PID1 $PID2
+  cat out/log/hinance.log
 }
 
 weboob-config update
