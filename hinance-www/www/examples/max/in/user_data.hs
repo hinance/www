@@ -97,7 +97,9 @@ addtagged ts
         inc = (++) [TagIncome]
 
 canxfer tsa tsb
-  | a [TagCash, TagCash2Cash] = b [TagCash, TagCash2Cash]
+  | a [TagCashDep, TagWindyVault] = b [TagCashDep, TagCash]
+  | a [TagCashWdw, TagWindyVault] = b [TagCashWdw, TagCash]
+  | a [TagCash, TagCash2Cash]     = b [TagCash, TagCash2Cash]
   | otherwise                 = False
   where a = all (flip elem $ tsa)
         b = all (flip elem $ tsb)
@@ -130,6 +132,8 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagVisa3950     = a=~"visa3950"
     -- Transfers
     | t==TagCash2Cash    = l=="CASH TO CASH"
+    | t==TagCashWdw      = l=~"^(ATM )?(CASH )?E?WITHDRAWAL"
+    | t==TagCashDep      = l=~"^(ATM CASH )?DEPOSIT"
     -- Labels
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
     | otherwise          = False where
@@ -161,6 +165,10 @@ instance Patchable Bank where
              bacurrency=USD, bacard=False, balimit=Nothing, bapaymin=Nothing,
              bapaytime=Nothing, batrans=[
       dep     1341600000 100000 "CASH OPENING BALANCE"]}]}] where
+    cashdep t a = BankTrans{bttime=t, btamount= -a,
+                            btlabel="ATM CASH DEPOSIT"}
+    cashwdw t a = BankTrans{bttime=t, btamount=a,
+                            btlabel="ATM CASH WITHDRAWAL"}
     cashfrom t a = BankTrans{bttime=t, btamount= -a, btlabel="CASH TO CASH"}
     cashto t a = BankTrans{bttime=t, btamount=a, btlabel="CASH TO CASH"}
     dep t a l = BankTrans{bttime=t, btamount=a, btlabel=l}

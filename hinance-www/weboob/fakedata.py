@@ -1,7 +1,7 @@
-from weboob.capabilities.bank import Account
+from weboob.capabilities.bank import Account, Transaction
 from datetime import datetime
 from decimal import Decimal
-from random import seed
+from random import seed, sample, randint, choice
 
 class FakeBank:
   def __init__(self):
@@ -15,8 +15,9 @@ class FakeBank:
       if a.id == id_:
         return a
   def iter_history(self, account):
-    #TODO
-    return []
+    for a in self._accounts:
+      if a.id() == account.id:
+        return a.transactions()
 
 class FakeShop:
   def __init__(self, cur):
@@ -39,14 +40,31 @@ class FakeShop:
 class FakeAccount:
   def __init__(self, **kwArgs):
     self._fields = kwArgs
+    self._transactions = []
+  def add(self, *transactions):
+    self._transactions += list(transactions)
+  def id(self):
+    return self._fields['id']
   def account(self):
     a = Account()
     for k, v in self._fields.items():
       setattr(a, k, v)
-    a.balance = Decimal(0) #TODO
+    a.balance = sum(t.amount for t in self._transactions)
     return a
+  def transactions(self):
+    return sorted(self._transactions, cmp=lambda t1, t2: cmp(t2.date, t1.date))
 
-seed(12345)
+def transaction(**kwArgs):
+  t = Transaction()
+  for k, v in self._fields.items():
+    setattr(t, k, v)
+  return t
+
+def datesrange(tuplefrom, tupleto):
+  dtfrom, dtto = datetime(*tuplefrom), datetime(*tupleto)
+  return (dtfrom + timedelta(days=d) for d in xrange(0, (dtto-dtfrom).days))
+
+seed(10000)
 
 #
 # Banks & Shops
@@ -112,3 +130,20 @@ awesomecard.add(awesome1875)
 crispybills.add(master8385)
 windyvault.add(checking1042, savings2453, visa8394)
 viogorcard.add(viogor7260)
+
+#
+# Transactions
+#
+
+# Cash withdrawals from Windy Vault Bank
+seed(10100)
+for account in [checking1042, savings2453]:
+  account.add(transaction(
+    date=date,
+    amount=Decimal(randint(1, 10)*100),
+    label=choice([
+      u'CASH EWITHDRAWAL IN BRANCH/STORE %s' % date,
+      u'CASH EWITHDRAWAL IN BRANCH/STORE',
+      u'ATM WITHDRAWAL AUTHORIZED ON %s' % date,
+      u'ATM WITHDRAWAL - %s MACH ID %i' % (date, randint(10000,99999))])
+    for date in sample(datesrange((2012,10,10), (2015,5,1)), 5))
