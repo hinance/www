@@ -108,6 +108,7 @@ canxfer tsa tsb
   | a [TagPaymentCrsp]                 = b [TagPayment, TagMaster8385]
   | a [TagPayment8394]                 = b [TagPayment, TagVisa8394]
   | a [TagPaymentAwsm]                 = b [TagPayment, TagAwesome1875]
+  | a [TagPaymentVG]                   = b [TagPayment, TagVioGor7260]
   | a [TagCash, TagCash2Cash]          = b [TagCash, TagCash2Cash]
   | otherwise                          = False
   where a = all (flip elem $ tsa)
@@ -129,7 +130,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     -- Accounts
     | t==TagAwesome1875  = a=="1875"
     | t==TagAwsGiftAcc   = a=="awesomegift"
-    | t==TagCash         = a=="walletm" || a=="walletj" || a=="reserve"
+    | t==TagCash         = a=="walleta" || a=="walletd" || a=="reserve"
     | t==TagChecking1042 = a=="1042"
     | t==TagMaster8385   = a=="8385"
     | t==TagSavings2453  = a=="2453"
@@ -151,6 +152,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagPaymentAwsm  = l=~"PAYMENT FOR AWS STORECARD|AWESOME CREDIT"
     | t==TagPayment8394  = l=~"TRANSFER.*TO (SECURED CARD|VISA).*X8394 "
     | t==TagPaymentCrsp  = l=~"^CRISPY CARD ONLINE PAYMENT"
+    | t==TagPaymentVG    = l=~"CELESTIAL PAY"
     -- Labels
     | t==TagFee          = l=~" FEE( .*)?$"
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
@@ -170,11 +172,11 @@ instance Patchable Shop where
 
 instance Patchable Bank where
   patched banks = banks ++ [Bank {bid="virtual", baccs=[
-    BankAcc {baid="walletm", balabel="Mary's wallet", babalance=9600,
+    BankAcc {baid="walleta", balabel="Alison's wallet", babalance=9600,
              bacurrency=USD, bacard=False, balimit=Nothing, bapaymin=Nothing,
              bapaytime=Nothing, batrans=[
       cashto   1430870400   9600]},
-    BankAcc {baid="walletj", balabel="Joe's wallet", babalance=2000,
+    BankAcc {baid="walletd", balabel="Donnie's wallet", babalance=2000,
              bacurrency=USD, bacard=False, balimit=Nothing, bapaymin=Nothing,
              bapaytime=Nothing, batrans=[
       cashfrom 1430870400   9600,

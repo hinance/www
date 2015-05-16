@@ -225,7 +225,7 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 15):
   master8385.add(transaction(date=date, amount=amount,
     label=u'ONLINE PAYMENT, THANK YOU'))
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
-    u'CRISPY CARD ONLINE PAYMENT %s %i MARY DOE' % (
+    u'CRISPY CARD ONLINE PAYMENT %s %i ALISON HENDRIX' % (
       date, randint(10000,99999))])))
 
 # Payments for Awesome Stuff store card.
@@ -237,3 +237,15 @@ for date in sample(list(datesrange((2014,5,1), (2015,5,1))), 10):
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
     u'PAYMENT FOR AWS STORECARD %s %i1875' % (date, randint(10000,99999)),
     u'AWESOME CREDIT AWSC EPAY %s %i1875' % (date, randint(10000,99999))])))
+
+# Payments for Violently Gorgeous store card.
+seed(42732)
+for date in sample(list(datesrange((2014,2,1), (2015,5,1))), 15):
+  amount = Decimal(randint(50,500))
+  viogor7260.add(transaction(date=date, amount=amount,
+    label=u'PAYMENT - THANK YOU'))
+  checking1042.add(transaction(date=date, amount=-amount, label=choice([
+    u'CELESTIAL PAY VI WEB PYMT %s %i7260 ALISON HENDRIX' % (
+      date, randint(10000,99999)),
+    u'CELESTIAL PAY WFN WEB PYMT %s %i7260 ALISON HENDRIX' % (
+      date, randint(10000,99999))])))
