@@ -1,5 +1,5 @@
 from weboob.capabilities.bank import Account, Transaction
-from datetime import datetime
+from datetime import datetime, timedelta
 from decimal import Decimal
 from random import seed, sample, randint, choice
 
@@ -56,7 +56,7 @@ class FakeAccount:
 
 def transaction(**kwArgs):
   t = Transaction()
-  for k, v in self._fields.items():
+  for k, v in kwArgs.items():
     setattr(t, k, v)
   return t
 
@@ -138,12 +138,12 @@ viogorcard.add(viogor7260)
 # Cash withdrawals from Windy Vault Bank
 seed(10100)
 for account in [checking1042, savings2453]:
-  account.add(transaction(
+  account.add(*[transaction(
     date=date,
-    amount=Decimal(randint(1, 10)*100),
+    amount=Decimal(randint(-100, -10)*20),
     label=choice([
       u'CASH EWITHDRAWAL IN BRANCH/STORE %s' % date,
       u'CASH EWITHDRAWAL IN BRANCH/STORE',
       u'ATM WITHDRAWAL AUTHORIZED ON %s' % date,
-      u'ATM WITHDRAWAL - %s MACH ID %i' % (date, randint(10000,99999))])
-    for date in sample(datesrange((2012,10,10), (2015,5,1)), 5))
+      u'ATM WITHDRAWAL - %s MACH ID %i' % (date, randint(10000,99999))]))
+    for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5)])
