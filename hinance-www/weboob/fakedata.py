@@ -135,7 +135,17 @@ viogorcard.add(viogor7260)
 # Transactions
 #
 
-# Cash withdrawals from Windy Vault Bank
+# Opening deposits.
+checking1042.add(transaction(
+  date=datetime(2012,8,1),
+  label=u'CHECKING OPENING DEPOSIT',
+  amount=Decimal(100)))
+savings2453.add(transaction(
+  date=datetime(2012,8,1),
+  label=u'SAVINGS OPENING DEPOSIT',
+  amount=Decimal(100)))
+
+# Cash withdrawals from Windy Vault Bank.
 seed(10100)
 for account in [checking1042, savings2453]:
   account.add(*[transaction(
@@ -146,4 +156,16 @@ for account in [checking1042, savings2453]:
       u'CASH EWITHDRAWAL IN BRANCH/STORE',
       u'ATM WITHDRAWAL AUTHORIZED ON %s' % date,
       u'ATM WITHDRAWAL - %s MACH ID %i' % (date, randint(10000,99999))]))
+    for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5)])
+
+# Cash deposits to Windy Vault Bank.
+seed(10200)
+for account in [checking1042, savings2453]:
+  account.add(*[transaction(
+    date=date,
+    amount=Decimal(randint(10, 100)*20),
+    label=choice([
+      u'ATM CASH DEPOSIT ON %s' % date,
+      u'DEPOSIT MADE IN A BRANCH/STORE',
+      u'ATM CASH DEPOSIT - %s MACH ID %i' % (date, randint(10000,99999))]))
     for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5)])
