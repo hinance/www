@@ -94,7 +94,30 @@ slices = [
     SliceCateg {scname="Expenses",scbg=red,scfg=white,sctags=[TagExpense]}]}]
 
 instance Taggable (Bank, BankAcc, BankTrans) where
-  tagged _ _ = False
+  tagged (Bank{bid=b}, BankAcc{baid=a}, BankTrans{btlabel=l}) t
+    | t==TagAsset        = True
+    -- Banks
+    | t==TagArpaBank     = a=~"^arpa:"
+    | t==TagAwesomeCard  = b=="awesomecard"
+    | t==TagAwsGiftBnk   = a=="awesomegift"
+    | t==TagBankOfMo     = a=~"^bom:" || l=~"BANK OF MORDOR"
+    | t==TagCrispyBills  = b=="crispybills"
+    | t==TagVioGorCard   = b=="viogorcard"
+    | t==TagWindyVault   = b=="windyvault"
+    -- Accounts
+    | t==TagAwesome1875  = a=="1875"
+    | t==TagAwsGiftAcc   = a=="awesomegift"
+    | t==TagCash         = a=="walletm" || a=="walletj" || a=="reserve"
+    | t==TagChecking1042 = a=="1042"
+    | t==TagMaster8385   = a=="8385"
+    | t==TagSavings2453  = a=="2453"
+    | t==TagVioGor7260   = a=="7260"
+    | t==TagVisa4933     = a=="1042" -- debit card
+    | t==TagVisa8394     = a=="8394"
+    | t==TagVisa4307     = a=="1042" -- debit card
+    | t==TagVisa0375     = a=~"visa0375"
+    | t==TagVisa3950     = a=~"visa3950"
+    | otherwise          = False where
 
 instance Taggable (Shop, ShopOrder, String) where
   tagged _ _ = False
