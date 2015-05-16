@@ -132,10 +132,9 @@ windyvault.add(checking1042, savings2453, visa8394)
 viogorcard.add(viogor7260)
 
 #
-# Transactions
+# Opening deposits.
 #
 
-# Opening deposits.
 checking1042.add(transaction(
   date=datetime(2012,8,1),
   label=u'CHECKING OPENING DEPOSIT',
@@ -144,6 +143,10 @@ savings2453.add(transaction(
   date=datetime(2012,8,1),
   label=u'SAVINGS OPENING DEPOSIT',
   amount=Decimal(100)))
+
+#
+# Transfers.
+#
 
 # Cash withdrawals from Windy Vault Bank.
 seed(10100)
@@ -189,3 +192,15 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 5):
     label=u'ONLINE PAYMENT, THANK YOU'))
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
     u'%i CHECK' % randint(1000,2000)])))
+
+# Overdraft protection for Windy Vault Bank.
+seed(10500)
+for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
+  amount = Decimal(randint(10,100))
+  savings2453.add(transaction(date=date, amount=-amount,
+    label=u'OVERDRAFT PROTECTION TO %i1042' % randint(10000,99999)))
+  checking1042.add(
+    transaction(date=date, amount=amount,
+      label=u'OVERDRAFT PROTECTION FROM %i2453' % randint(10000,99999)),
+    transaction(date=date, amount=Decimal('-15.50'),
+      label=u'OVERDRAFT TRANSFER FEE'))

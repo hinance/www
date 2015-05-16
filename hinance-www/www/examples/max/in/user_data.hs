@@ -94,16 +94,19 @@ addtagged ts
   | ast [TagOpening]  = inc [TagOther]
   | ast [TagCheck]    = inc [TagOther]
   | ast [TagCheckDep] = inc [TagOther]
+  | ast [TagFee]      = exp [TagOther]
   | otherwise         = []
   where ast = all (flip elem $ ts) . (++) [TagAsset]
+        exp = (++) [TagExpense]
         inc = (++) [TagIncome]
 
 canxfer tsa tsb
-  | a [TagCashDep, TagWindyVault] = b [TagCashDep, TagCash]
-  | a [TagCashWdw, TagWindyVault] = b [TagCashWdw, TagCash]
-  | a [TagCheck, TagChecking1042] = b [TagPayment, TagMaster8385]
-  | a [TagCash, TagCash2Cash]     = b [TagCash, TagCash2Cash]
-  | otherwise                 = False
+  | a [TagCashDep, TagWindyVault]      = b [TagCashDep, TagCash]
+  | a [TagCashWdw, TagWindyVault]      = b [TagCashWdw, TagCash]
+  | a [TagOdftFr2453, TagChecking1042] = b [TagOdftTo1042, TagSavings2453]
+  | a [TagCheck, TagChecking1042]      = b [TagPayment, TagMaster8385]
+  | a [TagCash, TagCash2Cash]          = b [TagCash, TagCash2Cash]
+  | otherwise                          = False
   where a = all (flip elem $ tsa)
         b = all (flip elem $ tsb)
 
@@ -139,8 +142,11 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagCashDep      = l=~"^(ATM CASH )?DEPOSIT"
     | t==TagCheck        = l=~"^([0-9]+ )?CHECK( # [0-9]+)?$"
     | t==TagCheckDep     = l=~"^ATM CHECK DEPOSIT"
+    | t==TagOdftFr2453   = l=~"^OVERDRAFT PROTECTION FROM.*2453$"
+    | t==TagOdftTo1042   = l=~"^OVERDRAFT PROTECTION TO.*1042$"
     | t==TagPayment      = l=~"^(ONLINE )?(PAYMENT|PYMT)[, -]*(THANK YOU)?"
     -- Labels
+    | t==TagFee          = l=~" FEE( .*)?$"
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
     | otherwise          = False where
 
