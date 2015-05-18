@@ -107,6 +107,8 @@ canxfer tsa tsb
   | a [TagCheck, TagChecking1042]      = b [TagPayment, TagMaster8385]
   | a [TagPaymentCrsp]                 = b [TagPayment, TagMaster8385]
   | a [TagPayment8394]                 = b [TagPayment, TagVisa8394]
+  | a [TagXferFrSav, TagChecking1042]  = b [TagXferToChk, TagSavings2453]
+  | a [TagXferToSav, TagChecking1042]  = b [TagXferFrChk, TagSavings2453]
   | a [TagPaymentAwsm]                 = b [TagPayment, TagAwesome1875]
   | a [TagPaymentVG]                   = b [TagPayment, TagVioGor7260]
   | a [TagCash, TagCash2Cash]          = b [TagCash, TagCash2Cash]
@@ -153,6 +155,10 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagPayment8394  = l=~"TRANSFER.*TO (SECURED CARD|VISA).*X8394 "
     | t==TagPaymentCrsp  = l=~"^CRISPY CARD ONLINE PAYMENT"
     | t==TagPaymentVG    = l=~"CELESTIAL PAY"
+    | t==TagXferFrChk    = l=~"ONLINE TRANSFER.* FROM .*CHECKING"
+    | t==TagXferFrSav    = l=~"ONLINE TRANSFER.* FROM .*SAVINGS"
+    | t==TagXferToChk    = l=~"ONLINE TRANSFER.* TO .*CHECKING"
+    | t==TagXferToSav    = l=~"ONLINE TRANSFER.* TO .*SAVINGS"
     -- Labels
     | t==TagFee          = l=~" FEE( .*)?$"
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"

@@ -197,6 +197,30 @@ for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
     transaction(date=date, amount=Decimal('-15.50'),
       label=u'OVERDRAFT TRANSFER FEE'))
 
+# Transfers from checking to savings for Windy Vault Bank.
+seed(68697)
+for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
+  amount = Decimal(randint(1,10)*100)
+  savings2453.add(transaction(date=date, amount=amount,
+    label=u'ONLINE TRANSFER FROM ALISON HENDRIX CHECKING XXXXXX1042 '
+          u'REF #%i ON %s' % (randint(10000,99999), date)))
+  checking1042.add(
+    transaction(date=date, amount=-amount,
+      label=u'ONLINE TRANSFER REF #%i TO QUICKSAVE SAVINGS XXXXXX2453 ON %s' \
+            % date))
+
+# Transfers from savings to checking for Windy Vault Bank.
+seed(73916)
+for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
+  amount = Decimal(randint(1,10)*100)
+  savings2453.add(transaction(date=date, amount=-amount,
+    label=u'ONLINE TRANSFER TO ALISON HENDRIX CHECKING XXXXXX1042 '
+          u'REF #%i ON %s' % (randint(10000,99999), date)))
+  checking1042.add(
+    transaction(date=date, amount=amount,
+      label=u'ONLINE TRANSFER REF #%i FROM QUICKSAVE SAVINGS XXXXXX2453 ON %s'\
+            % date))
+
 # Payments for Windy Vault Bank credit card.
 seed(40726)
 for date in sample(list(datesrange((2012,11,1), (2015,5,1))), 10):
