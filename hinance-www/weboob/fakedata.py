@@ -455,3 +455,17 @@ for date in sample(list(datesrange((2013,5,1), (2015,5,1))), 3):
   account = choice([visa8394, checking1042])
   account.add(transaction(date=date, amount=-amount,
     label=u'GEICO *AUTO MACON DC'))
+
+#
+# HOME DEPOT
+#
+seed(27219)
+for date in sample(list(datesrange((2012,11,1), (2015,5,1))), 10):
+  amount = Decimal(randint(1000,3000))/100
+  account = choice([visa8394, checking1042])
+  account.add(transaction(date=date, amount=-amount, label=choice([
+    u'PURCHASE AUTHORIZED ON %s THE HOME DEPOT DALLAS TX P%i CARD 1234' \
+    % (date, randint(100000,999999)),
+    u'POS PURCHASE - %s MACH ID 000000 THE HOME DEPOT DALLAS TX 1234 %i' \
+    % (date, randint(100000,999999)),
+    u'THE HOME DEPOT %i RICHARDSON TX' % randint(1000,9999)])))
