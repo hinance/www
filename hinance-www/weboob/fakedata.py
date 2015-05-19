@@ -334,5 +334,18 @@ for date in sample(list(datesrange((2012,10,10), (2013,12,1))), 5):
 for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
   amount = Decimal(randint(5,20))
   account = choice([visa8394, master8385])
-  checking1042.add(transaction(date=date, amount=-amount,
+  account.add(transaction(date=date, amount=-amount,
     label=u'ABEBOOKS.COM 800-315-5335 WA'))
+
+#
+# ALDI
+#
+seed(13383)
+# Purchases via Windy Vault Bank debit card.
+for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 20):
+  amount = Decimal(randint(50,100))
+  checking1042.add(transaction(date=date, amount=-amount, label=choice([
+    u'PURCHASE AUTHORIZED ON %s ALDI 75432 1234 DALLAS TX P%i CARD 4933' \
+    % (date, randint(10000,99999)),
+    u'POS PURCHASE - %s MACH ID 000000 ALDI 75432 1234 DALLAS TX 4933 %i' \
+    % (date, randint(10000,99999))])))

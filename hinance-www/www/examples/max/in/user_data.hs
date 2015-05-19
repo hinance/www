@@ -94,6 +94,7 @@ addtagged ts
   | ast [Tag6PM]         = exp [TagClothes]
   | ast [Tag7Eleven]     = exp [TagCar, TagGas]
   | ast [TagAbeBooks]    = exp [TagBooks]
+  | ast [TagAldi]        = exp [TagFood]
   | ast [TagCheck]       = inc [TagOther]
   | ast [TagCheckDep]    = inc [TagOther]
   | ast [TagFee]         = exp [TagOther]
@@ -166,6 +167,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==Tag6PM          = l=~"6PM.COM"
     | t==Tag7Eleven      = l=~"7[- ]ELEVEN"
     | t==TagAbeBooks     = l=~"ABEBOOKS.COM"
+    | t==TagAldi         = l=~" ALDI "
     | t==TagFee          = l=~" FEE( .*)?$"
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
     | otherwise          = False where
