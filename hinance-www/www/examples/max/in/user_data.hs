@@ -105,6 +105,7 @@ addtagged ts
   | ast [TagCheckDep]    = inc [TagOther]
   | ast [TagContacts]    = exp [TagDrugs]
   | ast [TagCstmHous]    = exp [TagTravel, TagTravHous]
+  | ast [TagDPS]         = exp [TagCar, TagCarPaper]
   | ast [TagFee]         = exp [TagOther]
   | ast [TagOpening]     = inc [TagOther]
   | otherwise            = []
@@ -184,6 +185,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagCafe         = l=~"CAFE"
     | t==TagContacts     = l=~"CONTACT(S| LEN)"
     | t==TagCstmHous     = l=~"CUSTOM HOUSE LTD"
+    | t==TagDPS          = l=~"^TX DPS"
     | t==TagFee          = l=~" FEE( .*)?$"
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
     | otherwise          = False where
