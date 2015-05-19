@@ -319,3 +319,20 @@ for date in sample(list(datesrange((2013,5,1), (2015,5,1))), 20):
     % (date, randint(10000,99999)),
     u'POS PURCHASE - %s MACH ID 000000 7 ELEVEN DALLAS TX 4933 %i' \
     % (date, randint(10000,99999))])))
+
+#
+# ABEBOOKS.COM
+#
+seed(17040)
+# Purchases via Windy Vault Bank debit card.
+for date in sample(list(datesrange((2012,10,10), (2013,12,1))), 5):
+  amount = Decimal(randint(5,20))
+  checking1042.add(transaction(date=date, amount=-amount, label=
+    u'CHECK CRD PURCHASE %s ABEBOOKS.COM 800-315-5335 WA XXXXXXXXXXXX4933 %i' \
+    % (date, randint(10000,99999))))
+# Purchases via Windy Vault Bank or Crispy Bills Bank credit cards.
+for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
+  amount = Decimal(randint(5,20))
+  account = choice([visa8394, master8385])
+  checking1042.add(transaction(date=date, amount=-amount,
+    label=u'ABEBOOKS.COM 800-315-5335 WA'))
