@@ -389,3 +389,14 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 5):
     u'POS PURCHASE - %s MACH ID 000000 DALLAS ARBORETU DALLAS TX 8385 %i' \
     % (date, randint(100000,999999)),
     u'DALLAS ARBORETUM DALLAS TX'])))
+
+#
+# AT&T
+#
+seed(64198)
+for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 50):
+  amount = Decimal(randint(30,50))
+  checking1042.add(transaction(date=date, amount=-amount, label=choice([
+    u'PURCHASE AUTHORIZED ON %s VESTA *AT&T 866-608-3007 OR S%i CARD 4933' \
+    % (date, randint(100000,999999)),
+    u'VESTA *AT&T 866-608-3007 OR'])))
