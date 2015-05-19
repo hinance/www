@@ -378,3 +378,14 @@ for date in sample(list(datesrange((2014,3,1), (2014,7,1))), 20):
   amount = Decimal(randint(50,150))
   master8385.add(transaction(date=date, amount=-amount,
     label=u'AMTRAK .%i DC' % randint(100000,999999)))
+
+#
+# ARBORETUM
+#
+seed(44417)
+for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 5):
+  amount = Decimal(randint(10,30))
+  master8385.add(transaction(date=date, amount=-amount, label=choice([
+    u'POS PURCHASE - %s MACH ID 000000 DALLAS ARBORETU DALLAS TX 8385 %i' \
+    % (date, randint(100000,999999)),
+    u'DALLAS ARBORETUM DALLAS TX'])))

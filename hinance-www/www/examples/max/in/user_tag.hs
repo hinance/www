@@ -6,7 +6,8 @@ data Tag = TagAsset | TagExpense | TagIncome
   | TagSavings2453 | TagVioGor7260 | TagVisa4933 | TagVisa8394 | TagVisa4307
   | TagVisa0375 | TagVisa3950
   -- Helpers
-  | Tag6PM | Tag7Eleven | TagAbeBooks | TagAldi | TagAmtrak | TagArpaBank
+  | Tag6PM | Tag7Eleven | TagAbeBooks | TagAldi | TagAmtrak | TagArboretum
+  | TagArpaBank
   | TagAwesomeCard
   | TagAwesomeDgt | TagAwesomeWeb | TagAwsGiftBnk | TagBankOfMo
   | TagCrispyBills | TagFee | TagOpening | TagVioGorCard | TagWindyVault
