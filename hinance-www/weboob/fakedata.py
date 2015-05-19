@@ -349,3 +349,13 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 20):
     % (date, randint(10000,99999)),
     u'POS PURCHASE - %s MACH ID 000000 ALDI 75432 1234 DALLAS TX 4933 %i' \
     % (date, randint(10000,99999))])))
+
+#
+# AWESOME DIGITAL SERVICES
+#
+seed(28943)
+# Purchases via Windy Vault Bank debit card.
+for date in sample(list(datesrange((2014,8,1), (2015,5,1))), 40):
+  amount = Decimal(randint(1,10))
+  awesome1875.add(transaction(date=date, amount=-amount,
+    label=u'AWESOME DIGITAL SEATTLE WA'))
