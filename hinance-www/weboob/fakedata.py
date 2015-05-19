@@ -425,3 +425,13 @@ for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 10):
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
     u'ACL*CONTACT LEN INTRNT 800-822-6853 OH',
     u'COASTALCONTACTS 604-6691555 CA'])))
+
+#
+# CUSTOM HOUSE
+#
+seed(93632)
+for date in sample(list(datesrange((2013,3,1), (2014,2,1))), 5):
+  amount = Decimal(randint(10000,30000))/100
+  account = choice([visa8394, checking1042])
+  account.add(transaction(date=date, amount=-amount, label=
+    u'CUSTOM HOUSE LTD CUSTOM FX %i ALISON HENDRIX' % randint(100000,999999)))
