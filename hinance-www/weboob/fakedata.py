@@ -415,3 +415,13 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 50):
     u'UTD COMET CAFE%i DALLAS TX' % randint(10000,99999),
     u'CHECK CRD PURCHASE %s UTD COMET CAFE1234 DALLAS TX XXXXXXXXXXXX1234 %i'\
     % (date, randint(100000,999999))])))
+
+#
+# CONTACTS
+#
+seed(53637)
+for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 10):
+  amount = Decimal(randint(50,150))
+  checking1042.add(transaction(date=date, amount=-amount, label=choice([
+    u'ACL*CONTACT LEN INTRNT 800-822-6853 OH',
+    u'COASTALCONTACTS 604-6691555 CA'])))

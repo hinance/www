@@ -103,6 +103,7 @@ addtagged ts
   | ast [TagCafe]        = exp [TagEatingOut]
   | ast [TagCheck]       = inc [TagOther]
   | ast [TagCheckDep]    = inc [TagOther]
+  | ast [TagContacts]    = exp [TagDrugs]
   | ast [TagFee]         = exp [TagOther]
   | ast [TagOpening]     = inc [TagOther]
   | otherwise            = []
@@ -180,6 +181,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagAwesomeDgt   = l=~"AWESOME DIGITAL"
     | t==TagAwesomeWeb   = l=~"AWESOME WEB SERVICE"
     | t==TagCafe         = l=~"CAFE"
+    | t==TagContacts     = l=~"CONTACT(S| LEN)"
     | t==TagFee          = l=~" FEE( .*)?$"
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
     | otherwise          = False where
