@@ -307,3 +307,15 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
   amount = Decimal(randint(20,100))
   master8385.add(transaction(date=date, amount=-amount,
     label=u'ZAP*6PM.COM 888-676-2660 NV'))
+
+#
+# 7 ELEVEN
+#
+seed(85941)
+for date in sample(list(datesrange((2013,5,1), (2015,5,1))), 20):
+  amount = Decimal(randint(20,40))
+  checking1042.add(transaction(date=date, amount=-amount, label=choice([
+    u'PURCHASE AUTHORIZED ON %s 7-ELEVEN %i DALLAS TX CARD 4933' \
+    % (date, randint(10000,99999)),
+    u'POS PURCHASE - %s MACH ID 000000 7 ELEVEN DALLAS TX 4933 %i' \
+    % (date, randint(10000,99999))])))

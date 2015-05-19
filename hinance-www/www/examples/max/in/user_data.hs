@@ -92,6 +92,7 @@ slices = [
 
 addtagged ts
   | ast [Tag6PM]         = exp [TagClothes]
+  | ast [Tag7Eleven]     = exp [TagCar, TagGas]
   | ast [TagCheck]       = inc [TagOther]
   | ast [TagCheckDep]    = inc [TagOther]
   | ast [TagFee]         = exp [TagOther]
@@ -162,6 +163,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagXferToSav    = l=~"ONLINE TRANSFER.* TO .*SAVINGS"
     -- Labels
     | t==Tag6PM          = l=~"6PM.COM"
+    | t==Tag7Eleven      = l=~"7[- ]ELEVEN"
     | t==TagFee          = l=~" FEE( .*)?$"
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
     | otherwise          = False where
