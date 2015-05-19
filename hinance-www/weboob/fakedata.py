@@ -341,7 +341,6 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
 # ALDI
 #
 seed(13383)
-# Purchases via Windy Vault Bank debit card.
 for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 20):
   amount = Decimal(randint(50,100))
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
@@ -354,8 +353,19 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 20):
 # AWESOME DIGITAL SERVICES
 #
 seed(28943)
-# Purchases via Windy Vault Bank debit card.
 for date in sample(list(datesrange((2014,8,1), (2015,5,1))), 40):
   amount = Decimal(randint(1,10))
   awesome1875.add(transaction(date=date, amount=-amount,
     label=u'AWESOME DIGITAL SEATTLE WA'))
+
+#
+# AWESOME WEB SERVICES
+#
+seed(56192)
+for date in sample(list(datesrange((2014,7,1), (2015,5,1))), 10):
+  amount = Decimal(randint(20,40))
+  checking1042.add(transaction(date=date, amount=-amount, label=choice([
+    u'PURCHASE AUTHORIZED ON %s AWESOME WEB SERVICE AWS.AWESOME.CO WA S%i '
+    u'CARD 4933' % (date, randint(10000,99999)),
+    u'CHECK CRD PURCHASE %s AWESOME WEB SERVICE AWS.AWESOME.CO WA '
+    u'XXXXXXXXXXXX4933 %i' % (date, randint(10000,99999))])))
