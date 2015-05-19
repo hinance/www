@@ -445,3 +445,13 @@ for date in sample(list(datesrange((2014,6,1), (2015,5,1))), 5):
   account = choice([visa8394, master8385, checking1042])
   account.add(transaction(date=date, amount=-amount,
     label=u'TX DPS DL OFFICE AUSTIN TX'))
+
+#
+# GEICO
+#
+seed(32640)
+for date in sample(list(datesrange((2013,5,1), (2015,5,1))), 3):
+  amount = Decimal(randint(30000,70000))/100
+  account = choice([visa8394, checking1042])
+  account.add(transaction(date=date, amount=-amount,
+    label=u'GEICO *AUTO MACON DC'))
