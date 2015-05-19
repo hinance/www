@@ -284,7 +284,7 @@ for date in sample(list(datesrange((2014,2,1), (2015,5,1))), 15):
 seed(42732)
 # Purchases via Windy Vault Bank debit card.
 for date in sample(list(datesrange((2012,10,10), (2013,12,1))), 10):
-  amount = Decimal(randint(20,100))
+  amount = Decimal(randint(2000,10000))/100
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
     u'CHECK CRD PURCHASE %s PAYPAL *6PM COM 402-935-7733 NV XXXXXXXXXXXX4933'
     u' %i' % (date, randint(10000,99999)),
@@ -296,7 +296,7 @@ for date in sample(list(datesrange((2012,10,10), (2013,12,1))), 10):
     u' %i' % (date, randint(10000,99999))])))
 # Returns to Windy Vault Bank checking account.
 for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
-  amount = Decimal(randint(20,100))
+  amount = Decimal(randint(2000,10000))/100
   checking1042.add(transaction(date=date, amount=amount, label=choice([
     u'CHECK CRD PUR RTRN %s PAYPAL *6PM COM 402-935-7733 NV XXXXXXXXXXXX4933'
     u' %i' % (date, randint(10000,99999)),
@@ -304,7 +304,7 @@ for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
     u' %i' % (date, randint(10000,99999))])))
 # Purchases via Crispy Bills Bank credit card.
 for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
-  amount = Decimal(randint(20,100))
+  amount = Decimal(randint(2000,10000))/100
   master8385.add(transaction(date=date, amount=-amount,
     label=u'ZAP*6PM.COM 888-676-2660 NV'))
 
@@ -313,7 +313,7 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
 #
 seed(85941)
 for date in sample(list(datesrange((2013,5,1), (2015,5,1))), 20):
-  amount = Decimal(randint(20,40))
+  amount = Decimal(randint(2000,4000))/100
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
     u'PURCHASE AUTHORIZED ON %s 7-ELEVEN %i DALLAS TX CARD 4933' \
     % (date, randint(10000,99999)),
@@ -326,13 +326,13 @@ for date in sample(list(datesrange((2013,5,1), (2015,5,1))), 20):
 seed(17040)
 # Purchases via Windy Vault Bank debit card.
 for date in sample(list(datesrange((2012,10,10), (2013,12,1))), 5):
-  amount = Decimal(randint(5,20))
+  amount = Decimal(randint(500,2000))/100
   checking1042.add(transaction(date=date, amount=-amount, label=
     u'CHECK CRD PURCHASE %s ABEBOOKS.COM 800-315-5335 WA XXXXXXXXXXXX4933 %i' \
     % (date, randint(10000,99999))))
 # Purchases via Windy Vault Bank or Crispy Bills Bank credit cards.
 for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
-  amount = Decimal(randint(5,20))
+  amount = Decimal(randint(500,2000))/100
   account = choice([visa8394, master8385])
   account.add(transaction(date=date, amount=-amount,
     label=u'ABEBOOKS.COM 800-315-5335 WA'))
@@ -342,7 +342,7 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
 #
 seed(13383)
 for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 20):
-  amount = Decimal(randint(50,100))
+  amount = Decimal(randint(5000,10000))/100
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
     u'PURCHASE AUTHORIZED ON %s ALDI 75432 1234 DALLAS TX P%i CARD 4933' \
     % (date, randint(10000,99999)),
@@ -354,7 +354,7 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 20):
 #
 seed(28943)
 for date in sample(list(datesrange((2014,8,1), (2015,5,1))), 40):
-  amount = Decimal(randint(1,10))
+  amount = Decimal(randint(100,1000))/100
   awesome1875.add(transaction(date=date, amount=-amount,
     label=u'AWESOME DIGITAL SEATTLE WA'))
 
@@ -363,7 +363,7 @@ for date in sample(list(datesrange((2014,8,1), (2015,5,1))), 40):
 #
 seed(56192)
 for date in sample(list(datesrange((2014,7,1), (2015,5,1))), 10):
-  amount = Decimal(randint(20,40))
+  amount = Decimal(randint(2000,4000))/100
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
     u'PURCHASE AUTHORIZED ON %s AWESOME WEB SERVICE AWS.AWESOME.CO WA S%i '
     u'CARD 4933' % (date, randint(10000,99999)),
@@ -400,3 +400,18 @@ for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 50):
     u'PURCHASE AUTHORIZED ON %s VESTA *AT&T 866-608-3007 OR S%i CARD 4933' \
     % (date, randint(100000,999999)),
     u'VESTA *AT&T 866-608-3007 OR'])))
+
+#
+# CAFE
+#
+seed(82315)
+for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 50):
+  amount = Decimal(randint(1000,5000))/100
+  account = choice([visa8394, master8385])
+  account.add(transaction(date=date, amount=-amount, label=choice([
+    u'CAFE BRAZIL DALLAS TX',
+    u'UDIPI CAFE HOUSTON TX',
+    u'COFFEE HOUSE CAFE - DA DALLAS TX',
+    u'UTD COMET CAFE%i DALLAS TX' % randint(10000,99999),
+    u'CHECK CRD PURCHASE %s UTD COMET CAFE1234 DALLAS TX XXXXXXXXXXXX1234 %i'\
+    % (date, randint(100000,999999))])))
