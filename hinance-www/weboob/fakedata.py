@@ -369,3 +369,12 @@ for date in sample(list(datesrange((2014,7,1), (2015,5,1))), 10):
     u'CARD 4933' % (date, randint(10000,99999)),
     u'CHECK CRD PURCHASE %s AWESOME WEB SERVICE AWS.AWESOME.CO WA '
     u'XXXXXXXXXXXX4933 %i' % (date, randint(10000,99999))])))
+
+#
+# AMTRAK
+#
+seed(56192)
+for date in sample(list(datesrange((2014,3,1), (2014,7,1))), 20):
+  amount = Decimal(randint(50,150))
+  master8385.add(transaction(date=date, amount=-amount,
+    label=u'AMTRAK .%i DC' % randint(100000,999999)))

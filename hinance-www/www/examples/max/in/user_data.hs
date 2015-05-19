@@ -95,6 +95,7 @@ addtagged ts
   | ast [Tag7Eleven]     = exp [TagCar, TagGas]
   | ast [TagAbeBooks]    = exp [TagBooks]
   | ast [TagAldi]        = exp [TagFood]
+  | ast [TagAmtrak]      = exp [TagTravel, TagTransport]
   | ast [TagAwesomeDgt]  = exp [TagMovies]
   | ast [TagAwesomeWeb]  = exp [TagHobby, TagProjects]
   | ast [TagCheck]       = inc [TagOther]
@@ -170,6 +171,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==Tag7Eleven      = l=~"7[- ]ELEVEN"
     | t==TagAbeBooks     = l=~"ABEBOOKS.COM"
     | t==TagAldi         = l=~" ALDI "
+    | t==TagAmtrak       = l=~"^AMTRAK"
     | t==TagAwesomeDgt   = l=~"AWESOME DIGITAL"
     | t==TagAwesomeWeb   = l=~"AWESOME WEB SERVICE"
     | t==TagFee          = l=~" FEE( .*)?$"
