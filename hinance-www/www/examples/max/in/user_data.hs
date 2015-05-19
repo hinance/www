@@ -91,11 +91,12 @@ slices = [
     SliceCateg {scname="Expenses",scbg=red,scfg=white,sctags=[TagExpense]}]}]
 
 addtagged ts
-  | ast [TagOpening]  = inc [TagOther]
-  | ast [TagCheck]    = inc [TagOther]
-  | ast [TagCheckDep] = inc [TagOther]
-  | ast [TagFee]      = exp [TagOther]
-  | otherwise         = []
+  | ast [Tag6PM]         = exp [TagClothes]
+  | ast [TagCheck]       = inc [TagOther]
+  | ast [TagCheckDep]    = inc [TagOther]
+  | ast [TagFee]         = exp [TagOther]
+  | ast [TagOpening]     = inc [TagOther]
+  | otherwise            = []
   where ast = all (flip elem $ ts) . (++) [TagAsset]
         exp = (++) [TagExpense]
         inc = (++) [TagIncome]
@@ -160,6 +161,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagXferToChk    = l=~"ONLINE TRANSFER.* TO .*CHECKING"
     | t==TagXferToSav    = l=~"ONLINE TRANSFER.* TO .*SAVINGS"
     -- Labels
+    | t==Tag6PM          = l=~"6PM.COM"
     | t==TagFee          = l=~" FEE( .*)?$"
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
     | otherwise          = False where

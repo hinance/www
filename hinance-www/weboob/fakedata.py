@@ -207,7 +207,7 @@ for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
   checking1042.add(
     transaction(date=date, amount=-amount,
       label=u'ONLINE TRANSFER REF #%i TO QUICKSAVE SAVINGS XXXXXX2453 ON %s' \
-            % date))
+            % (randint(10000,99999), date)))
 
 # Transfers from savings to checking for Windy Vault Bank.
 seed(73916)
@@ -219,7 +219,7 @@ for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
   checking1042.add(
     transaction(date=date, amount=amount,
       label=u'ONLINE TRANSFER REF #%i FROM QUICKSAVE SAVINGS XXXXXX2453 ON %s'\
-            % date))
+            % (randint(10000,99999), date)))
 
 # Payments for Windy Vault Bank credit card.
 seed(40726)
@@ -273,3 +273,37 @@ for date in sample(list(datesrange((2014,2,1), (2015,5,1))), 15):
       date, randint(10000,99999)),
     u'CELESTIAL PAY WFN WEB PYMT %s %i7260 ALISON HENDRIX' % (
       date, randint(10000,99999))])))
+
+#
+# Purchases.
+#
+
+#
+# 6PM
+#
+seed(42732)
+# Purchases via Windy Vault Bank debit card.
+for date in sample(list(datesrange((2012,10,10), (2013,12,1))), 10):
+  amount = Decimal(randint(20,100))
+  checking1042.add(transaction(date=date, amount=-amount, label=choice([
+    u'CHECK CRD PURCHASE %s PAYPAL *6PM COM 402-935-7733 NV XXXXXXXXXXXX4933'
+    u' %i' % (date, randint(10000,99999)),
+    u'CHECK CRD PURCHASE %s PAYPAL *6PM COM LL 402-935-7733 CA XXXXXXXXXX4933'
+    u' %i' % (date, randint(10000,99999)),
+    u'CHECK CRD PURCHASE %s ZAP*DEV 6PM.COM 888-676-2660 NV XXXXXXXXXXXX4933'
+    u' %i' % (date, randint(10000,99999)),
+    u'CHECK CRD PURCHASE %s ZAP*6PM.COM 888-676-2660 NV XXXXXXXXXXXX4933'
+    u' %i' % (date, randint(10000,99999))])))
+# Returns to Windy Vault Bank checking account.
+for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
+  amount = Decimal(randint(20,100))
+  checking1042.add(transaction(date=date, amount=amount, label=choice([
+    u'CHECK CRD PUR RTRN %s PAYPAL *6PM COM 402-935-7733 NV XXXXXXXXXXXX4933'
+    u' %i' % (date, randint(10000,99999)),
+    u'CHECK CRD PUR RTRN %s ZAP*6PM.COM 888-676-2660 NV XXXXXXXXXXXX4933'
+    u' %i' % (date, randint(10000,99999))])))
+# Purchases via Crispy Bills Bank credit card.
+for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
+  amount = Decimal(randint(20,100))
+  master8385.add(transaction(date=date, amount=-amount,
+    label=u'ZAP*6PM.COM 888-676-2660 NV'))
