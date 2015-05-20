@@ -150,6 +150,10 @@ savings2453.add(transaction(
   date=datetime(2012,8,1),
   label=u'SAVINGS OPENING DEPOSIT',
   amount=Decimal(100)))
+checking1042.add(transaction(
+  date=datetime(2012,11,1),
+  label=u'WINDY VAULT FOPS SECUREDCAR 121101 12345678 HENDRIX,ALISON',
+  amount=Decimal(-1000)))
 
 #
 # Transfers.
@@ -621,3 +625,13 @@ for i in xrange(34):
     u'PLANET EXPRESS DIR DEP %s %i HENDRIX,DONNIE' \
     % (date, randint(100000,999999)),
     u'PLANET EX DIRECT PAY %s DONNIE HENDRIX' % randint(100000,999999)])))
+
+#
+# YOSEMITE RETAIL STORE
+#
+seed(16969)
+for date in sample(list(datesrange((2014,7,1), (2014,9,1))), 5):
+  amount = Decimal(randint(1000,3000))/100
+  account = choice([checking1042, master8385, visa8394])
+  account.add(transaction(date=date, amount=-amount,
+    label=u'YOSEMITE VLG RETAIL 209-372-1245 CA'))
