@@ -609,3 +609,15 @@ for date in sample(list(datesrange((2014,8,1), (2015,5,1))), 5):
   account = choice([checking1042, master8385, visa8394])
   account.add(transaction(date=date, amount=-amount,
     label=u'NAMASTE AWAY CLUB DALLAS TX'))
+
+#
+# PLANET EXPRESS SALARY
+#
+seed(59385)
+for i in xrange(34):
+  date = datetime(2012,7,23) + timedelta(days=30*i)
+  amount = Decimal(3000)
+  checking1042.add(transaction(date=date, amount=amount, label=choice([
+    u'PLANET EXPRESS DIR DEP %s %i HENDRIX,DONNIE' \
+    % (date, randint(100000,999999)),
+    u'PLANET EX DIRECT PAY %s DONNIE HENDRIX' % randint(100000,999999)])))

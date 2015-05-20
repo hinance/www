@@ -117,6 +117,7 @@ addtagged ts
   | ast [TagOcius]       = exp [TagRent]
   | ast [TagOpening]     = inc [TagOther]
   | ast [TagParking]     = exp [TagCar, TagParking]
+  | ast [TagPlanetEx]    = inc [TagSalary]
   | ast [TagRei]         = exp [TagHobby, TagOutdoor]
   | ast [TagReliant]     = exp [TagEnergy]
   | ast [TagSephora]     = exp [TagHygiene]
@@ -212,6 +213,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagOcius        = l=~"^OCIUS ACH PMT"
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
     | t==TagParking      = l=~"PARKING"
+    | t==TagPlanetEx     = l=~("PLANET EXPRESS DIR DEP|PLANET EX DIRECT PAY")
     | t==TagRei          = l=~"REI COM SUMNER"
     | t==TagReliant      = l=~"RELIANT ENERGY"
     | t==TagSephora      = l=~"SEPHORA"
