@@ -115,6 +115,7 @@ addtagged ts
   | ast [TagNintendo]    = exp [TagGames]
   | ast [TagOcius]       = exp [TagRent]
   | ast [TagOpening]     = inc [TagOther]
+  | ast [TagParking]     = exp [TagCar, TagParking]
   | ast [TagZoidberg]    = exp [TagMedSvc]
   | otherwise            = []
   where ast = all (flip elem $ ts) . (++) [TagAsset]
@@ -203,6 +204,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagNintendo     = l=~"NINTENDO"
     | t==TagOcius        = l=~"^OCIUS ACH PMT"
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
+    | t==TagParking      = l=~"PARKING"
     | t==TagZoidberg     = l=~"ZOIDBERG"
     | otherwise          = False where
 
@@ -230,15 +232,21 @@ instance Patchable Bank where
       cashfrom 1430870400   9600,
       cashwdw  1428624000 142000, cashwdw  1427155200  88000,
       cashdep  1426204800  72000, cashwdw  1423958400 112000,
-      cashwdw  1421452800 100000, cashdep  1416096000 146000,
+      cashwdw  1421452800 100000,
+      wdw      1418417750   1000 "PARKING",
+      wdw      1418099950   1000 "PARKING",
+      wdw      1416918998   1000 "PARKING",
+      cashdep  1416096000 146000,
       cashwdw  1412121600  74000, cashdep  1410393600 194000,
       cashdep  1409875200 156000, cashdep  1405900800 102000,
+      wdw      1404395020   1000 "PARKING",
       cashdep  1402617600  94000, cashwdw  1400112000 150000,
       cashwdw  1394150400 168000, cashdep  1394150400  64000,
+      wdw      1381851879   1000 "PARKING",
       cashwdw  1378684800 190000, cashdep  1369353600 156000,
       cashwdw  1361923200  26000, cashdep  1361491200  20000,
       cashdep  1360454400 200000, cashwdw  1359417600  22000,
-      dep      1341600000 143600 "CASH OPENING BALANCE"]},
+      dep      1341600000 148600 "CASH OPENING BALANCE"]},
     BankAcc {baid="reserve", balabel="Cash reserve", babalance=100000,
              bacurrency=USD, bacard=False, balimit=Nothing, bapaymin=Nothing,
              bapaytime=Nothing, batrans=[
@@ -250,6 +258,7 @@ instance Patchable Bank where
     cashfrom t a = BankTrans{bttime=t, btamount= -a, btlabel="CASH TO CASH"}
     cashto t a = BankTrans{bttime=t, btamount=a, btlabel="CASH TO CASH"}
     dep t a l = BankTrans{bttime=t, btamount=a, btlabel=l}
+    wdw t a l = BankTrans{bttime=t, btamount= -a, btlabel=l}
     patchedb b = b {baccs=map patcheda $ baccs b} where
       patcheda a = a {batrans=map patchedt $ batrans a} where
         patchedt trans@BankTrans{bttime=t, btlabel=l, btamount=m}
