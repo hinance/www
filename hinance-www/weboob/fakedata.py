@@ -160,7 +160,7 @@ for account in [checking1042, savings2453]:
       u'CASH EWITHDRAWAL IN BRANCH/STORE',
       u'ATM WITHDRAWAL AUTHORIZED ON %s' % date,
       u'ATM WITHDRAWAL - %s MACH ID %i' % (date, randint(10000,99999))]))
-    for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5)])
+    for date in sample(list(datesrange((2012,7,10), (2015,5,1))), 5)])
 
 # Cash deposits to Windy Vault Bank.
 seed(10200)
@@ -172,7 +172,7 @@ for account in [checking1042, savings2453]:
       u'ATM CASH DEPOSIT ON %s' % date,
       u'DEPOSIT MADE IN A BRANCH/STORE',
       u'ATM CASH DEPOSIT - %s MACH ID %i' % (date, randint(10000,99999))]))
-    for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5)])
+    for date in sample(list(datesrange((2012,7,10), (2015,5,1))), 5)])
 
 # Check deposits to Windy Vault Bank.
 seed(69043)
@@ -183,11 +183,11 @@ for account in [checking1042, savings2453]:
     label=choice([
       u'ATM CHECK DEPOSIT ON %s' % date,
       u'ATM CHECK DEPOSIT - %s MACH ID %i' % (date, randint(10000,99999))]))
-    for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5)])
+    for date in sample(list(datesrange((2012,7,10), (2015,5,1))), 5)])
 
 # Overdraft protection for Windy Vault Bank.
 seed(58720)
-for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
+for date in sample(list(datesrange((2012,7,10), (2015,5,1))), 5):
   amount = Decimal(randint(10,100))
   savings2453.add(transaction(date=date, amount=-amount,
     label=u'OVERDRAFT PROTECTION TO %i1042' % randint(10000,99999)))
@@ -199,7 +199,7 @@ for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
 
 # Transfers from checking to savings for Windy Vault Bank.
 seed(68697)
-for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
+for date in sample(list(datesrange((2012,7,10), (2015,5,1))), 5):
   amount = Decimal(randint(1,10)*100)
   savings2453.add(transaction(date=date, amount=amount,
     label=u'ONLINE TRANSFER FROM ALISON HENDRIX CHECKING XXXXXX1042 '
@@ -211,7 +211,7 @@ for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
 
 # Transfers from savings to checking for Windy Vault Bank.
 seed(73916)
-for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
+for date in sample(list(datesrange((2012,7,10), (2015,5,1))), 5):
   amount = Decimal(randint(1,10)*100)
   savings2453.add(transaction(date=date, amount=-amount,
     label=u'ONLINE TRANSFER TO ALISON HENDRIX CHECKING XXXXXX1042 '
@@ -283,7 +283,7 @@ for date in sample(list(datesrange((2014,2,1), (2015,5,1))), 15):
 #
 seed(42732)
 # Purchases via Windy Vault Bank debit card.
-for date in sample(list(datesrange((2012,10,10), (2013,12,1))), 15):
+for date in sample(list(datesrange((2012,7,10), (2013,12,1))), 15):
   amount = Decimal(randint(2000,10000))/100
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
     u'TWX*%i*INSTYLE 877-312-1121 NY' % randint(10000,99999),
@@ -298,7 +298,7 @@ for date in sample(list(datesrange((2012,10,10), (2013,12,1))), 15):
     u'CHECK CRD PURCHASE %s ZAP*6PM.COM 888-676-2660 NV XXXXXXXXXXXX4933'
     u' %i' % (date, randint(10000,99999))])))
 # Returns to Windy Vault Bank checking account.
-for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 10):
+for date in sample(list(datesrange((2012,7,10), (2015,5,1))), 10):
   amount = Decimal(randint(2000,10000))/100
   checking1042.add(transaction(date=date, amount=amount, label=choice([
     u'TWX*%i*INSTYLE 877-312-1121 NY' % randint(10000,99999),
@@ -334,7 +334,7 @@ for date in sample(list(datesrange((2013,5,1), (2015,5,1))), 20):
 #
 seed(17040)
 # Purchases via Windy Vault Bank debit card.
-for date in sample(list(datesrange((2012,10,10), (2013,12,1))), 5):
+for date in sample(list(datesrange((2012,7,10), (2013,12,1))), 5):
   amount = Decimal(randint(500,2000))/100
   checking1042.add(transaction(date=date, amount=-amount, label=
     u'CHECK CRD PURCHASE %s ABEBOOKS.COM 800-315-5335 WA XXXXXXXXXXXX4933 %i' \
@@ -403,7 +403,7 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 5):
 # AT&T
 #
 seed(64198)
-for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 50):
+for date in sample(list(datesrange((2012,7,10), (2015,5,1))), 50):
   amount = Decimal(randint(30,50))
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
     u'PURCHASE AUTHORIZED ON %s VESTA *AT&T 866-608-3007 OR S%i CARD 4933' \
@@ -429,7 +429,7 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 50):
 # CONTACTS
 #
 seed(53637)
-for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 10):
+for date in sample(list(datesrange((2012,7,10), (2015,5,1))), 10):
   amount = Decimal(randint(50,150))
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
     u'ACL*CONTACT LEN INTRNT 800-822-6853 OH',
