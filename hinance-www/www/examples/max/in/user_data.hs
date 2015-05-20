@@ -100,6 +100,7 @@ addtagged ts
   | ast [TagATnT]        = exp [TagPhone]
   | ast [TagAwesomeDgt]  = exp [TagMovies]
   | ast [TagAwesomeWeb]  = exp [TagHobby, TagProjects]
+  | ast [TagBenderCar]   = exp [TagCar, TagCarMtn]
   | ast [TagCafe]        = exp [TagEatingOut]
   | ast [TagCheck]       = inc [TagOther]
   | ast [TagCheckDep]    = inc [TagOther]
@@ -187,6 +188,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagATnT         = l=~"VESTA \\*AT&T"
     | t==TagAwesomeDgt   = l=~"AWESOME DIGITAL"
     | t==TagAwesomeWeb   = l=~"AWESOME WEB SERVICE"
+    | t==TagBenderCar    = l=~"BENDER'S CAR REPAIR"
     | t==TagCafe         = l=~"CAFE"
     | t==TagContacts     = l=~"CONTACT(S| LEN)"
     | t==TagCstmHous     = l=~"CUSTOM HOUSE LTD"
@@ -213,7 +215,7 @@ instance Patchable Shop where
   patched = id
 
 instance Patchable Bank where
-  patched banks = banks ++ [Bank {bid="virtual", baccs=[
+  patched banks = (map patchedb banks) ++ [Bank {bid="virtual", baccs=[
     BankAcc {baid="walleta", balabel="Alison's wallet", babalance=9600,
              bacurrency=USD, bacard=False, balimit=Nothing, bapaymin=Nothing,
              bapaytime=Nothing, batrans=[
@@ -244,6 +246,16 @@ instance Patchable Bank where
     cashfrom t a = BankTrans{bttime=t, btamount= -a, btlabel="CASH TO CASH"}
     cashto t a = BankTrans{bttime=t, btamount=a, btlabel="CASH TO CASH"}
     dep t a l = BankTrans{bttime=t, btamount=a, btlabel=l}
+    patchedb b = b {baccs=map patcheda $ baccs b} where
+      patcheda a = a {batrans=map patchedt $ batrans a} where
+        patchedt trans@BankTrans{bttime=t, btlabel=l, btamount=m}
+          | t==1416960000 && m== -183700 = pl "BENDER'S CAR REPAIR"
+          | t==1410480000 && m==  -93900 = pl "BENDER'S CAR REPAIR"
+          | t==1397865600 && m==  -41000 = pl "BENDER'S CAR REPAIR"
+          | t==1381536000 && m==  -35400 = pl "BENDER'S CAR REPAIR"
+          | t==1372809600 && m==  -42400 = pl "BENDER'S CAR REPAIR"
+          | otherwise = trans
+            where pl x = trans{btlabel=x}
 
 planfrom = 0
 planto = 0

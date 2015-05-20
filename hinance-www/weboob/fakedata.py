@@ -240,7 +240,7 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 5):
   master8385.add(transaction(date=date, amount=amount,
     label=u'ONLINE PAYMENT, THANK YOU'))
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
-    u'%i CHECK' % randint(1000,2000)])))
+    u'%i CHECK' % randint(1000,1100)])))
 
 # Online payments for Crispy Bills Bank credit card.
 seed(88798)
@@ -503,3 +503,12 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
     u'JOHN A. ZOIDBERG M.D. DALLAS TX',
     u'CHECK CRD PURCHASE %s JOHN A. ZOIDBERG M.D. DALLAS TX XXXXXXXXXXXX1234'
     u' %i' % (date, randint(100000,999999))])))
+
+#
+# BENDER'S CAR REPAIR
+#
+seed(59270)
+for date in sample(list(datesrange((2013,6,1), (2015,5,1))), 5):
+  amount = Decimal(randint(300,2000))
+  checking1042.add(transaction(date=date, amount=-amount, label=choice([
+    u'%i CHECK' % randint(1100,1200)])))

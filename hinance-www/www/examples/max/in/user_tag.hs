@@ -8,7 +8,8 @@ data Tag = TagAsset | TagExpense | TagIncome
   -- Helpers
   | Tag6PM | Tag7Eleven | TagAbeBooks | TagAldi | TagAmtrak | TagArboretum
   | TagArpaBank | TagATnT | TagAwesomeCard | TagAwesomeDgt | TagAwesomeWeb
-  | TagAwsGiftBnk | TagBankOfMo | TagCafe | TagContacts | TagCrispyBills
+  | TagAwsGiftBnk | TagBankOfMo | TagBenderCar | TagCafe | TagContacts
+  | TagCrispyBills
   | TagCstmHous | TagDPS | TagFee | TagGeico | TagHomeDepot | TagInstyle
   | TagOpening | TagVioGorCard | TagWindyVault | TagZoidberg
   -- Transfers
