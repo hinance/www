@@ -541,3 +541,25 @@ for i in xrange(35):
   amount = Decimal(900)
   checking1042.add(transaction(date=date, amount=-amount,
     label=u'OCIUS ACH PMT %i ALISON HENDRIX' % randint(100000,999999)))
+
+#
+# REI
+#
+seed(11447)
+for date in sample(list(datesrange((2014,4,1), (2015,5,1))), 5):
+  amount = Decimal(randint(5000,30000))/100
+  account = choice([checking1042, master8385, visa8394])
+  account.add(transaction(date=date, amount=-amount,
+    label=u'REI COM SUMNER WA'))
+
+#
+# RELIANT
+#
+seed(82347)
+for i in xrange(35):
+  date = datetime(2012,7,12) + timedelta(days=30*i)
+  amount = Decimal(randint(3000,7000))/100
+  checking1042.add(transaction(date=date, amount=-amount, label=choice([
+    u'BILL PAY RELIANT ENERGY R ON-LINE XXXX%i ON %s' \
+    % (randint(10000,99999), date),
+    u'RELIANT ENERGY %i ALISON HENDRIX' % randint(100000,999999)])))

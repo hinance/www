@@ -116,6 +116,8 @@ addtagged ts
   | ast [TagOcius]       = exp [TagRent]
   | ast [TagOpening]     = inc [TagOther]
   | ast [TagParking]     = exp [TagCar, TagParking]
+  | ast [TagRei]         = exp [TagHobby, TagOutdoor]
+  | ast [TagReliant]     = exp [TagEnergy]
   | ast [TagZoidberg]    = exp [TagMedSvc]
   | otherwise            = []
   where ast = all (flip elem $ ts) . (++) [TagAsset]
@@ -205,6 +207,8 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagOcius        = l=~"^OCIUS ACH PMT"
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
     | t==TagParking      = l=~"PARKING"
+    | t==TagRei          = l=~"REI COM SUMNER"
+    | t==TagReliant      = l=~"RELIANT ENERGY"
     | t==TagZoidberg     = l=~"ZOIDBERG"
     | otherwise          = False where
 
