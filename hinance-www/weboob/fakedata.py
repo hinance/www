@@ -64,6 +64,12 @@ def datesrange(tuplefrom, tupleto):
   dtfrom, dtto = datetime(*tuplefrom), datetime(*tupleto)
   return (dtfrom + timedelta(days=d) for d in xrange(0, (dtto-dtfrom).days))
 
+def randaccdate():
+  return choice([
+    (checking1042, choice(list(datesrange((2012,7,10), (2015,5,1))))),
+    (master8385, choice(list(datesrange((2013,12,1), (2015,5,1))))),
+    (visa8394, choice(list(datesrange((2012,11,1), (2015,5,1)))))])
+
 seed(37944)
 
 #
@@ -510,5 +516,17 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
 seed(59270)
 for date in sample(list(datesrange((2013,6,1), (2015,5,1))), 5):
   amount = Decimal(randint(300,2000))
-  checking1042.add(transaction(date=date, amount=-amount, label=choice([
-    u'%i CHECK' % randint(1100,1200)])))
+  checking1042.add(transaction(date=date, amount=-amount,
+    label=u'%i CHECK' % randint(1100,1200)))
+
+#
+# NINTENDO
+#
+seed(17920)
+for i in xrange(20):
+  amount = Decimal(randint(1000,3000))/100
+  account, date = randaccdate()
+  account.add(transaction(date=date, amount=-amount, label=choice([
+    u'NINTENDO OF EUROPE NIN.3DS.WIIU DEU',
+    u'PUR INTL %s NINTENDO OF EUROPE NIN.3DS.WIIU DF XXXXXXXXXXX1234 %i' \
+    % (date, randint(100000,999999))])))
