@@ -12,7 +12,7 @@ data Tag = TagAsset | TagExpense | TagIncome
   | TagCrispyBills
   | TagCstmHous | TagDPS | TagFee | TagGeico | TagHomeDepot | TagInstyle
   | TagNintendo | TagOcius
-  | TagOpening | TagRei | TagReliant | TagSephora | TagVioGorCard
+  | TagOpening | TagRei | TagReliant | TagSephora | TagSprouts | TagVioGorCard
   | TagWindyVault | TagZoidberg
   -- Transfers
   | TagCash2Cash | TagCashWdw | TagCashDep | TagCheck | TagCheckDep

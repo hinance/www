@@ -356,7 +356,7 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
 # ALDI
 #
 seed(13383)
-for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 20):
+for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 50):
   amount = Decimal(randint(5000,10000))/100
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
     u'PURCHASE AUTHORIZED ON %s ALDI 75432 1234 DALLAS TX P%i CARD 4933' \
@@ -427,8 +427,8 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 50):
     u'CAFE BRAZIL DALLAS TX',
     u'UDIPI CAFE HOUSTON TX',
     u'COFFEE HOUSE CAFE - DA DALLAS TX',
-    u'UTD COMET CAFE%i DALLAS TX' % randint(10000,99999),
-    u'CHECK CRD PURCHASE %s UTD COMET CAFE1234 DALLAS TX XXXXXXXXXXXX1234 %i'\
+    u'METEOR CAFE%i DALLAS TX' % randint(10000,99999),
+    u'CHECK CRD PURCHASE %s METEOR CAFE1234 DALLAS TX XXXXXXXXXXXX1234 %i'\
     % (date, randint(100000,999999))])))
 
 #
@@ -483,7 +483,7 @@ for date in sample(list(datesrange((2012,11,1), (2015,5,1))), 10):
     % (date, randint(100000,999999)),
     u'POS PURCHASE - %s MACH ID 000000 THE HOME DEPOT DALLAS TX 1234 %i' \
     % (date, randint(100000,999999)),
-    u'THE HOME DEPOT %i RICHARDSON TX' % randint(1000,9999)])))
+    u'THE HOME DEPOT %i DALLAS TX' % randint(1000,9999)])))
 
 #
 # INSURANCE
@@ -573,3 +573,19 @@ for date in sample(list(datesrange((2014,11,1), (2015,5,1))), 20):
   account = choice([checking1042, master8385, visa8394])
   account.add(transaction(date=date, amount=-amount,
     label=u'SEPHORA.COM 877-SEPHORA CA'))
+
+#
+# SPROUTS
+#
+seed(75751)
+for i in xrange(160):
+  amount = Decimal(randint(2000,8000))/100
+  account, date = randaccdate()
+  account.add(transaction(date=date, amount=-amount, label=choice([
+    u'SPROUTS FARMERS MARK DALLAS TX',
+    u'POS PURCHASE - %s MACH ID 000000 SPROUTS FARMERS MKT#99 DALLAS TX %i' \
+    % (date, randint(100000,999999)),
+    u'PURCHASE %s SPROUTS FARMERS MA DALLAS TX XXXXXXXXXXXX1234 %i' \
+    % (date, randint(100000,999999)),
+    u'PURCHASE AUTHORIZED ON %s SPROUTS FARMERS MKT#99 DALLAS TX P%i' \
+    % (date, randint(100000,999999))])))
