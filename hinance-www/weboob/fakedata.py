@@ -360,7 +360,7 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
 # ALDI
 #
 seed(13383)
-for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 50):
+for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 20):
   amount = Decimal(randint(5000,10000))/100
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
     u'PURCHASE AUTHORIZED ON %s ALDI 75432 1234 DALLAS TX P%i CARD 4933' \
@@ -583,7 +583,7 @@ for date in sample(list(datesrange((2014,11,1), (2015,5,1))), 20):
 #
 seed(75751)
 for i in xrange(160):
-  amount = Decimal(randint(2000,8000))/100
+  amount = Decimal(randint(4000,16000))/100
   account, date = randaccdate()
   account.add(transaction(date=date, amount=-amount, label=choice([
     u'SPROUTS FARMERS MARK DALLAS TX',
