@@ -109,6 +109,7 @@ addtagged ts
   | ast [TagFee]         = exp [TagOther]
   | ast [TagGeico]       = exp [TagCar, TagCarInsur]
   | ast [TagHomeDepot]   = exp [TagHousehold]
+  | ast [TagInstyle]     = exp [TagClothes]
   | ast [TagOpening]     = inc [TagOther]
   | otherwise            = []
   where ast = all (flip elem $ ts) . (++) [TagAsset]
@@ -191,6 +192,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagFee          = l=~" FEE( .*)?$"
     | t==TagGeico        = l=~"GEICO"
     | t==TagHomeDepot    = l=~"HOME DEPOT"
+    | t==TagInstyle      = l=~"INSTYLE"
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
     | otherwise          = False where
 

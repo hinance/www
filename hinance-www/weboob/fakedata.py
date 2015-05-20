@@ -279,13 +279,16 @@ for date in sample(list(datesrange((2014,2,1), (2015,5,1))), 15):
 #
 
 #
-# 6PM
+# 6PM, INSTYLE
 #
 seed(42732)
 # Purchases via Windy Vault Bank debit card.
-for date in sample(list(datesrange((2012,10,10), (2013,12,1))), 10):
+for date in sample(list(datesrange((2012,10,10), (2013,12,1))), 15):
   amount = Decimal(randint(2000,10000))/100
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
+    u'TWX*%i*INSTYLE 877-312-1121 NY' % randint(10000,99999),
+    u'TME*%i*INSTYLE 855-226-0424 NY' % randint(10000,99999),
+    u'TWX*%i*INSTYLE 800-882-6317 NY' % randint(10000,99999),
     u'CHECK CRD PURCHASE %s PAYPAL *6PM COM 402-935-7733 NV XXXXXXXXXXXX4933'
     u' %i' % (date, randint(10000,99999)),
     u'CHECK CRD PURCHASE %s PAYPAL *6PM COM LL 402-935-7733 CA XXXXXXXXXX4933'
@@ -295,18 +298,24 @@ for date in sample(list(datesrange((2012,10,10), (2013,12,1))), 10):
     u'CHECK CRD PURCHASE %s ZAP*6PM.COM 888-676-2660 NV XXXXXXXXXXXX4933'
     u' %i' % (date, randint(10000,99999))])))
 # Returns to Windy Vault Bank checking account.
-for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 5):
+for date in sample(list(datesrange((2012,10,10), (2015,5,1))), 10):
   amount = Decimal(randint(2000,10000))/100
   checking1042.add(transaction(date=date, amount=amount, label=choice([
+    u'TWX*%i*INSTYLE 877-312-1121 NY' % randint(10000,99999),
+    u'TME*%i*INSTYLE 855-226-0424 NY' % randint(10000,99999),
+    u'TWX*%i*INSTYLE 800-882-6317 NY' % randint(10000,99999),
     u'CHECK CRD PUR RTRN %s PAYPAL *6PM COM 402-935-7733 NV XXXXXXXXXXXX4933'
     u' %i' % (date, randint(10000,99999)),
     u'CHECK CRD PUR RTRN %s ZAP*6PM.COM 888-676-2660 NV XXXXXXXXXXXX4933'
     u' %i' % (date, randint(10000,99999))])))
 # Purchases via Crispy Bills Bank credit card.
-for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
+for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 15):
   amount = Decimal(randint(2000,10000))/100
-  master8385.add(transaction(date=date, amount=-amount,
-    label=u'ZAP*6PM.COM 888-676-2660 NV'))
+  master8385.add(transaction(date=date, amount=-amount, label=choice([
+    u'TWX*%i*INSTYLE 877-312-1121 NY' % randint(10000,99999),
+    u'TME*%i*INSTYLE 855-226-0424 NY' % randint(10000,99999),
+    u'TWX*%i*INSTYLE 800-882-6317 NY' % randint(10000,99999),
+    u'ZAP*6PM.COM 888-676-2660 NV'])))
 
 #
 # 7 ELEVEN
