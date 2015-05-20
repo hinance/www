@@ -120,6 +120,7 @@ addtagged ts
   | ast [TagReliant]     = exp [TagEnergy]
   | ast [TagSephora]     = exp [TagHygiene]
   | ast [TagSprouts]     = exp [TagFood]
+  | ast [TagUniversal]   = exp [TagTravel, TagTravGoOut]
   | ast [TagZoidberg]    = exp [TagMedSvc]
   | otherwise            = []
   where ast = all (flip elem $ ts) . (++) [TagAsset]
@@ -213,6 +214,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagReliant      = l=~"RELIANT ENERGY"
     | t==TagSephora      = l=~"SEPHORA"
     | t==TagSprouts      = l=~"SPROUTS"
+    | t==TagUniversal    = l=~"^UNIVERSAL STUDIOS"
     | t==TagZoidberg     = l=~"ZOIDBERG"
     | otherwise          = False where
 

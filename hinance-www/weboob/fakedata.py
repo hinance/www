@@ -589,3 +589,13 @@ for i in xrange(160):
     % (date, randint(100000,999999)),
     u'PURCHASE AUTHORIZED ON %s SPROUTS FARMERS MKT#99 DALLAS TX P%i' \
     % (date, randint(100000,999999))])))
+
+#
+# UNIVERSAL STUDIOS
+#
+seed(38064)
+for date in sample(list(datesrange((2014,7,1), (2014,9,1))), 5):
+  amount = Decimal(randint(2000,6000))/100
+  account = choice([checking1042, master8385, visa8394])
+  account.add(transaction(date=date, amount=-amount,
+    label=u'UNIVERSAL STUDIOS TICK UNIVERSAL CIT CA'))
