@@ -563,3 +563,13 @@ for i in xrange(35):
     u'BILL PAY RELIANT ENERGY R ON-LINE XXXX%i ON %s' \
     % (randint(10000,99999), date),
     u'RELIANT ENERGY %i ALISON HENDRIX' % randint(100000,999999)])))
+
+#
+# SEPHORA
+#
+seed(38064)
+for date in sample(list(datesrange((2014,11,1), (2015,5,1))), 20):
+  amount = Decimal(randint(500,3000))/100
+  account = choice([checking1042, master8385, visa8394])
+  account.add(transaction(date=date, amount=-amount,
+    label=u'SEPHORA.COM 877-SEPHORA CA'))
