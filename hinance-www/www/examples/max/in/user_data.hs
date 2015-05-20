@@ -113,6 +113,7 @@ addtagged ts
   | ast [TagInstyle]     = exp [TagClothes]
   | ast [TagInsurance]   = exp [TagInsurance]
   | ast [TagNintendo]    = exp [TagGames]
+  | ast [TagOcius]       = exp [TagRent]
   | ast [TagOpening]     = inc [TagOther]
   | ast [TagZoidberg]    = exp [TagMedSvc]
   | otherwise            = []
@@ -200,6 +201,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagInstyle      = l=~"INSTYLE"
     | t==TagInsurance    = l=~"INSURANCE"
     | t==TagNintendo     = l=~"NINTENDO"
+    | t==TagOcius        = l=~"^OCIUS ACH PMT"
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"
     | t==TagZoidberg     = l=~"ZOIDBERG"
     | otherwise          = False where

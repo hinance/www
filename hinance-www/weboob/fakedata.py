@@ -514,6 +514,7 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
 # BENDER'S CAR REPAIR
 #
 seed(59270)
+# Payments via unsorted checks.
 for date in sample(list(datesrange((2013,6,1), (2015,5,1))), 5):
   amount = Decimal(randint(300,2000))
   checking1042.add(transaction(date=date, amount=-amount,
@@ -530,3 +531,13 @@ for i in xrange(20):
     u'NINTENDO OF EUROPE NIN.3DS.WIIU DEU',
     u'PUR INTL %s NINTENDO OF EUROPE NIN.3DS.WIIU DF XXXXXXXXXXX1234 %i' \
     % (date, randint(100000,999999))])))
+
+#
+# OCIUS
+#
+seed(57920)
+for i in xrange(35):
+  date = datetime(2012,7,15) + timedelta(days=30*i)
+  amount = Decimal(900)
+  checking1042.add(transaction(date=date, amount=-amount,
+    label=u'OCIUS ACH PMT %i ALISON HENDRIX' % randint(100000,999999)))
