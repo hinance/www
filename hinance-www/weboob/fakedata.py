@@ -491,3 +491,15 @@ for date in sample(list(datesrange((2012,11,1), (2015,5,1))), 10):
     u'TRAVEL INSURANCE POLICY 800-729-6021 VA'
     u'CHECK CRD PURCHASE %s PSI INSURANCE 000-0000000 VA XXXXXXXXXXXX1234 %i' \
     % (date, randint(100000,999999))])))
+
+#
+# ZOIDBERG
+#
+seed(25061)
+for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
+  amount = Decimal(randint(10000,50000))/100
+  account = choice([visa8394, checking1042, master8385])
+  account.add(transaction(date=date, amount=-amount, label=choice([
+    u'JOHN A. ZOIDBERG M.D. DALLAS TX',
+    u'CHECK CRD PURCHASE %s JOHN A. ZOIDBERG M.D. DALLAS TX XXXXXXXXXXXX1234'
+    u' %i' % (date, randint(100000,999999))])))

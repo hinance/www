@@ -10,7 +10,7 @@ data Tag = TagAsset | TagExpense | TagIncome
   | TagArpaBank | TagATnT | TagAwesomeCard | TagAwesomeDgt | TagAwesomeWeb
   | TagAwsGiftBnk | TagBankOfMo | TagCafe | TagContacts | TagCrispyBills
   | TagCstmHous | TagDPS | TagFee | TagGeico | TagHomeDepot | TagInstyle
-  | TagOpening | TagVioGorCard | TagWindyVault
+  | TagOpening | TagVioGorCard | TagWindyVault | TagZoidberg
   -- Transfers
   | TagCash2Cash | TagCashWdw | TagCashDep | TagCheck | TagCheckDep
   | TagOdftFr2453 | TagOdftTo1042 | TagPayment | TagPayment8394
