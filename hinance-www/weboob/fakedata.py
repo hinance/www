@@ -478,3 +478,16 @@ for date in sample(list(datesrange((2012,11,1), (2015,5,1))), 10):
     u'POS PURCHASE - %s MACH ID 000000 THE HOME DEPOT DALLAS TX 1234 %i' \
     % (date, randint(100000,999999)),
     u'THE HOME DEPOT %i RICHARDSON TX' % randint(1000,9999)])))
+
+#
+# INSURANCE
+#
+seed(74679)
+for date in sample(list(datesrange((2012,11,1), (2015,5,1))), 10):
+  amount = Decimal(randint(10000,70000))/100
+  account = choice([visa8394, checking1042])
+  account.add(transaction(date=date, amount=-amount, label=choice([
+    u'TRAVEL INSURANCE POLICY RICHMOND VA',
+    u'TRAVEL INSURANCE POLICY 800-729-6021 VA'
+    u'CHECK CRD PURCHASE %s PSI INSURANCE 000-0000000 VA XXXXXXXXXXXX1234 %i' \
+    % (date, randint(100000,999999))])))
