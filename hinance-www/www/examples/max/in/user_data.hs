@@ -112,6 +112,7 @@ addtagged ts
   | ast [TagHomeDepot]   = exp [TagHousehold]
   | ast [TagInstyle]     = exp [TagClothes]
   | ast [TagInsurance]   = exp [TagInsurance]
+  | ast [TagNamaste]     = exp [TagHobby, TagYoga]
   | ast [TagNintendo]    = exp [TagGames]
   | ast [TagOcius]       = exp [TagRent]
   | ast [TagOpening]     = inc [TagOther]
@@ -206,6 +207,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagHomeDepot    = l=~"HOME DEPOT"
     | t==TagInstyle      = l=~"INSTYLE"
     | t==TagInsurance    = l=~"INSURANCE"
+    | t==TagNamaste      = l=~"NAMASTE AWAY"
     | t==TagNintendo     = l=~"NINTENDO"
     | t==TagOcius        = l=~"^OCIUS ACH PMT"
     | t==TagOpening      = l=~"OPENING (BALANCE|DEPOSIT)"

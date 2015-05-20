@@ -11,7 +11,7 @@ data Tag = TagAsset | TagExpense | TagIncome
   | TagAwsGiftBnk | TagBankOfMo | TagBenderCar | TagCafe | TagContacts
   | TagCrispyBills
   | TagCstmHous | TagDPS | TagFee | TagGeico | TagHomeDepot | TagInstyle
-  | TagNintendo | TagOcius
+  | TagNamaste | TagNintendo | TagOcius
   | TagOpening | TagRei | TagReliant | TagSephora | TagSprouts | TagUniversal
   | TagVioGorCard | TagWindyVault | TagZoidberg
   -- Transfers

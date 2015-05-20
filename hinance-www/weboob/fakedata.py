@@ -599,3 +599,13 @@ for date in sample(list(datesrange((2014,7,1), (2014,9,1))), 5):
   account = choice([checking1042, master8385, visa8394])
   account.add(transaction(date=date, amount=-amount,
     label=u'UNIVERSAL STUDIOS TICK UNIVERSAL CIT CA'))
+
+#
+# "NAMASTE AWAY" YOGA CLUB
+#
+seed(46335)
+for date in sample(list(datesrange((2014,8,1), (2015,5,1))), 5):
+  amount = Decimal(randint(2000,6000))/100
+  account = choice([checking1042, master8385, visa8394])
+  account.add(transaction(date=date, amount=-amount,
+    label=u'NAMASTE AWAY CLUB DALLAS TX'))
