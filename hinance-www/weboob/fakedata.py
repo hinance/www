@@ -1,4 +1,5 @@
 from weboob.capabilities.bank import Account, Transaction
+from weboob.capabilities.shop import Order, Payment, Item
 from datetime import datetime, timedelta
 from decimal import Decimal
 from random import seed, sample, randint, choice
@@ -22,27 +23,33 @@ class FakeBank:
 class FakeShop:
   def __init__(self, cur):
     self._cur = cur
+    self._orders = []
+  def add(self, *orders):
+    self._orders += orders
   def get_currency(self):
     return self._cur
   def get_order(self, id_):
-    #TODO
-    return None
+    for o in self.iter_orders():
+      if o.id == id_:
+        return o
   def iter_orders(self):
-    #TODO
-    return []
+    return sorted([o.order() for o in self._orders],
+      cmp=lambda o1, o2: cmp(o2.date, o1.date))
   def iter_payments(self, order):
-    #TODO
-    return []
+    for o in self._orders:
+      if o.id() == order.id:
+        return o.payments()
   def iter_items(self, order):
-    #TODO
-    return []
+    for o in self._orders:
+      if o.id() == order.id:
+        return o.items()
 
 class FakeAccount:
   def __init__(self, **kwArgs):
     self._fields = kwArgs
     self._transactions = []
   def add(self, *transactions):
-    self._transactions += list(transactions)
+    self._transactions += transactions
   def id(self):
     return self._fields['id']
   def account(self):
@@ -54,11 +61,44 @@ class FakeAccount:
   def transactions(self):
     return sorted(self._transactions, cmp=lambda t1, t2: cmp(t2.date, t1.date))
 
+class FakeOrder:
+  def __init__(self, **kwArgs):
+    self._fields = kwArgs
+    self._payments = []
+    self._items = []
+  def add_payments(self, *payments):
+    self._payments += payments
+  def add_items(self, *items):
+    self._items += items
+  def id(self):
+    return self._fields['id']
+  def order(self):
+    o = Order()
+    for k, v in self._fields.items():
+      setattr(o, k, v)
+    return o
+  def payments(self):
+    return self._payments
+  def items(self):
+    return self._items
+
 def transaction(**kwArgs):
   t = Transaction()
   for k, v in kwArgs.items():
     setattr(t, k, v)
   return t
+
+def payment(**kwArgs):
+  p = Payment()
+  for k, v in kwArgs.items():
+    setattr(p, k, v)
+  return p
+
+def item(**kwArgs):
+  i = Item()
+  for k, v in kwArgs.items():
+    setattr(i, k, v)
+  return i
 
 def datesrange(tuplefrom, tupleto):
   dtfrom, dtto = datetime(*tuplefrom), datetime(*tupleto)
@@ -66,13 +106,27 @@ def datesrange(tuplefrom, tupleto):
 
 def randacc(date, tags):
   ACCDATES = [
-    (visa0375,     datetime(2012, 7,1), {'arpa'}),
-    (visa3950,     datetime(2012, 7,1), {'bom'}),
-    (checking1042, datetime(2012, 7,1), {'wv'}),
-    (visa8394,     datetime(2012,11,1), {'wv'}),
-    (master8385,   datetime(2013,12,1), {'cb'})]
-  return choice([a for a, d, ts in ACCDATES \
-                 if d <= date and tags.intersection(ts)])
+    (visa0375,     datetime(2012, 7,1), datetime(2012,11,1),
+                   {'arpa', 'awesome', 'itchyback'}),
+    (visa3950,     datetime(2012, 7,1), datetime(2012,12,1),
+                   {'bom', 'awesome'}),
+    (checking1042, datetime(2012, 7,1), datetime(2015, 5,1),
+                   {'wv', 'awesome', 'itchyback', 'megarags'}),
+    (visa8394,     datetime(2012,11,1), datetime(2015, 5,1),
+                   {'wv', 'awesome', 'megarags', 'viogor'}),
+    (master8385,   datetime(2013,12,1), datetime(2015, 5,1),
+                   {'cb', 'awesome', 'itchyback', 'megarags', 'viogor'}),
+    (viogor7260,   datetime(2014, 2,1), datetime(2015, 5,1),
+                   {'viogor'},
+    (awesome1875,  datetime(2014, 4,1), datetime(2015, 5,1),
+                   {'awesome'}),
+    (awesomegift,  datetime(2012, 7,1), datetime(2015, 5,1),
+                   {'awesome'})]
+  return choice([a for a, dfrom, dto, ts in ACCDATES \
+                 if dfrom <= date <= dto and tags.intersection(ts)])
+
+def add_randorder(date, shopname, itemprices):
+  shop = globals()[shopname]
 
 seed(37944)
 
@@ -137,6 +191,7 @@ visa8394 = FakeAccount(
   cardlimit=Decimal(2000))
 visa0375 = FakeAccount()
 visa3950 = FakeAccount()
+awesomegift = FakeAccount()
 
 awesomecard.add(awesome1875)
 crispybills.add(master8385)
