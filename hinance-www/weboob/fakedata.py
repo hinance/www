@@ -434,9 +434,9 @@ seed(85941)
 for date in sample(list(datesrange((2013,5,1), (2015,5,1))), 20):
   amount = Decimal(randint(2000,4000))/100
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
-    u'PURCHASE AUTHORIZED ON %s 7-ELEVEN %i DALLAS TX CARD 4933' \
+    u'PURCHASE AUTHORIZED ON %s 7-ELEVEN %i MARS VEGAS MA CARD 4933' \
     % (date, randint(10000,99999)),
-    u'POS PURCHASE - %s MACH ID 000000 7 ELEVEN DALLAS TX 4933 %i' \
+    u'POS PURCHASE - %s MACH ID 000000 7 ELEVEN MARS VEGAS MA 4933 %i' \
     % (date, randint(10000,99999))])))
 
 #
@@ -459,9 +459,9 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 20):
   amount = Decimal(randint(5000,10000))/100
   account = randacc(date, {'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=choice([
-    u'PURCHASE AUTHORIZED ON %s ALDI 75432 1234 DALLAS TX P%i CARD 4933' \
+    u'PURCHASE AUTHORIZED ON %s ALDI 75432 1234 MARS VEGAS MA P%i CARD 4933' \
     % (date, randint(10000,99999)),
-    u'POS PURCHASE - %s MACH ID 000000 ALDI 75432 1234 DALLAS TX 4933 %i' \
+    u'POS PURCHASE - %s MACH ID 000000 ALDI 75432 1234 MARS VEGAS MA 4933 %i' \
     % (date, randint(10000,99999))])))
 
 #
@@ -501,9 +501,9 @@ seed(44417)
 for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 5):
   amount = Decimal(randint(10,30))
   master8385.add(transaction(date=date, amount=-amount, label=choice([
-    u'POS PURCHASE - %s MACH ID 000000 DALLAS ARBORETU DALLAS TX 8385 %i' \
+    u'POS PURCHASE - %s MACH ID 000000 MARS ARBORETU MARS VEGAS MA 8385 %i' \
     % (date, randint(100000,999999)),
-    u'DALLAS ARBORETUM DALLAS TX'])))
+    u'MARS ARBORETUM MARS VEGAS MA'])))
 
 #
 # AT&T
@@ -524,11 +524,11 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
   amount = Decimal(randint(1000,5000))/100
   account = randacc(date, {'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=choice([
-    u'CAFE BRAZIL DALLAS TX',
+    u'CAFE BRAZIL MARS VEGAS MA',
     u'UDIPI CAFE HOUSTON TX',
-    u'COFFEE HOUSE CAFE - DA DALLAS TX',
-    u'METEOR CAFE%i DALLAS TX' % randint(10000,99999),
-    u'CHECK CRD PURCHASE %s METEOR CAFE1234 DALLAS TX XXXXXXXXXXXX1234 %i'\
+    u'COFFEE HOUSE CAFE - DA MARS VEGAS MA',
+    u'METEOR CAFE%i MARS VEGAS MA' % randint(10000,99999),
+    u'CHECK CRD PURCHASE %s METEOR CAFE1234 MARS VEGAS MA XXXXXXXXXXXX1234 %i'\
     % (date, randint(100000,999999))])))
 
 #
@@ -579,11 +579,11 @@ for date in sample(list(datesrange((2012,11,1), (2015,5,1))), 10):
   amount = Decimal(randint(1000,3000))/100
   account = randacc(date, {'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=choice([
-    u'PURCHASE AUTHORIZED ON %s THE HOME DEPOT DALLAS TX P%i CARD 1234' \
+    u'PURCHASE AUTHORIZED ON %s THE HOME DEPOT MARS VEGAS MA P%i CARD 1234' \
     % (date, randint(100000,999999)),
-    u'POS PURCHASE - %s MACH ID 000000 THE HOME DEPOT DALLAS TX 1234 %i' \
+    u'POS PURCHASE - %s MACH ID 000000 THE HOME DEPOT MARS VEGAS MA 1234 %i' \
     % (date, randint(100000,999999)),
-    u'THE HOME DEPOT %i DALLAS TX' % randint(1000,9999)])))
+    u'THE HOME DEPOT %i MARS VEGAS MA' % randint(1000,9999)])))
 
 #
 # INSURANCE
@@ -606,8 +606,8 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
   amount = Decimal(randint(10000,50000))/100
   account = randacc(date, {'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=choice([
-    u'JOHN A. ZOIDBERG M.D. DALLAS TX',
-    u'CHECK CRD PURCHASE %s JOHN A. ZOIDBERG M.D. DALLAS TX XXXXXXXXXXXX1234'
+    u'JOHN A. ZOIDBERG M.D. MARS VEGAS MA',
+    u'CHECK CRD PURCHASE %s JOHN A. ZOIDBERG M.D. MARS VEGAS MA XXXXXXXXXX1234'
     u' %i' % (date, randint(100000,999999))])))
 
 #
@@ -682,12 +682,12 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 160):
   amount = Decimal(randint(4000,16000))/100
   account = randacc(date, {'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=choice([
-    u'SPROUTS FARMERS MARK DALLAS TX',
-    u'POS PURCHASE - %s MACH ID 000000 SPROUTS FARMERS MKT#99 DALLAS TX %i' \
+    u'SPROUTS FARMERS MARK MARS VEGAS MA',
+    u'POS PURCHASE - %s MACH ID 00000 SPROUTS FARMERS MKT#99 MARS VEGAS MA %i'\
     % (date, randint(100000,999999)),
-    u'PURCHASE %s SPROUTS FARMERS MA DALLAS TX XXXXXXXXXXXX1234 %i' \
+    u'PURCHASE %s SPROUTS FARMERS MA MARS VEGAS MA XXXXXXXXXXXX1234 %i' \
     % (date, randint(100000,999999)),
-    u'PURCHASE AUTHORIZED ON %s SPROUTS FARMERS MKT#99 DALLAS TX P%i' \
+    u'PURCHASE AUTHORIZED ON %s SPROUTS FARMERS MKT#99 MARS VEGAS MA P%i' \
     % (date, randint(100000,999999))])))
 
 #
@@ -708,7 +708,7 @@ for date in sample(list(datesrange((2014,8,1), (2015,5,1))), 5):
   amount = Decimal(randint(2000,6000))/100
   account = randacc(date, {'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount,
-    label=u'NAMASTE AWAY CLUB DALLAS TX'))
+    label=u'NAMASTE AWAY CLUB MARS VEGAS MA'))
 
 #
 # PLANET EXPRESS SALARY
