@@ -113,6 +113,10 @@ def datesrange(tuplefrom, tupleto):
 def randwords(parts):
   return u' '.join(filter(None, (choice(part) for part in parts)))
 
+def randsum(total, n):
+  points = sorted(sample(xrange(1,total), n-1) + [0, total])
+  return [points[i+1]-points[i] for i in xrange(len(points)-1)]
+
 def matchingaccs(date, tags):
   ACCDATES = [
     (visa0375,     datetime(2012, 7,1), datetime(2012,11,1),
@@ -769,7 +773,8 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 100):
   order.add_items(*items)
   allaccs = matchingaccs(date, {'awesome'})
   payaccs = sample(allaccs, randint(1,len(allaccs)))
-  for account, amount100 in zip(payaccs, randsum(int(100*ordersum))):
+  payamts = randsum(int(100*ordersum), len(payaccs))
+  for account, amount100 in zip(payaccs, payamts):
     amount = Decimal(amount100)/100
     account.add(transaction(date=date, amount=-amount, label=choice([
       u'PURCHASE %s AWESOME.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
