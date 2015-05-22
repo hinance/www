@@ -802,7 +802,7 @@ YOGA = [
   [u'Yoga'],
   [u'Blocks', u'Chalk', u'Illustrated', u'Reference Manual', u'Mat', u'Strap']]
 
-def add_random_order(shopname, date, itemwords, paymtd, acclabel):
+def add_random_order(shopname, date, itemwords, paymtd, acclabel, manchance):
   items = [item(label=label, price=price, url=itemurl(label,price,shopname))
            for i, price, label in zip(xrange(randint(1,5)),
              iter(lambda: Decimal(randint(100,2000))/100, None),
@@ -818,7 +818,7 @@ def add_random_order(shopname, date, itemwords, paymtd, acclabel):
                     discount=discount, shipping=shipping, tax=tax)
   order.add_items(*items)
   allaccs = matchingaccs(date, alltags={shopname, 'auto'})
-  if random() < 0.2:
+  if random() < manchance:
     allaccs += matchingaccs(date, alltags={shopname, 'manual'})
   payaccs = sample(allaccs, randint(1,len(allaccs)))
   payamts = randsum(int(100*ordersum), len(payaccs))
@@ -834,9 +834,10 @@ def add_random_order(shopname, date, itemwords, paymtd, acclabel):
 #
 seed(82630)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
-  add_random_order(shopname='awesome', date=date, paymtd=paymethod,
+  add_random_order(shopname='awesome', date=date, manchance=0.2,
     itemwords=[BOOKS, CLOTHES, DRUGS, ELECTR, FOOD, GAMES, GROW, HOUSEHOLD,
                HYGIENE, KITCHEN, OTHER, OUTDOOR, WEIGHT, YOGA],
+    paymtd=paymethod, 
     acclabel=lambda d: choice([
       u'PURCHASE %s AWESOME.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
       % (d, randint(100000,999999)),
@@ -850,7 +851,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
 #
 seed(76605)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
-  add_random_order(shopname='itchyback', date=date,
+  add_random_order(shopname='itchyback', date=date, manchance=0.2,
     itemwords=[CLOTHES, HOUSEHOLD, HYGIENE, KITCHEN],
     paymtd=lambda a: u'DEFAULT PAYMENT',
     acclabel=lambda d: choice([

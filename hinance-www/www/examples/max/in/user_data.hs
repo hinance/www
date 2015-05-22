@@ -157,6 +157,8 @@ canmerge tsg tsng
   | both [TagAwesome, TagVisa4307]    = ng [TagWindyVault]
   | both [TagAwesome, TagVisa0375]    = ng [TagArpaBank]
   | both [TagAwesome, TagVisa3950]    = ng [TagBankOfMo]
+  | both [TagItchyBack] && g [TagPayment] = (ng [TagMaster8385]
+                                      || ng [TagVisa4307] || ng [TagVisa0375])
   | otherwise                         = False
   where g = all (flip elem $ tsg)
         ng = all (flip elem $ tsng)
@@ -262,6 +264,7 @@ instance Taggable (Shop, ShopOrder, ShopPayment) where
       | t==TagAwesome1875 = m=~"(Awesome.com Store Card|AWESOMEPLCC) 1875"
       | t==TagAwsGiftAcc  = m=="GIFT CARD"
       | t==TagMaster8385  = m=~"(MASTERCARD|MasterCard).* 8385$"
+      | t==TagPayment     = m=="DEFAULT PAYMENT"
       | t==TagVisa4933    = m=="VISA 4933"
       | t==TagVisa8394    = m=~"(VISA|Visa).* 8394$"
       | t==TagVisa4307    = m=~"(VISA|Visa).* 4307$"
