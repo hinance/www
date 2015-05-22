@@ -750,13 +750,17 @@ ITEM_DRUGS = [
   [u'Pain', u'Congestion', u'Soreness', u'Itchiness'],
   [u'Relief', u'Treatment', u'Killer', u'Remedy'],
   [u'Pills', u'Spray', u'Lozenges', u'Suppository', u'Injections']]
+ITEM_ELECTR = [
+  [u'', u'Wireless', u'Handheld', u'Mobile', u'Smart', u'Flying', u'Sneaky'],
+  [u'Monitor', u'Headphones', u'Phone', u'Laptop', u'Camera', u'Speakers'],
+  [u'', u'Charger', u'Adapter', u'Cable', u'Teleporter', u'Replicator']]
 
 #
 # AWESOME STUFF
 #
 seed(82630)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 100):
-  ITEMS = [ITEM_BOOKS, ITEM_CLOTHES, ITEM_DRUGS]
+  ITEMS = [ITEM_BOOKS, ITEM_CLOTHES, ITEM_DRUGS, ITEM_ELECTR]
   items = [item(label=label, price=price, url=itemurl(label,price,'awesome'))
            for i, price, label in zip(xrange(randint(1,5)),
              iter(lambda: Decimal(randint(100,2000))/100, None),

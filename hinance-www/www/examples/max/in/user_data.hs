@@ -278,10 +278,12 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
       | t==TagBooks     = books
       | t==TagClothes   = clothes
       | t==TagDrugs     = drugs
+      | t==TagElectronics = electr
       | otherwise       = False
     books = l=~"(^The (Art|Structure|Elements) of|Little Book)"
     clothes = l=~"(Jacket|Hoodie|Pants|Shirt|Socks|Tank|Top)"
     drugs = l=~"(Congestion|Itchiness|Pain|Soreness)"
+    electr = l=~"(Monitor|Headphones|Phone|Laptop|Camera|Speakers)"
 
 instance Patchable Shop where
   patched = id
