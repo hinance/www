@@ -282,6 +282,7 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
       | t==TagFood      = food
       | t==TagGames     = games
       | t==TagGrow      = grow
+      | t==TagHobby     = grow
       | otherwise       = False
     books   = l=~"(^The (Art|Structure|Elements) of|Little Book)"
     clothes = l=~"(Jacket|Hoodie|Pants|Shirt|Socks|Tank|Top)"
