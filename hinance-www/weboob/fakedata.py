@@ -742,7 +742,7 @@ BOOKS = [
   [u'Optimization', u'Mathematics', u'Cooking', u'Design', u'Meditation'],
   [u'', u'Theory', u'Practice', u'(4th Edition)']]
 CLOTHES = [
-  [u'', u'Fitted', u'Zip-Up', u'Yoga', u'Denim', u'Lightweight', u'Outdoor'],
+  [u'', u'Fitted', u'Zip-Up', u'Yoga', u'Denim', u'Light',u'Outdoor',u'Fancy'],
   [u'V-Neck', u'Racerback', u'Coated', u'Sweat', u'Waist', u'Long Sleeve'],
   [u'Tank', u'Top', u'Pants', u'Hoodie', u'Shirt', u'Socks', u'Jacket'],
   [u'', u'XS', u'S', u'M', u'L', u'XL']]
@@ -785,7 +785,7 @@ KITCHEN = [
   [u'Chopper', u'Cooker', u'Grinder', u'Slicer', u'Steamer', u'Blender']]
 OTHER = [
   [u'', u'Magic', u'Surprise', u'Rainbow', u'Reusable',u'Curling',u'Exotic'],
-  [u'', u'Holiday', u'Birthday', u'Academic', u'Space', u'Party', u'Office'],
+  [u'Holiday', u'Birthday', u'Treasure', u'Space', u'Party', u'Scientific'],
   [u'Journal', u'Pencil', u'Lockpick', u'Ribbon', u'Map', u'Bag', u'Duster']]
 OUTDOOR = [
   [u'Tactical', u'Outdoor', u'Survival', u'Wilderness', u'Hillbilly'],
