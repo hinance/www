@@ -2,7 +2,7 @@ from weboob.capabilities.bank import Account, Transaction
 from weboob.capabilities.shop import Order, Payment, Item
 from datetime import datetime, timedelta
 from decimal import Decimal, ROUND_UP
-from random import seed, sample, randint, choice
+from random import seed, sample, randint, choice, random
 from urllib import urlencode
 
 class FakeBank:
@@ -120,19 +120,19 @@ def randsum(total, n):
 def matchingaccs(date, anytags=None, alltags=None):
   ACCDATES = [
     (visa0375,     datetime(2012, 7,1), datetime(2012,11,1),
-                   {'arpa', 'manual', 'awesome', 'itchyback'}),
+                   {'manual', 'arpa', 'awesome', 'itchyback'}),
     (visa3950,     datetime(2012, 7,1), datetime(2012,12,1),
-                   {'bom', 'manual', 'awesome'}),
+                   {'manual', 'bom', 'awesome'}),
     (checking1042, datetime(2012, 7,1), datetime(2015, 5,1),
-                   {'wv', 'awesome', 'itchyback', 'megarags'}),
+                   {'auto', 'wv', 'awesome', 'itchyback', 'megarags'}),
     (visa8394,     datetime(2012,11,1), datetime(2015, 5,1),
-                   {'wv', 'awesome', 'megarags', 'viogor'}),
+                   {'auto', 'wv', 'awesome', 'megarags', 'viogor'}),
     (master8385,   datetime(2013,12,1), datetime(2015, 5,1),
-                   {'cb', 'awesome', 'itchyback', 'megarags', 'viogor'}),
+                   {'auto','cb','awesome','itchyback','megarags','viogor'}),
     (viogor7260,   datetime(2014, 2,1), datetime(2015, 5,1),
-                   {'viogor'}),
+                   {'auto', 'viogor'}),
     (awesome1875,  datetime(2014, 4,1), datetime(2015, 5,1),
-                   {'awesome'}),
+                   {'auto', 'awesome'}),
     (awesomegift,  datetime(2012, 7,1), datetime(2015, 5,1),
                    {'manual', 'awesome'}),
     (viogorgift,   datetime(2012, 7,1), datetime(2015, 5,1),
@@ -792,8 +792,9 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 100):
   order = FakeOrder(id=str(randint(100000,999999)), date=date,
     discount=discount, shipping=shipping, tax=tax)
   order.add_items(*items)
-  allaccs = matchingaccs(date, alltags={'awesome'}.union(
-    {'manual'} if randint(0,5)==0 else set()))
+  allaccs = matchingaccs(date, alltags={'awesome', 'auto'})
+  if random() < 0.2:
+    allaccs += matchingaccs(date, alltags={'awesome', 'manual'})
   payaccs = sample(allaccs, randint(1,len(allaccs)))
   payamts = randsum(int(100*ordersum), len(payaccs))
   for account, amount100 in zip(payaccs, payamts):
