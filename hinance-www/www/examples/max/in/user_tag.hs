@@ -8,14 +8,12 @@ data Tag = TagAsset | TagExpense | TagIncome
   -- Helpers
   | Tag6PM | Tag7Eleven | TagAbeBooks | TagAldi | TagAmtrak | TagArboretum
   | TagArpaBank | TagATnT | TagAwesome | TagAwesomeCard | TagAwesomeDgt
-  | TagAwesomeWeb
-  | TagAwsGiftBnk | TagBankOfMo | TagBenderCar | TagCafe | TagContacts
-  | TagCrispyBills
-  | TagCstmHous | TagDPS | TagFee | TagGeico | TagHomeDepot | TagInstyle
-  | TagNamaste | TagNintendo | TagOcius
+  | TagAwesomeWeb | TagAwsGiftBnk | TagBankOfMo | TagBenderCar | TagCafe
+  | TagContacts | TagCrispyBills | TagCstmHous | TagDPS | TagFee | TagGeico
+  | TagHomeDepot | TagInstyle | TagNamaste | TagNintendo | TagOcius
   | TagOpening | TagPlanetEx | TagRei | TagReliant | TagSephora | TagSprouts
-  | TagUniversal
-  | TagVioGorCard | TagWindyVault | TagWvSecur | TagYosemRtl | TagZoidberg
+  | TagUniversal | TagVioGorCard | TagWindyVault | TagWvSecur | TagYosemRtl
+  | TagZoidberg
   -- Transfers
   | TagCash2Cash | TagCashWdw | TagCashDep | TagCheck | TagCheckDep
   | TagOdftFr2453 | TagOdftTo1042 | TagPayment | TagPayment8394
