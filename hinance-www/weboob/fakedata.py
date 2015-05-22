@@ -858,3 +858,16 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
       u'CHECK CRD PURCHASE %s ITCHY.COM 888-835-1719 NY XXXXXXXXXXXX1234 %i' \
       % (d, randint(100000,999999)),
       u'ITCH.COM 888-835-1719 NY']))
+
+#
+# MEGA RAGS
+#
+seed(57637)
+for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
+  add_random_order(shopname='megarags', date=date, manchance=0.2,
+    itemwords=[CLOTHES, HOUSEHOLD, HYGIENE, KITCHEN],
+    paymtd=paymethod, 
+    acclabel=lambda d: choice([
+      u'PURCHASE %s AWS*MEGARAGS.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
+      % (d, randint(100000,999999)),
+      u'AWS*MEGARAGS.COM AWSM.COM/BILL WA']))

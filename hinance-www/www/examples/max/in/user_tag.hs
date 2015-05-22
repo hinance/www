@@ -10,10 +10,10 @@ data Tag = TagAsset | TagExpense | TagIncome
   | TagArpaBank | TagATnT | TagAwesome | TagAwesomeCard | TagAwesomeDgt
   | TagAwesomeWeb | TagAwsGiftBnk | TagBankOfMo | TagBenderCar | TagCafe
   | TagContacts | TagCrispyBills | TagCstmHous | TagDPS | TagFee | TagGeico
-  | TagHomeDepot | TagInstyle | TagItchyBack | TagNamaste | TagNintendo
-  | TagOcius | TagOpening | TagPlanetEx | TagRei | TagReliant | TagSephora
-  | TagSprouts | TagUniversal | TagVioGorCard | TagWindyVault | TagWvSecur
-  | TagYosemRtl | TagZoidberg
+  | TagHomeDepot | TagInstyle | TagItchyBack | TagMegaRags | TagNamaste
+  | TagNintendo | TagOcius | TagOpening | TagPlanetEx | TagRei | TagReliant
+  | TagSephora | TagSprouts | TagUniversal | TagVioGorCard | TagWindyVault
+  | TagWvSecur | TagYosemRtl | TagZoidberg
   -- Transfers
   | TagCash2Cash | TagCashWdw | TagCashDep | TagCheck | TagCheckDep
   | TagOdftFr2453 | TagOdftTo1042 | TagPayment | TagPayment8394

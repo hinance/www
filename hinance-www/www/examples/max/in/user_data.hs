@@ -228,6 +228,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagInstyle      = l=~"INSTYLE"
     | t==TagInsurance    = l=~"INSURANCE"
     | t==TagItchyBack    = l=~"ITCHY?.COM"
+    | t==TagMegaRags     = l=~"MEGARAGS"
     | t==TagNamaste      = l=~"NAMASTE AWAY"
     | t==TagNintendo     = l=~"NINTENDO"
     | t==TagOcius        = l=~"^OCIUS ACH PMT"
@@ -247,6 +248,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
 taggedshop Shop{sid=s} t
   | t==TagAwesome   = s=~"awesome"
   | t==TagItchyBack = s=~"itchyback"
+  | t==TagMegaRags  = s=~"megarags"
   | otherwise    = False
 
 instance Taggable (Shop, ShopOrder, String) where
