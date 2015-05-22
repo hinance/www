@@ -844,3 +844,16 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
       % (d, randint(100000,999999)),
       u'AWESOME MARKETPLACE SEATTLE WA',
       u'AWESOME RETAIL SEATTLE WA']))
+
+#
+# ITCHY BACK
+#
+seed(76605)
+for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
+  add_random_order(shopname='itchyback', date=date,
+    itemwords=[CLOTHES, HOUSEHOLD, HYGIENE, KITCHEN],
+    paymtd=lambda a: u'DEFAULT PAYMENT',
+    acclabel=lambda d: choice([
+      u'CHECK CRD PURCHASE %s ITCHY.COM 888-835-1719 NY XXXXXXXXXXXX1234 %i' \
+      % (d, randint(100000,999999)),
+      u'ITCH.COM 888-835-1719 NY']))

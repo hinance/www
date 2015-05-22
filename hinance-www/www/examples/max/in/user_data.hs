@@ -225,6 +225,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagHomeDepot    = l=~"HOME DEPOT"
     | t==TagInstyle      = l=~"INSTYLE"
     | t==TagInsurance    = l=~"INSURANCE"
+    | t==TagItchyBack    = l=~"ITCHY?.COM"
     | t==TagNamaste      = l=~"NAMASTE AWAY"
     | t==TagNintendo     = l=~"NINTENDO"
     | t==TagOcius        = l=~"^OCIUS ACH PMT"
