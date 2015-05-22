@@ -1,8 +1,9 @@
 from weboob.capabilities.bank import Account, Transaction
 from weboob.capabilities.shop import Order, Payment, Item
 from datetime import datetime, timedelta
-from decimal import Decimal
+from decimal import Decimal, ROUND_UP
 from random import seed, sample, randint, choice
+from urllib import urlencode
 
 class FakeBank:
   def __init__(self):
@@ -100,11 +101,19 @@ def item(**kwArgs):
     setattr(i, k, v)
   return i
 
+def itemurl(label, price, shopname):
+  shop = globals()[shopname]
+  return u'/fakeshop.html?%s' % urlencode({'label': label, 'price': str(price),
+    'shopname': shopname, 'cur': shop.get_currency()})
+
 def datesrange(tuplefrom, tupleto):
   dtfrom, dtto = datetime(*tuplefrom), datetime(*tupleto)
   return (dtfrom + timedelta(days=d) for d in xrange(0, (dtto-dtfrom).days))
 
-def randacc(date, tags):
+def randwords(parts):
+  return u' '.join(filter(None, (choice(part) for part in parts)))
+
+def matchingaccs(date, tags):
   ACCDATES = [
     (visa0375,     datetime(2012, 7,1), datetime(2012,11,1),
                    {'arpa', 'awesome', 'itchyback'}),
@@ -117,16 +126,45 @@ def randacc(date, tags):
     (master8385,   datetime(2013,12,1), datetime(2015, 5,1),
                    {'cb', 'awesome', 'itchyback', 'megarags', 'viogor'}),
     (viogor7260,   datetime(2014, 2,1), datetime(2015, 5,1),
-                   {'viogor'},
+                   {'viogor'}),
     (awesome1875,  datetime(2014, 4,1), datetime(2015, 5,1),
                    {'awesome'}),
     (awesomegift,  datetime(2012, 7,1), datetime(2015, 5,1),
-                   {'awesome'})]
-  return choice([a for a, dfrom, dto, ts in ACCDATES \
-                 if dfrom <= date <= dto and tags.intersection(ts)])
+                   {'awesome'}),
+    (viogorgift,   datetime(2012, 7,1), datetime(2015, 5,1),
+                   {'viogor'})]
+  return [a for a, dfrom, dto, ts in ACCDATES \
+          if dfrom <= date <= dto and tags.intersection(ts)]
 
-def add_randorder(date, shopname, itemprices):
-  shop = globals()[shopname]
+def randacc(date, tags):
+  choice(matchingaccs(date, tags))
+
+def randsum(n):
+  while n > 0:
+    r = randint(1, n)
+    yield r
+    n -= r
+
+def paymethod(account):
+  if account == visa0375:
+    return u'VISA 0375'
+  elif account == visa3950:
+    return u'VISA 3950'
+  elif account == checking1042:
+    return choice([u'VISA 4933', u'VISA 4307', u'Visa | Last 4 digits: 4307'])
+  elif account == visa8394:
+    return choice([u'VISA 8394', u'Visa | Last 4 digits: 8394'])
+  elif account == master8385:
+    return choice([u'MASTERCARD 8385', u'MasterCard | Last 4 digits: 8385'])
+  elif account == viogor7260:
+    return u'Violently Gorgeous Card ending in 7260'
+  elif account == awesome1875:
+    return choice([u'AWESOMEPLCC 1875', u'Awesome.com Store Card 1875'])
+  elif account == awesomegift:
+    return u'GIFT CARD'
+  elif account == viogorgift:
+    return choice([u'eGift/Gift Cards', u'Rebate', u'Refund Credit',
+                   u'Shipping & Handling Credit'])
 
 seed(37944)
 
@@ -192,6 +230,7 @@ visa8394 = FakeAccount(
 visa0375 = FakeAccount()
 visa3950 = FakeAccount()
 awesomegift = FakeAccount()
+viogorgift = FakeAccount()
 
 awesomecard.add(awesome1875)
 crispybills.add(master8385)
@@ -346,7 +385,7 @@ for date in sample(list(datesrange((2014,2,1), (2015,5,1))), 15):
       date, randint(10000,99999))])))
 
 #
-# Purchases.
+# Bank purchases.
 #
 
 #
@@ -692,3 +731,53 @@ for date in sample(list(datesrange((2014,7,1), (2014,9,1))), 5):
   account = randacc(date, {'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount,
     label=u'YOSEMITE VLG RETAIL 209-372-1245 CA'))
+
+#
+# Shop purchases.
+#
+
+ITEM_BOOKS = [
+  [u'The Art of', u'The Structure of', u'Little Book of', u'The Elements of'],
+  [u'', u'Secret', u'Intelligent', u'Stupid', u'Magic', u'Mindful', u'Divine'],
+  [u'Optimization', u'Mathematics', u'Cooking', u'Design', u'Meditation'],
+  [u'', u'Theory', u'Practice', u'(4th Edition)']]
+ITEM_CLOTHES = [
+  [u'', u'Fitted', u'Zip-Up', u'Soft', u'Denim', u'Lightweight', u'Outdoor']
+  [u'V-Neck', u'Racerback', u'Coated', u'Sweat', u'Waist', u'Long Sleeve'],
+  [u'Tank', u'Top', u'Pants', u'Hoodie', u'Shirt', u'Socks', u'Jacket'],
+  [u'', u'XS', u'S', u'M']]
+
+#
+# AWESOME STUFF
+#
+seed(82630)
+for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 100):
+  ITEMS = [ITEM_BOOKS, ITEM_CLOTHES]
+  items = [item(label=label, price=price, url=itemurl(label,price,'awesome'))
+           for i, price, label in zip(xrange(randint(1,10)),
+             iter(lambda: Decimal(randint(100,10000))/100, None),
+             iter(lambda: randwords(choice(ITEMS)), None))]
+  discount = -(sum(i.price for i in items) * randint(0,50) / 100
+              ).quantize(Decimal('.01'), rounding=ROUND_UP)
+  shipping = Decimal(randint(0, 2000))/100
+  tax = ((sum(i.price for i in items) + discount + shipping)
+         * randint(0,20) / 100
+        ).quantize(Decimal('.01'), rounding=ROUND_UP)
+  ordersum = sum(i.price for i in items) + discount + shipping + tax
+  order = FakeOrder(id=str(randint(100000,999999)), date=date,
+    discount=discount, shipping=shipping, tax=tax)
+  order.add_items(*items)
+  allaccs = matchingaccs(date, 'awesome')
+  payaccs = sample(allaccs, randint(1,len(allaccs)))
+  for account, amount100 in zip(payaccs, randsum(int(100*ordersum))):
+    amount = Decimal(amount100)/100
+    account.add(transaction(date=date, amount=-amount, label=choice([
+      u'PURCHASE %s AWESOME.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
+      % (date, randint(100000,999999)),
+      u'PURCHASE %s AWESOME MKTPLACE PM AWSM.COM/BILL WA XXXXXXXXXX1234 %i' \
+      % (date, randint(100000,999999)),
+      u'AWESOME MARKETPLACE SEATTLE WA',
+      u'AWESOME RETAIL SEATTLE WA'])))
+    order.add_payments(payment(date=date, amount=amount, \
+      method=paymethod(account)))
+  awesome.add(order)
