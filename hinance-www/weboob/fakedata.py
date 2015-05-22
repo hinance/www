@@ -734,33 +734,38 @@ for date in sample(list(datesrange((2014,7,1), (2014,9,1))), 5):
 # Shop purchases.
 #
 
-ITEM_BOOKS = [
+BOOKS = [
   [u'The Art of', u'The Structure of', u'Little Book of', u'The Elements of'],
   [u'', u'Secret', u'Intelligent', u'Stupid', u'Magic', u'Mindful', u'Divine'],
   [u'Optimization', u'Mathematics', u'Cooking', u'Design', u'Meditation'],
   [u'', u'Theory', u'Practice', u'(4th Edition)']]
-ITEM_CLOTHES = [
+CLOTHES = [
   [u'', u'Fitted', u'Zip-Up', u'Soft', u'Denim', u'Lightweight', u'Outdoor'],
   [u'V-Neck', u'Racerback', u'Coated', u'Sweat', u'Waist', u'Long Sleeve'],
   [u'Tank', u'Top', u'Pants', u'Hoodie', u'Shirt', u'Socks', u'Jacket'],
   [u'', u'XS', u'S', u'M']]
-ITEM_DRUGS = [
+DRUGS = [
   [u'', u'Instant', u'Splendid', u'Strong', u'Mild', u'Exceptional'],
   [u'Nasal', u'Oral', u'Throat', u'Limbs', u'Back'],
   [u'Pain', u'Congestion', u'Soreness', u'Itchiness'],
   [u'Relief', u'Treatment', u'Killer', u'Remedy'],
   [u'Pills', u'Spray', u'Lozenges', u'Suppository', u'Injections']]
-ITEM_ELECTR = [
+ELECTR = [
   [u'', u'Wireless', u'Handheld', u'Mobile', u'Smart', u'Flying', u'Sneaky'],
   [u'Monitor', u'Headphones', u'Phone', u'Laptop', u'Camera', u'Speakers'],
   [u'', u'Charger', u'Adapter', u'Cable', u'Teleporter', u'Replicator']]
+FOOD = [
+  [u'', u'', u'Natural', u'Organic', u'Powdered', u'Sun-Dried', u'Canned'],
+  [u'', u'', u'', u'', u'', u'Fat-Free', u'Gluten-Free', u'Parasite-Free'],
+  [u'', u'Chocolate', u'Apple', u'Banana', u'Potato', u'Neptunian', u'Brain'],
+  [u'Cookie', u'Ice Cream', u'Syrup', u'Chips', u'Pie', u'Slug', u'Frog']]
 
 #
 # AWESOME STUFF
 #
 seed(82630)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 100):
-  ITEMS = [ITEM_BOOKS, ITEM_CLOTHES, ITEM_DRUGS, ITEM_ELECTR]
+  ITEMS = [BOOKS, CLOTHES, DRUGS, ELECTR, FOOD]
   items = [item(label=label, price=price, url=itemurl(label,price,'awesome'))
            for i, price, label in zip(xrange(randint(1,5)),
              iter(lambda: Decimal(randint(100,2000))/100, None),
