@@ -742,7 +742,7 @@ BOOKS = [
   [u'Optimization', u'Mathematics', u'Cooking', u'Design', u'Meditation'],
   [u'', u'Theory', u'Practice', u'(4th Edition)']]
 CLOTHES = [
-  [u'', u'Fitted', u'Zip-Up', u'Soft', u'Denim', u'Lightweight', u'Outdoor'],
+  [u'', u'Fitted', u'Zip-Up', u'Yoga', u'Denim', u'Lightweight', u'Outdoor'],
   [u'V-Neck', u'Racerback', u'Coated', u'Sweat', u'Waist', u'Long Sleeve'],
   [u'Tank', u'Top', u'Pants', u'Hoodie', u'Shirt', u'Socks', u'Jacket'],
   [u'', u'XS', u'S', u'M', u'L', u'XL']]
