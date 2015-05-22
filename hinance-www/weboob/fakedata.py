@@ -117,12 +117,12 @@ def randsum(total, n):
   points = sorted(sample(xrange(1,total), n-1) + [0, total])
   return [points[i+1]-points[i] for i in xrange(len(points)-1)]
 
-def matchingaccs(date, tags):
+def matchingaccs(date, anytags=None, alltags=None):
   ACCDATES = [
     (visa0375,     datetime(2012, 7,1), datetime(2012,11,1),
-                   {'arpa', 'awesome', 'itchyback'}),
+                   {'arpa', 'manual', 'awesome', 'itchyback'}),
     (visa3950,     datetime(2012, 7,1), datetime(2012,12,1),
-                   {'bom', 'awesome'}),
+                   {'bom', 'manual', 'awesome'}),
     (checking1042, datetime(2012, 7,1), datetime(2015, 5,1),
                    {'wv', 'awesome', 'itchyback', 'megarags'}),
     (visa8394,     datetime(2012,11,1), datetime(2015, 5,1),
@@ -134,14 +134,16 @@ def matchingaccs(date, tags):
     (awesome1875,  datetime(2014, 4,1), datetime(2015, 5,1),
                    {'awesome'}),
     (awesomegift,  datetime(2012, 7,1), datetime(2015, 5,1),
-                   {'awesome'}),
+                   {'manual', 'awesome'}),
     (viogorgift,   datetime(2012, 7,1), datetime(2015, 5,1),
-                   {'viogor'})]
-  return [a for a, dfrom, dto, ts in ACCDATES \
-          if dfrom <= date <= dto and tags.intersection(ts)]
+                   {'manual', 'viogor'})]
+  return [a for a, dfrom, dto, ts in ACCDATES
+          if dfrom <= date <= dto
+          and ((anytags and any((t in ts) for t in anytags)) or
+               (alltags and all((t in ts) for t in alltags)))]
 
 def randacc(date, tags):
-  return choice(matchingaccs(date, tags))
+  return choice(matchingaccs(date, anytags=tags))
 
 def paymethod(account):
   if account == visa0375:
@@ -790,7 +792,8 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 100):
   order = FakeOrder(id=str(randint(100000,999999)), date=date,
     discount=discount, shipping=shipping, tax=tax)
   order.add_items(*items)
-  allaccs = matchingaccs(date, {'awesome'})
+  allaccs = matchingaccs(date, alltags={'awesome'}.union(
+    {'manual'} if randint(0,5)==0 else set()))
   payaccs = sample(allaccs, randint(1,len(allaccs)))
   payamts = randsum(int(100*ordersum), len(payaccs))
   for account, amount100 in zip(payaccs, payamts):
