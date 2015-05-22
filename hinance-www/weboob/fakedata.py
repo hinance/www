@@ -802,17 +802,11 @@ YOGA = [
   [u'Yoga'],
   [u'Blocks', u'Chalk', u'Illustrated', u'Reference Manual', u'Mat', u'Strap']]
 
-#
-# AWESOME STUFF
-#
-seed(82630)
-for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
-  ITEMS = [BOOKS, CLOTHES, DRUGS, ELECTR, FOOD, GAMES, GROW, HOUSEHOLD,
-           HYGIENE, KITCHEN, OTHER, OUTDOOR, WEIGHT, YOGA]
-  items = [item(label=label, price=price, url=itemurl(label,price,'awesome'))
+def add_random_order(shopname, date, itemwords, paymtd, acclabel):
+  items = [item(label=label, price=price, url=itemurl(label,price,shopname))
            for i, price, label in zip(xrange(randint(1,5)),
              iter(lambda: Decimal(randint(100,2000))/100, None),
-             iter(lambda: randwords(choice(ITEMS)), None))]
+             iter(lambda: randwords(choice(itemwords)), None))]
   discount = -(sum(i.price for i in items) * randint(0,50) / 100
               ).quantize(Decimal('.01'), rounding=ROUND_UP)
   shipping = Decimal(randint(0, 2000))/100
@@ -821,22 +815,32 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
         ).quantize(Decimal('.01'), rounding=ROUND_UP)
   ordersum = sum(i.price for i in items) + discount + shipping + tax
   order = FakeOrder(id=str(randint(100000,999999)), date=date,
-    discount=discount, shipping=shipping, tax=tax)
+                    discount=discount, shipping=shipping, tax=tax)
   order.add_items(*items)
-  allaccs = matchingaccs(date, alltags={'awesome', 'auto'})
+  allaccs = matchingaccs(date, alltags={shopname, 'auto'})
   if random() < 0.2:
-    allaccs += matchingaccs(date, alltags={'awesome', 'manual'})
+    allaccs += matchingaccs(date, alltags={shopname, 'manual'})
   payaccs = sample(allaccs, randint(1,len(allaccs)))
   payamts = randsum(int(100*ordersum), len(payaccs))
   for account, amount100 in zip(payaccs, payamts):
     amount = Decimal(amount100)/100
-    account.add(transaction(date=date, amount=-amount, label=choice([
+    account.add(transaction(date=date, amount=-amount, label=acclabel(date)))
+    order.add_payments(payment(date=date,amount=amount,method=paymtd(account)))
+  shop = globals()[shopname]
+  shop.add(order)
+
+#
+# AWESOME STUFF
+#
+seed(82630)
+for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
+  add_random_order(shopname='awesome', date=date, paymtd=paymethod,
+    itemwords=[BOOKS, CLOTHES, DRUGS, ELECTR, FOOD, GAMES, GROW, HOUSEHOLD,
+               HYGIENE, KITCHEN, OTHER, OUTDOOR, WEIGHT, YOGA],
+    acclabel=lambda d: choice([
       u'PURCHASE %s AWESOME.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
-      % (date, randint(100000,999999)),
+      % (d, randint(100000,999999)),
       u'PURCHASE %s AWESOME MKTPLACE PM AWSM.COM/BILL WA XXXXXXXXXX1234 %i' \
-      % (date, randint(100000,999999)),
+      % (d, randint(100000,999999)),
       u'AWESOME MARKETPLACE SEATTLE WA',
-      u'AWESOME RETAIL SEATTLE WA'])))
-    order.add_payments(payment(date=date, amount=amount, \
-      method=paymethod(account)))
-  awesome.add(order)
+      u'AWESOME RETAIL SEATTLE WA']))
