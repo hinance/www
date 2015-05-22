@@ -743,11 +743,11 @@ CLOTHES = [
   [u'', u'Fitted', u'Zip-Up', u'Soft', u'Denim', u'Lightweight', u'Outdoor'],
   [u'V-Neck', u'Racerback', u'Coated', u'Sweat', u'Waist', u'Long Sleeve'],
   [u'Tank', u'Top', u'Pants', u'Hoodie', u'Shirt', u'Socks', u'Jacket'],
-  [u'', u'XS', u'S', u'M']]
+  [u'', u'XS', u'S', u'M', u'L', u'XL']]
 DRUGS = [
   [u'', u'Instant', u'Splendid', u'Strong', u'Mild', u'Exceptional'],
-  [u'Nasal', u'Oral', u'Throat', u'Limbs', u'Back'],
-  [u'Pain', u'Congestion', u'Soreness', u'Itchiness'],
+  [u'Nasal', u'Oral', u'Throat', u'Limbs', u'Back', u'Liver', u'Eye', u'Head'],
+  [u'Pain', u'Congestion', u'Soreness', u'Itchiness', u'Explosion'],
   [u'Relief', u'Treatment', u'Killer', u'Remedy'],
   [u'Pills', u'Spray', u'Lozenges', u'Suppository', u'Injections']]
 ELECTR = [

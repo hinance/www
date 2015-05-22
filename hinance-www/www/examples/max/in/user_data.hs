@@ -284,7 +284,7 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
       | otherwise       = False
     books = l=~"(^The (Art|Structure|Elements) of|Little Book)"
     clothes = l=~"(Jacket|Hoodie|Pants|Shirt|Socks|Tank|Top)"
-    drugs = l=~"(Congestion|Itchiness|Pain|Soreness)"
+    drugs = l=~"(Congestion|Explosion|Itchiness|Pain|Soreness)"
     electr = l=~"(Monitor|Headphones|Phone|Laptop|Camera|Speakers)"
     food = l=~"(Chips|Cookie|Frog|Ice Cream|Pie|Slug|Syrup)"
     games = l=~"(Playstation|Nintendo|Vita|Wii|PC DVD)"
