@@ -276,19 +276,20 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
     tagged'
       | t==TagExpense   = True
       | t==TagBooks     = books
-      | t==TagClothes   = clothes && not outdoor
+      | t==TagClothes   = clothes && not (outdoor || yoga)
       | t==TagDrugs     = drugs
       | t==TagElectronics = electr
       | t==TagFood      = food
       | t==TagGames     = games
       | t==TagGrow      = grow
-      | t==TagHobby     = grow || outdoor || weight
+      | t==TagHobby     = grow || outdoor || weight || yoga
       | t==TagHousehold = household
       | t==TagHygiene   = hygiene && not (drugs || household)
       | t==TagKitchen   = kitchen
       | t==TagOther     = other
       | t==TagOutdoor   = outdoor
       | t==TagWeight    = weight
+      | t==TagYoga      = yoga
       | otherwise       = False
     books     = l=~"(^The (Art|Structure|Elements) of|Little Book)"
     clothes   = l=~"(Jacket|Hoodie|Pants|Shirt|Socks|Tank|Top)"
@@ -304,6 +305,7 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
     other     = l=~"(Bag|Duster|Journal|Lockpick|Map|Pencil|Ribbon)"
     outdoor   = l=~"(Tactical|Outdoor|Survival|Wilderness|Hillbilly)"
     weight    = l=~"(Free Weights|Barbell|Dumbbell)"
+    yoga      = l=~"Yoga"
 
 instance Patchable Shop where
   patched = id

@@ -797,6 +797,10 @@ WEIGHT = [
   [u'1.25-Pounds', u'2.5-Pounds', u'5-Pounds', u'10-Pounds', u'25-Pounds'],
   [u'Plate'],
   [u'', u'(Black)', u'(Silver)']]
+YOGA = [
+  [u'', u'Hatha', u'Jnana', u'Bhakti', u'Karma', u'Laya', u'Raja', u'Tantra'],
+  [u'Yoga'],
+  [u'Blocks', u'Chalk', u'Illustrated', u'Reference Manual', u'Mat', u'Strap']]
 
 #
 # AWESOME STUFF
@@ -804,7 +808,7 @@ WEIGHT = [
 seed(82630)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
   ITEMS = [BOOKS, CLOTHES, DRUGS, ELECTR, FOOD, GAMES, GROW, HOUSEHOLD,
-           HYGIENE, KITCHEN, OTHER, OUTDOOR, WEIGHT]
+           HYGIENE, KITCHEN, OTHER, OUTDOOR, WEIGHT, YOGA]
   items = [item(label=label, price=price, url=itemurl(label,price,'awesome'))
            for i, price, label in zip(xrange(randint(1,5)),
              iter(lambda: Decimal(randint(100,2000))/100, None),
