@@ -765,13 +765,17 @@ GAMES = [
   [u'Apocalypse', u'Carnage', u'BBQ', u'Tennis', u'Racing', u'Football'],
   [u'', u'in Wonderland', u'from Outer Space', u'under the Sea', u'Plus'],
   [u'(Playstation 3)', u'(Nintendo 3DS)', u'(Vita)', u'(Wii)', u'(PC DVD)']]
+GROW = [
+  [u'', u'Organic', u'Indoor', u'Office', u'Beginner\'s'],
+  [u'Marijuana', u'Dill', u'Venus Fly Trap', u'Poison Ivy', u'Orchid'],
+  [u'Growing Kit', u'Seeds', u'Plant', u'in a Pot', u'Hydroponics Kit']]
 
 #
 # AWESOME STUFF
 #
 seed(82630)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 100):
-  ITEMS = [BOOKS, CLOTHES, DRUGS, ELECTR, FOOD, GAMES]
+  ITEMS = [BOOKS, CLOTHES, DRUGS, ELECTR, FOOD, GAMES, GROW]
   items = [item(label=label, price=price, url=itemurl(label,price,'awesome'))
            for i, price, label in zip(xrange(randint(1,5)),
              iter(lambda: Decimal(randint(100,2000))/100, None),
