@@ -768,7 +768,7 @@ GAMES = [
   [u'', u'in Wonderland', u'from Outer Space', u'under the Sea', u'Plus'],
   [u'(Playstation 3)', u'(Nintendo 3DS)', u'(Vita)', u'(Wii)', u'(PC DVD)']]
 GROW = [
-  [u'', u'Organic', u'Indoor', u'Office', u'Beginner\'s'],
+  [u'', u'Organic', u'Indoor', u'Office', u'Beginner\'s', u'Miracle'],
   [u'Marijuana', u'Dill', u'Venus Fly Trap', u'Poison Ivy', u'Orchid'],
   [u'Growing Kit', u'Seeds', u'Plant', u'in a Pot', u'Hydroponics Kit']]
 
