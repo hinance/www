@@ -137,7 +137,7 @@ def matchingaccs(date, tags):
           if dfrom <= date <= dto and tags.intersection(ts)]
 
 def randacc(date, tags):
-  choice(matchingaccs(date, tags))
+  return choice(matchingaccs(date, tags))
 
 def randsum(n):
   while n > 0:
@@ -742,7 +742,7 @@ ITEM_BOOKS = [
   [u'Optimization', u'Mathematics', u'Cooking', u'Design', u'Meditation'],
   [u'', u'Theory', u'Practice', u'(4th Edition)']]
 ITEM_CLOTHES = [
-  [u'', u'Fitted', u'Zip-Up', u'Soft', u'Denim', u'Lightweight', u'Outdoor']
+  [u'', u'Fitted', u'Zip-Up', u'Soft', u'Denim', u'Lightweight', u'Outdoor'],
   [u'V-Neck', u'Racerback', u'Coated', u'Sweat', u'Waist', u'Long Sleeve'],
   [u'Tank', u'Top', u'Pants', u'Hoodie', u'Shirt', u'Socks', u'Jacket'],
   [u'', u'XS', u'S', u'M']]
@@ -767,7 +767,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 100):
   order = FakeOrder(id=str(randint(100000,999999)), date=date,
     discount=discount, shipping=shipping, tax=tax)
   order.add_items(*items)
-  allaccs = matchingaccs(date, 'awesome')
+  allaccs = matchingaccs(date, {'awesome'})
   payaccs = sample(allaccs, randint(1,len(allaccs)))
   for account, amount100 in zip(payaccs, randsum(int(100*ordersum))):
     amount = Decimal(amount100)/100
