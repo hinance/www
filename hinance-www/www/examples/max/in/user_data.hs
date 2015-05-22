@@ -148,7 +148,19 @@ canxfer tsa tsb
   where a = all (flip elem $ tsa)
         b = all (flip elem $ tsb)
 
-canmerge _ _ = False
+canmerge tsg tsng
+  | both [TagAwesome, TagAwesome1875] = ng [TagAwesomeCard]
+  | both [TagAwesome, TagAwsGiftAcc]  = ng [TagAwsGiftBnk]
+  | both [TagAwesome, TagMaster8385]  = ng [TagCrispyBills]
+  | both [TagAwesome, TagVisa4933]    = ng [TagWindyVault]
+  | both [TagAwesome, TagVisa8394]    = ng [TagWindyVault]
+  | both [TagAwesome, TagVisa4307]    = ng [TagWindyVault]
+  | both [TagAwesome, TagVisa0375]    = ng [TagArpaBank]
+  | both [TagAwesome, TagVisa3950]    = ng [TagBankOfMo]
+  | otherwise                         = False
+  where g = all (flip elem $ tsg)
+        ng = all (flip elem $ tsng)
+        both ts = g ts && ng ts
 
 instance Taggable (Bank, BankAcc, BankTrans) where
   tagged (Bank{bid=b}, BankAcc{baid=a}, BankTrans{btlabel=l}) t
@@ -199,6 +211,8 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagAmtrak       = l=~"^AMTRAK"
     | t==TagArboretum    = l=~"ARBORETU"
     | t==TagATnT         = l=~"VESTA \\*AT&T"
+    | t==TagAwesome      = l=~("(^| )AWESOME.COM"++
+                               "|AWESOME (MKTPLACE|MARKETPLACE|RETAIL)")
     | t==TagAwesomeDgt   = l=~"AWESOME DIGITAL"
     | t==TagAwesomeWeb   = l=~"AWESOME WEB SERVICE"
     | t==TagBenderCar    = l=~"BENDER'S CAR REPAIR"
@@ -227,14 +241,45 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagZoidberg     = l=~"ZOIDBERG"
     | otherwise          = False where
 
+taggedshop Shop{sid=s} t
+  | t==TagAwesome = s=~"awesome"
+  | otherwise    = False
+
 instance Taggable (Shop, ShopOrder, String) where
-  tagged _ _ = False
+  tagged (s, _, l) t = (taggedshop s t) || tagged' where
+    tagged'
+      | t==TagExpense  = l=="shipping" || l=="tax"
+      | t==TagIncome   = l=="discount"
+      | t==TagDiscount = l=="discount"
+      | t==TagShipping = l=="shipping"
+      | t==TagTax      = l=="tax"
+      | otherwise      = False
 
 instance Taggable (Shop, ShopOrder, ShopPayment) where
-  tagged _ _ = False
+  tagged (s, _, ShopPayment{spmethod=m}) t = (taggedshop s t) || tagged' where
+    tagged'
+      | t==TagAwesome1875 = m=~"(Awesome.com Store Card|AWESOMEPLCC) 1875"
+      | t==TagAwsGiftAcc  = m=="GIFT CARD"
+      | t==TagMaster8385  = m=~"(MASTERCARD|MasterCard).* 8385$"
+      | t==TagVisa4933    = m=="VISA 4933"
+      | t==TagVisa8394    = m=~"(VISA|Visa).* 8394$"
+      | t==TagVisa4307    = m=~"(VISA|Visa).* 4307$"
+      | t==TagVisa0375    = m=="VISA 0375"
+      | t==TagVisa3950    = m=="VISA 3950"
+      | t==TagIncome      = discount
+      | t==TagDiscount    = discount
+      | otherwise         = False
+      where discount = m=~"eGift|Rebate|Refund Credit|Shipping.*Credit"
 
 instance Taggable (Shop, ShopOrder, ShopItem) where
-  tagged _ _ = False
+  tagged (s, _, ShopItem{silabel=l}) t = (taggedshop s t) || tagged' where
+    tagged'
+      | t==TagExpense   = True
+      | t==TagBooks     = books
+      | t==TagClothes   = clothes
+      | otherwise       = False
+    books = l=~"(^The (Art|Structure|Elements) of|Little Book)"
+    clothes = l=~"(Jacket|Hoodie|Pants|Shirt|Socks|Tank|Top)"
 
 instance Patchable Shop where
   patched = id

@@ -103,8 +103,8 @@ def item(**kwArgs):
 
 def itemurl(label, price, shopname):
   shop = globals()[shopname]
-  return u'/fakeshop.html?%s' % urlencode({'label': label, 'price': str(price),
-    'shopname': shopname, 'cur': shop.get_currency()})
+  return u'/fakeshop.html?%s' % urlencode({'shopname':shopname, 'label':label,
+    'price': '%.2f' % price, 'cur': shop.get_currency()})
 
 def datesrange(tuplefrom, tupleto):
   dtfrom, dtto = datetime(*tuplefrom), datetime(*tupleto)
@@ -142,12 +142,6 @@ def matchingaccs(date, tags):
 
 def randacc(date, tags):
   return choice(matchingaccs(date, tags))
-
-def randsum(n):
-  while n > 0:
-    r = randint(1, n)
-    yield r
-    n -= r
 
 def paymethod(account):
   if account == visa0375:

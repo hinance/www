@@ -7,7 +7,8 @@ data Tag = TagAsset | TagExpense | TagIncome
   | TagVisa0375 | TagVisa3950
   -- Helpers
   | Tag6PM | Tag7Eleven | TagAbeBooks | TagAldi | TagAmtrak | TagArboretum
-  | TagArpaBank | TagATnT | TagAwesomeCard | TagAwesomeDgt | TagAwesomeWeb
+  | TagArpaBank | TagATnT | TagAwesome | TagAwesomeCard | TagAwesomeDgt
+  | TagAwesomeWeb
   | TagAwsGiftBnk | TagBankOfMo | TagBenderCar | TagCafe | TagContacts
   | TagCrispyBills
   | TagCstmHous | TagDPS | TagFee | TagGeico | TagHomeDepot | TagInstyle
