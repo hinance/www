@@ -286,6 +286,7 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
       | t==TagHousehold = household
       | t==TagHygiene   = hygiene && not (drugs || household)
       | t==TagKitchen   = kitchen
+      | t==TagOther     = other
       | otherwise       = False
     books     = l=~"(^The (Art|Structure|Elements) of|Little Book)"
     clothes   = l=~"(Jacket|Hoodie|Pants|Shirt|Socks|Tank|Top)"
@@ -298,6 +299,7 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
     hygiene   = l=~("(Body|Cleanser|Claws|Enlarger|Eye|Face|Limbs|Lotion"++
       "|Moisturizer|Nails|Polish|Softener|Tail|Teeth)")
     kitchen   = l=~"(Blender|Chopper|Cooker|Grinder|Slicer|Steamer)"
+    other     = l=~"(Bag|Corkboard|Duster|Journal|Map|Pencil|Ribbon)"
 
 instance Patchable Shop where
   patched = id

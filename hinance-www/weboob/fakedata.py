@@ -783,6 +783,10 @@ KITCHEN = [
   [u'', u'', u'Mom\'s', u'Mechanical', u'Electrical', u'Manual', u'Automatic'],
   [u'Vegetable', u'Slow', u'Meat', u'Seafood', u'Pressure', u'Fruit'],
   [u'Chopper', u'Cooker', u'Grinder', u'Slicer', u'Steamer', u'Blender']]
+OTHER = [
+  [u'', u'Magic', u'Surprise', u'Exquisite', u'Reusable',u'Curling',u'Exotic'],
+  [u'', u'Holiday', u'Birthday', u'Academic', u'Space', u'Party', u'Office'],
+  [u'Journal', u'Pencil', u'Corkboard', u'Ribbon', u'Map', u'Bag', u'Duster']]
 
 #
 # AWESOME STUFF
@@ -790,7 +794,7 @@ KITCHEN = [
 seed(82630)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
   ITEMS = [BOOKS, CLOTHES, DRUGS, ELECTR, FOOD, GAMES, GROW, HOUSEHOLD,
-           HYGIENE, KITCHEN]
+           HYGIENE, KITCHEN, OTHER]
   items = [item(label=label, price=price, url=itemurl(label,price,'awesome'))
            for i, price, label in zip(xrange(randint(1,5)),
              iter(lambda: Decimal(randint(100,2000))/100, None),
