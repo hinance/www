@@ -290,7 +290,7 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
     electr  = l=~"(Monitor|Headphones|Phone|Laptop|Camera|Speakers)"
     food    = l=~"(Chips|Cookie|Frog|Ice Cream|Pie|Slug|Syrup)"
     games   = l=~"(Playstation|Nintendo|Vita|Wii|PC DVD)"
-    grow    = l=~"(Growing|Seeds|Plant|Pot|Hydroponics)"
+    grow    = l=~"(Growing|Seeds|Plant|in a Pot|Hydroponics)"
 
 instance Patchable Shop where
   patched = id
