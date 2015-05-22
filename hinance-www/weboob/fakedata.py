@@ -791,6 +791,12 @@ OUTDOOR = [
   [u'Tactical', u'Outdoor', u'Survival', u'Wilderness', u'Hillbilly'],
   [u'Fire Starter', u'Tent', u'Knife', u'Cup',u'Chain Saw',u'Pot',u'Backpack'],
   [u'', u'', u'', u'', u'Repair Kit', u'Parts', u'Case', u'Holder']]
+WEIGHT = [
+  [u'Free Weights', u'Barbell', u'Dumbbell'],
+  [u'Standard', u'Olympic'],
+  [u'1.25-Pounds', u'2.5-Pounds', u'5-Pounds', u'10-Pounds', u'25-Pounds'],
+  [u'Plate'],
+  [u'', u'(Black)', u'(Silver)']]
 
 #
 # AWESOME STUFF
@@ -798,7 +804,7 @@ OUTDOOR = [
 seed(82630)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
   ITEMS = [BOOKS, CLOTHES, DRUGS, ELECTR, FOOD, GAMES, GROW, HOUSEHOLD,
-           HYGIENE, KITCHEN, OTHER, OUTDOOR]
+           HYGIENE, KITCHEN, OTHER, OUTDOOR, WEIGHT]
   items = [item(label=label, price=price, url=itemurl(label,price,'awesome'))
            for i, price, label in zip(xrange(randint(1,5)),
              iter(lambda: Decimal(randint(100,2000))/100, None),
