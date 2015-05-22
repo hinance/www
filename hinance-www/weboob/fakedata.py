@@ -773,7 +773,7 @@ GROW = [
   [u'Growing Kit', u'Seeds', u'Plant', u'in a Pot', u'Hydroponics Kit']]
 HOUSEHOLD = [
   [u'', u'Multi-Purpose', u'Do-It-Yourself', u'Enchanted', u'Mom\'s'],
-  [u'Carpet', u'Closet', u'Dishes', u'Fridge', u'Socks', u'Jacket', u'Robot'],
+  [u'Carpet', u'Closet', u'Dishes', u'Fridge', u'Machine Gun', u'Robot'],
   [u'Polish',u'Stain Remover',u'Freshener',u'Organizer',u'Repair Kit',u'Oil']]
 HYGIENE = [
   [u'', u'Organic', u'Natural', u'Tibetan', u'Mineral', u'Dead Sea',u'Mom\'s'],
@@ -784,9 +784,13 @@ KITCHEN = [
   [u'Vegetable', u'Slow', u'Meat', u'Seafood', u'Pressure', u'Fruit'],
   [u'Chopper', u'Cooker', u'Grinder', u'Slicer', u'Steamer', u'Blender']]
 OTHER = [
-  [u'', u'Magic', u'Surprise', u'Exquisite', u'Reusable',u'Curling',u'Exotic'],
+  [u'', u'Magic', u'Surprise', u'Rainbow', u'Reusable',u'Curling',u'Exotic'],
   [u'', u'Holiday', u'Birthday', u'Academic', u'Space', u'Party', u'Office'],
-  [u'Journal', u'Pencil', u'Corkboard', u'Ribbon', u'Map', u'Bag', u'Duster']]
+  [u'Journal', u'Pencil', u'Lockpick', u'Ribbon', u'Map', u'Bag', u'Duster']]
+OUTDOOR = [
+  [u'Tactical', u'Outdoor', u'Survival', u'Wilderness', u'Hillbilly'],
+  [u'Fire Starter', u'Tent', u'Knife', u'Cup',u'Chain Saw',u'Pot',u'Backpack'],
+  [u'', u'', u'', u'', u'Repair Kit', u'Parts', u'Case', u'Holder']]
 
 #
 # AWESOME STUFF
@@ -794,7 +798,7 @@ OTHER = [
 seed(82630)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
   ITEMS = [BOOKS, CLOTHES, DRUGS, ELECTR, FOOD, GAMES, GROW, HOUSEHOLD,
-           HYGIENE, KITCHEN, OTHER]
+           HYGIENE, KITCHEN, OTHER, OUTDOOR]
   items = [item(label=label, price=price, url=itemurl(label,price,'awesome'))
            for i, price, label in zip(xrange(randint(1,5)),
              iter(lambda: Decimal(randint(100,2000))/100, None),

@@ -276,17 +276,18 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
     tagged'
       | t==TagExpense   = True
       | t==TagBooks     = books
-      | t==TagClothes   = clothes && not household
+      | t==TagClothes   = clothes && not outdoor
       | t==TagDrugs     = drugs
       | t==TagElectronics = electr
       | t==TagFood      = food
       | t==TagGames     = games
       | t==TagGrow      = grow
-      | t==TagHobby     = grow
+      | t==TagHobby     = grow || outdoor
       | t==TagHousehold = household
       | t==TagHygiene   = hygiene && not (drugs || household)
       | t==TagKitchen   = kitchen
       | t==TagOther     = other
+      | t==TagOutdoor   = outdoor
       | otherwise       = False
     books     = l=~"(^The (Art|Structure|Elements) of|Little Book)"
     clothes   = l=~"(Jacket|Hoodie|Pants|Shirt|Socks|Tank|Top)"
@@ -295,11 +296,12 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
     food      = l=~"(Chips|Cookie|Frog|Ice Cream|Pie|Slug|Syrup)"
     games     = l=~"(Playstation|Nintendo|Vita|Wii|PC DVD)"
     grow      = l=~"(Growing|Seeds|Plant|in a Pot|Hydroponics)"
-    household = l=~"(Carpet|Closet|Dishes|Fridge|Socks|Jacket|Robot)"
+    household = l=~"(Carpet|Closet|Dishes|Fridge|Machine Gun|Robot)"
     hygiene   = l=~("(Body|Cleanser|Claws|Enlarger|Eye|Face|Limbs|Lotion"++
       "|Moisturizer|Nails|Polish|Softener|Tail|Teeth)")
     kitchen   = l=~"(Blender|Chopper|Cooker|Grinder|Slicer|Steamer)"
     other     = l=~"(Bag|Corkboard|Duster|Journal|Map|Pencil|Ribbon)"
+    outdoor   = l=~"(Tactical|Outdoor|Survival|Wilderness|Hillbilly)"
 
 instance Patchable Shop where
   patched = id
