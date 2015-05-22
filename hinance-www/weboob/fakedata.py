@@ -747,7 +747,7 @@ CLOTHES = [
   [u'Tank', u'Top', u'Pants', u'Hoodie', u'Shirt', u'Socks', u'Jacket'],
   [u'', u'XS', u'S', u'M', u'L', u'XL']]
 DRUGS = [
-  [u'', u'Instant', u'Splendid', u'Strong', u'Mild', u'Exceptional'],
+  [u'', u'Instant', u'Splendid', u'Strong', u'Mild', u'Exceptional',u'Mom\'s'],
   [u'Nasal', u'Oral', u'Throat', u'Limbs', u'Back', u'Liver', u'Eye', u'Head'],
   [u'Pain', u'Congestion', u'Soreness', u'Itchiness', u'Explosion'],
   [u'Relief', u'Treatment', u'Killer', u'Remedy'],
@@ -768,20 +768,25 @@ GAMES = [
   [u'', u'in Wonderland', u'from Outer Space', u'under the Sea', u'Plus'],
   [u'(Playstation 3)', u'(Nintendo 3DS)', u'(Vita)', u'(Wii)', u'(PC DVD)']]
 GROW = [
-  [u'', u'Organic', u'Indoor', u'Office', u'Beginner\'s', u'Miracle'],
+  [u'', u'Organic', u'Indoor', u'Office', u'Beginner\'s',u'Miracle',u'Mom\'s'],
   [u'Marijuana', u'Dill', u'Venus Fly Trap', u'Poison Ivy', u'Orchid'],
   [u'Growing Kit', u'Seeds', u'Plant', u'in a Pot', u'Hydroponics Kit']]
 HOUSEHOLD = [
   [u'', u'Multi-Purpose', u'Do-It-Yourself', u'Enchanted', u'Mom\'s'],
-  [u'Carpet', u'Window', u'Dishes', u'Fridge', u'Socks', u'Jacket'],
-  [u'Polish', u'Stain Remover', u'Freshener', u'Organizer', u'Repair Kit']]
+  [u'Carpet', u'Closet', u'Dishes', u'Fridge', u'Socks', u'Jacket', u'Robot'],
+  [u'Polish',u'Stain Remover',u'Freshener',u'Organizer',u'Repair Kit',u'Oil']]
+HYGIENE = [
+  [u'', u'Organic', u'Natural', u'Tibetan', u'Mineral', u'Dead Sea',u'Mom\'s'],
+  [u'Tail', u'Nails', u'Eye', u'Claws', u'Body', u'Face', u'Limbs', u'Teeth'],
+  [u'Cleanser', u'Polish', u'Enlarger', u'Lotion', u'Moisturizer',u'Softener']]
 
 #
 # AWESOME STUFF
 #
 seed(82630)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
-  ITEMS = [BOOKS, CLOTHES, DRUGS, ELECTR, FOOD, GAMES, GROW, HOUSEHOLD]
+  ITEMS = [BOOKS, CLOTHES, DRUGS, ELECTR, FOOD, GAMES, GROW, HOUSEHOLD,
+           HYGIENE]
   items = [item(label=label, price=price, url=itemurl(label,price,'awesome'))
            for i, price, label in zip(xrange(randint(1,5)),
              iter(lambda: Decimal(randint(100,2000))/100, None),
