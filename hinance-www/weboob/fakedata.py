@@ -779,6 +779,10 @@ HYGIENE = [
   [u'', u'Organic', u'Natural', u'Tibetan', u'Mineral', u'Dead Sea',u'Mom\'s'],
   [u'Tail', u'Nails', u'Eye', u'Claws', u'Body', u'Face', u'Limbs', u'Teeth'],
   [u'Cleanser', u'Polish', u'Enlarger', u'Lotion', u'Moisturizer',u'Softener']]
+KITCHEN = [
+  [u'', u'', u'Mom\'s', u'Mechanical', u'Electrical', u'Manual', u'Automatic'],
+  [u'Vegetable', u'Slow', u'Meat', u'Seafood', u'Pressure', u'Fruit'],
+  [u'Chopper', u'Cooker', u'Grinder', u'Slicer', u'Steamer', u'Blender']]
 
 #
 # AWESOME STUFF
@@ -786,7 +790,7 @@ HYGIENE = [
 seed(82630)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
   ITEMS = [BOOKS, CLOTHES, DRUGS, ELECTR, FOOD, GAMES, GROW, HOUSEHOLD,
-           HYGIENE]
+           HYGIENE, KITCHEN]
   items = [item(label=label, price=price, url=itemurl(label,price,'awesome'))
            for i, price, label in zip(xrange(randint(1,5)),
              iter(lambda: Decimal(randint(100,2000))/100, None),
