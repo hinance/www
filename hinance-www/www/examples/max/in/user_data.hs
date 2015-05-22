@@ -245,7 +245,8 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | otherwise          = False where
 
 taggedshop Shop{sid=s} t
-  | t==TagAwesome = s=~"awesome"
+  | t==TagAwesome   = s=~"awesome"
+  | t==TagItchyBack = s=~"itchyback"
   | otherwise    = False
 
 instance Taggable (Shop, ShopOrder, String) where
