@@ -276,21 +276,23 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
     tagged'
       | t==TagExpense   = True
       | t==TagBooks     = books
-      | t==TagClothes   = clothes
+      | t==TagClothes   = clothes && not household
       | t==TagDrugs     = drugs
       | t==TagElectronics = electr
       | t==TagFood      = food
       | t==TagGames     = games
       | t==TagGrow      = grow
       | t==TagHobby     = grow
+      | t==TagHousehold = household
       | otherwise       = False
-    books   = l=~"(^The (Art|Structure|Elements) of|Little Book)"
-    clothes = l=~"(Jacket|Hoodie|Pants|Shirt|Socks|Tank|Top)"
-    drugs   = l=~"(Congestion|Explosion|Itchiness|Pain|Soreness)"
-    electr  = l=~"(Monitor|Headphones|Phone|Laptop|Camera|Speakers)"
-    food    = l=~"(Chips|Cookie|Frog|Ice Cream|Pie|Slug|Syrup)"
-    games   = l=~"(Playstation|Nintendo|Vita|Wii|PC DVD)"
-    grow    = l=~"(Growing|Seeds|Plant|in a Pot|Hydroponics)"
+    books     = l=~"(^The (Art|Structure|Elements) of|Little Book)"
+    clothes   = l=~"(Jacket|Hoodie|Pants|Shirt|Socks|Tank|Top)"
+    drugs     = l=~"(Congestion|Explosion|Itchiness|Pain|Soreness)"
+    electr    = l=~"(Monitor|Headphones|Phone|Laptop|Camera|Speakers)"
+    food      = l=~"(Chips|Cookie|Frog|Ice Cream|Pie|Slug|Syrup)"
+    games     = l=~"(Playstation|Nintendo|Vita|Wii|PC DVD)"
+    grow      = l=~"(Growing|Seeds|Plant|in a Pot|Hydroponics)"
+    household = l=~"(Polish|Stain Remover|Freshener|Organizer|Repair Kit)"
 
 instance Patchable Shop where
   patched = id
