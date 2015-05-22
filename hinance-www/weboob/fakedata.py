@@ -753,7 +753,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 100):
   ITEMS = [ITEM_BOOKS, ITEM_CLOTHES]
   items = [item(label=label, price=price, url=itemurl(label,price,'awesome'))
            for i, price, label in zip(xrange(randint(1,10)),
-             iter(lambda: Decimal(randint(100,10000))/100, None),
+             iter(lambda: Decimal(randint(100,2000))/100, None),
              iter(lambda: randwords(choice(ITEMS)), None))]
   discount = -(sum(i.price for i in items) * randint(0,50) / 100
               ).quantize(Decimal('.01'), rounding=ROUND_UP)
