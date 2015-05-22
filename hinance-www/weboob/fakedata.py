@@ -103,8 +103,8 @@ def item(**kwArgs):
 
 def itemurl(label, price, shopname):
   shop = globals()[shopname]
-  return u'/fakeshop.html?%s' % urlencode({'shopname':shopname, 'label':label,
-    'price': '%.2f' % price, 'cur': shop.get_currency()})
+  return u'../../../fakeshop.html?%s' % urlencode({'shopname': shopname,
+    'label': label, 'price': '%.2f' % price, 'cur': shop.get_currency()})
 
 def datesrange(tuplefrom, tupleto):
   dtfrom, dtto = datetime(*tuplefrom), datetime(*tupleto)
