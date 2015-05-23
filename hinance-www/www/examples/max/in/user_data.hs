@@ -323,7 +323,7 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
     hygiene   = l=~("(Body|Cleanser|Claws|Enlarger|Eye|Face|Lotion"++
                     "|Moisturizer|Nails|Polish|Softener|Tail|Teeth|Tentacle)")
     kitchen   = l=~"(Blender|Chopper|Cooker|Grinder|Slicer|Steamer)"
-    other     = l=~"(Bag|Duster|Journal|Lockpick|Map|Pencil|Ribbon)"
+    other     = l=~"(Bag|Duster|Journal|Lockpick|Map|Pencil|Ribbon|Unknown)"
     outdoor   = l=~"(Tactical|Outdoor|Survival|Wilderness|Hillbilly)"
     weight    = l=~"(Free Weights|Barbell|Dumbbell)"
     yoga      = l=~"Yoga"
