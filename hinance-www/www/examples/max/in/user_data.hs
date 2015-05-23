@@ -167,7 +167,9 @@ canmerge tsg tsng
   | both [TagMegaRags, TagVisa4307]   = ng [TagWindyVault]
   | both [TagVioGor, TagMaster8385]   = ng [TagCrispyBills]
   | both [TagVioGor, TagVioGor7260]   = ng [TagVioGorCard]
+  | both [TagVioGor, TagVisa4933]     = ng [TagWindyVault]
   | both [TagVioGor, TagVisa8394]     = ng [TagWindyVault]
+  | both [TagVioGor, TagVisa4307]     = ng [TagWindyVault]
   | otherwise                         = False
   where g = all (flip elem $ tsg)
         ng = all (flip elem $ tsng)
@@ -329,25 +331,29 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
 instance Patchable Shop where
   patched shops = shops ++ [
     Shop {sid="awesome'", scurrency=USD, sorders=[
-      refund 1392076800 21405 "VISA 4933",
-      refund 1370131200 20557 "VISA 4933",
-      refund 1352764800 12999 "VISA 4933"]},
+      refund 1411689600 21101 "MASTERCARD 8385",
+      refund 1394841600 26159 "VISA 4933",
+      refund 1376524800 24696 "VISA 4933",
+      refund 1369785600 15567 "VISA 4933",
+      refund 1359763200 26484 "VISA 8394"]},
     Shop {sid="itchyback'", scurrency=USD, sorders=[
-      refund 1405728000 12314 "VISA 4933",
-      refund 1390435200 28116 "MASTER 8385",
-      refund 1376870400 14521 "VISA 4933",
-      refund 1359849600 21467 "VISA 4933",
-      refund 1357430400 14846 "VISA 4933"]},
+      refund 1419897600 25534 "MASTERCARD 8385",
+      refund 1391472000 19296 "MASTERCARD 8385",
+      refund 1371859200 16349 "VISA 4933",
+      refund 1369526400 15456 "VISA 4933",
+      refund 1357430400 11820 "VISA 4933"]},
     Shop {sid="megarags'", scurrency=USD, sorders=[
-      refund 1410566400 12639 "MASTER 8385",
-      refund 1405296000 24514 "VISA 8394",
-      refund 1396310400 26441 "VISA 4933",
-      refund 1376697600 20452 "VISA 4933",
-      refund 1362268800 20707 "VISA 4933"]},
+      refund 1384300800 25373 "VISA 8394",
+      refund 1371945600 24242 "VISA 8394",
+      refund 1362873600 15910 "VISA 8394",
+      refund 1355788800 11218 "VISA 8394",
+      refund 1352764800 20833 "VISA 8394"]},
     Shop {sid="viogor'", scurrency=USD, sorders=[
-      refund 1423612800 12858 "VISA 8394",
-      refund 1419465600 22981 "MASTER 8385",
-      refund 1383782400 19580 "VISA 8394"]}]
+      refund 1406505600 12456 "MASTERCARD 8385",
+      refund 1391385600 27152 "VISA 4933",
+      refund 1371600000 18448 "VISA 4933",
+      refund 1371340800 15373 "VISA 4933",
+      refund 1351555200 26556 "VISA 4933"]}]
     where
       refund t a m=ShopOrder {soid=printf "refund-%i" t, sotime=t, sotax=0,
                               soshipping=0, sodiscount=0,

@@ -124,7 +124,7 @@ def matchingaccs(date, anytags=None, alltags=None):
     (visa3950,     datetime(2012, 7,1), datetime(2012,12,1),
                    {'manual', 'bom', 'awesome'}),
     (checking1042, datetime(2012, 7,1), datetime(2015, 5,1),
-                   {'auto', 'wv', 'awesome', 'itchyback', 'megarags'}),
+                   {'auto', 'wv', 'awesome', 'itchyback','megarags','viogor'}),
     (visa8394,     datetime(2012,11,1), datetime(2015, 5,1),
                    {'auto', 'wv', 'awesome', 'megarags', 'viogor'}),
     (master8385,   datetime(2013,12,1), datetime(2015, 5,1),
@@ -845,6 +845,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
       % (d, randint(100000,999999)),
       u'AWESOME MARKETPLACE SEATTLE WA',
       u'AWESOME RETAIL SEATTLE WA']))
+seed(46460)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
   amount = Decimal(randint(10000,30000))/100
   account = randacc(date, alltags={'awesome', 'auto'})
@@ -868,6 +869,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
       u'PURCHASE %s ITCHY.COM 888-835-1719 NY XXXXXXXXXXXX1234 %i' \
       % (d, randint(100000,999999)),
       u'ITCH.COM 888-835-1719 NY']))
+seed(69446)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
   amount = Decimal(randint(10000,30000))/100
   account = randacc(date, alltags={'itchyback', 'auto'})
@@ -888,6 +890,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
       u'PURCHASE %s AWS*MEGARAGS.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
       % (d, randint(100000,999999)),
       u'AWS*MEGARAGS.COM AWSM.COM/BILL WA']))
+seed(62693)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
   amount = Decimal(randint(10000,30000))/100
   account = randacc(date, alltags={'megarags', 'auto'})
@@ -909,6 +912,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
       u'VIOLENTLY GORGEOUS %i HOUSTON TX' % randint(1000,9999),
       u'VIOLENTLY GORGEOUS CATA %i OH' % randint(100000,999999),
       u'VIOLENTLY GORGEOUS PURCHASE']))
+seed(62320)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
   amount = Decimal(randint(10000,30000))/100
   account = randacc(date, alltags={'viogor', 'auto'})
