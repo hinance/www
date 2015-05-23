@@ -252,7 +252,7 @@ savings2453.add(transaction(
   amount=Decimal(100)))
 checking1042.add(transaction(
   date=datetime(2012,11,1),
-  label=u'WINDY VAULT FOPS SECUREDCAR 121101 12345678 HENDRIX,ALISON',
+  label=u'WINDY VAULT FOPS SECUREDCAR 121101 12345678 TURANGA,LEELA',
   amount=Decimal(-1000)))
 
 #
@@ -312,7 +312,7 @@ seed(68697)
 for date in sample(list(datesrange((2012,7,10), (2015,5,1))), 5):
   amount = Decimal(randint(1,10)*100)
   savings2453.add(transaction(date=date, amount=amount,
-    label=u'ONLINE TRANSFER FROM ALISON HENDRIX CHECKING XXXXXX1042 '
+    label=u'ONLINE TRANSFER FROM LEELA TURANGA CHECKING XXXXXX1042 '
           u'REF #%i ON %s' % (randint(10000,99999), date)))
   checking1042.add(
     transaction(date=date, amount=-amount,
@@ -324,7 +324,7 @@ seed(73916)
 for date in sample(list(datesrange((2012,7,10), (2015,5,1))), 5):
   amount = Decimal(randint(1,10)*100)
   savings2453.add(transaction(date=date, amount=-amount,
-    label=u'ONLINE TRANSFER TO ALISON HENDRIX CHECKING XXXXXX1042 '
+    label=u'ONLINE TRANSFER TO LEELA TURANGA CHECKING XXXXXX1042 '
           u'REF #%i ON %s' % (randint(10000,99999), date)))
   checking1042.add(
     transaction(date=date, amount=amount,
@@ -359,7 +359,7 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 15):
   master8385.add(transaction(date=date, amount=amount,
     label=u'ONLINE PAYMENT, THANK YOU'))
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
-    u'CRISPY CARD ONLINE PAYMENT %s %i ALISON HENDRIX' % (
+    u'CRISPY CARD ONLINE PAYMENT %s %i LEELA TURANGA' % (
       date, randint(10000,99999))])))
 
 # Payments for Awesome Stuff store card.
@@ -379,9 +379,9 @@ for date in sample(list(datesrange((2014,2,1), (2015,5,1))), 15):
   viogor7260.add(transaction(date=date, amount=amount,
     label=u'PAYMENT - THANK YOU'))
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
-    u'CELESTIAL PAY VI WEB PYMT %s %i7260 ALISON HENDRIX' % (
+    u'CELESTIAL PAY VI WEB PYMT %s %i7260 LEELA TURANGA' % (
       date, randint(10000,99999)),
-    u'CELESTIAL PAY WFN WEB PYMT %s %i7260 ALISON HENDRIX' % (
+    u'CELESTIAL PAY WFN WEB PYMT %s %i7260 LEELA TURANGA' % (
       date, randint(10000,99999))])))
 
 #
@@ -549,7 +549,7 @@ for date in sample(list(datesrange((2013,3,1), (2014,2,1))), 5):
   amount = Decimal(randint(10000,30000))/100
   account = randacc(date, {'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=
-    u'CUSTOM HOUSE LTD CUSTOM FX %i ALISON HENDRIX' % randint(100000,999999)))
+    u'CUSTOM HOUSE LTD CUSTOM FX %i LEELA TURANGA' % randint(100000,999999)))
 
 #
 # DPS
@@ -640,7 +640,7 @@ for i in xrange(35):
   date = datetime(2012,7,15) + timedelta(days=30*i)
   amount = Decimal(900)
   checking1042.add(transaction(date=date, amount=-amount,
-    label=u'OCIUS ACH PMT %i ALISON HENDRIX' % randint(100000,999999)))
+    label=u'OCIUS ACH PMT %i LEELA TURANGA' % randint(100000,999999)))
 
 #
 # REI
@@ -662,7 +662,7 @@ for i in xrange(35):
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
     u'BILL PAY RELIANT ENERGY R ON-LINE XXXX%i ON %s' \
     % (randint(10000,99999), date),
-    u'RELIANT ENERGY %i ALISON HENDRIX' % randint(100000,999999)])))
+    u'RELIANT ENERGY %i LEELA TURANGA' % randint(100000,999999)])))
 
 #
 # SEPHORA
@@ -718,9 +718,9 @@ for i in xrange(34):
   date = datetime(2012,7,23) + timedelta(days=30*i)
   amount = Decimal(3000)
   checking1042.add(transaction(date=date, amount=amount, label=choice([
-    u'PLANET EXPRESS DIR DEP %s %i HENDRIX,DONNIE' \
+    u'PLANET EXPRESS DIR DEP %s %i FRY,PHILLIP' \
     % (date, randint(100000,999999)),
-    u'PLANET EX DIRECT PAY %s DONNIE HENDRIX' % randint(100000,999999)])))
+    u'PLANET EX DIRECT PAY %s PHILLIP FRY' % randint(100000,999999)])))
 
 #
 # YOSEMITE RETAIL STORE

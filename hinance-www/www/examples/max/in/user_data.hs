@@ -186,7 +186,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     -- Accounts
     | t==TagAwesome1875  = a=="1875"
     | t==TagAwsGiftAcc   = a=="awesomegift"
-    | t==TagCash         = a=="walleta" || a=="walletd" || a=="reserve"
+    | t==TagCash         = a=="walletl" || a=="walletp" || a=="reserve"
     | t==TagChecking1042 = a=="1042"
     | t==TagMaster8385   = a=="8385"
     | t==TagSavings2453  = a=="2453"
@@ -330,11 +330,11 @@ instance Patchable Shop where
 
 instance Patchable Bank where
   patched banks = (map patchedb banks) ++ [Bank {bid="virtual", baccs=[
-    BankAcc {baid="walleta", balabel="Alison's wallet", babalance=9600,
+    BankAcc {baid="walletl", balabel="Leela's wallet", babalance=9600,
              bacurrency=USD, bacard=False, balimit=Nothing, bapaymin=Nothing,
              bapaytime=Nothing, batrans=[
       cashto   1430870400   9600]},
-    BankAcc {baid="walletd", balabel="Donnie's wallet", babalance=2000,
+    BankAcc {baid="walletp", balabel="Phillip's wallet", babalance=2000,
              bacurrency=USD, bacard=False, balimit=Nothing, bapaymin=Nothing,
              bapaytime=Nothing, batrans=[
       cashfrom 1430870400   9600,
