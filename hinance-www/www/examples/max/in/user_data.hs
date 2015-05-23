@@ -363,13 +363,13 @@ instance Patchable Shop where
         patchedo o@ShopOrder{soid=oi} = o {sopayments=concatMap patchedp $
                                                           sopayments o} where
           patchedp payment@ShopPayment{spamount=pa}
-            | oi=="209302" pa==2276 = split [112, 170, 239, 796, 959]
-            | oi=="331038" pa==2174 = split [75, 265, 523, 1311]
-            | oi=="336473" pa==2888 = split [37, 151, 742, 1958]
-            | oi=="353794" pa==3235 = split [253, 597, 1176, 1209]
-            | oi=="604180" pa==4070 = split [311, 3759]
-            | oi=="850732" pa==1282 = split [38, 151, 174, 366, 53]
-            | oi=="910114" pa==2198 = split [385, 1813]
+            | oi=="209302" && pa==2276 = split [112, 170, 239, 796, 959]
+            | oi=="331038" && pa==2174 = split [75, 265, 523, 1311]
+            | oi=="336473" && pa==2888 = split [37, 151, 742, 1958]
+            | oi=="353794" && pa==3235 = split [253, 597, 1176, 1209]
+            | oi=="604180" && pa==4070 = split [311, 3759]
+            | oi=="850732" && pa==1282 = split [38, 151, 174, 366, 53]
+            | oi=="910114" && pa==2198 = split [385, 1813]
             | otherwise = split [pa]
             where split parts = map (\x -> payment{spamount=x}) parts
 
