@@ -8,7 +8,7 @@ data Tag = TagAsset | TagExpense | TagIncome
   -- Helpers
   | Tag6PM | Tag7Eleven | TagAbeBooks | TagAldi | TagAmtrak | TagArboretum
   | TagArpaBank | TagATnT | TagAwesome | TagAwesomeCard | TagAwesomeDgt
-  | TagAwesomeWeb | TagAwsGiftBnk | TagBankOfMo | TagBenderCar | TagCafe
+  | TagAwesomeWeb | TagAwsGiftBnk | TagBenderCar | TagBigApple | TagCafe
   | TagContacts | TagCrispyBills | TagCstmHous | TagDPS | TagFee | TagGeico
   | TagHomeDepot | TagInstyle | TagItchyBack | TagMegaRags | TagNamaste
   | TagNintendo | TagOcius | TagOpening | TagPlanetEx | TagRei | TagReliant
