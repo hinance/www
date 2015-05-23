@@ -845,6 +845,16 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
       % (d, randint(100000,999999)),
       u'AWESOME MARKETPLACE SEATTLE WA',
       u'AWESOME RETAIL SEATTLE WA']))
+for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
+  amount = Decimal(randint(10000,30000))/100
+  account = randacc(date, {'awesome'})
+  account.add(transaction(date=date, amount=amount, label=choice([
+      u'RETURN %s AWESOME.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
+      % (date, randint(100000,999999)),
+      u'RETURN %s AWESOME MKTPLACE PM AWSM.COM/BILL WA XXXXXXXXXX1234 %i' \
+      % (date, randint(100000,999999)),
+      u'AWESOME MARKETPLACE SEATTLE WA',
+      u'AWESOME RETAIL SEATTLE WA'])))
 
 #
 # ITCHY BACK
@@ -855,9 +865,16 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
     itemwords=[CLOTHES, HOUSEHOLD, HYGIENE, KITCHEN],
     paymtd=lambda a: u'DEFAULT PAYMENT',
     acclabel=lambda d: choice([
-      u'CHECK CRD PURCHASE %s ITCHY.COM 888-835-1719 NY XXXXXXXXXXXX1234 %i' \
+      u'PURCHASE %s ITCHY.COM 888-835-1719 NY XXXXXXXXXXXX1234 %i' \
       % (d, randint(100000,999999)),
       u'ITCH.COM 888-835-1719 NY']))
+for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
+  amount = Decimal(randint(10000,30000))/100
+  account = randacc(date, {'itchyback'})
+  account.add(transaction(date=date, amount=amount, label=choice([
+      u'RETURN %s ITCHY.COM 888-835-1719 NY XXXXXXXXXXXX1234 %i' \
+      % (date, randint(100000,999999)),
+      u'ITCH.COM 888-835-1719 NY'])))
 
 #
 # MEGA RAGS
@@ -871,11 +888,19 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
       u'PURCHASE %s AWS*MEGARAGS.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
       % (d, randint(100000,999999)),
       u'AWS*MEGARAGS.COM AWSM.COM/BILL WA']))
+for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
+  amount = Decimal(randint(10000,30000))/100
+  account = randacc(date, {'megarags'})
+  account.add(transaction(date=date, amount=amount, label=choice([
+      u'RETURN %s AWS*MEGARAGS.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
+      % (date, randint(100000,999999)),
+      u'AWS*MEGARAGS.COM AWSM.COM/BILL WA'])))
 
 #
 # VIOLENTLY GORGEOUS
 #
 seed(45401)
+# Purchases
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
   add_random_order(shopname='viogor', date=date, manchance=0.2,
     itemwords=[CLOTHES, HYGIENE],
@@ -884,3 +909,9 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
       u'VIOLENTLY GORGEOUS %i HOUSTON TX' % randint(1000,9999),
       u'VIOLENTLY GORGEOUS CATA %i OH' % randint(100000,999999),
       u'VIOLENTLY GORGEOUS PURCHASE']))
+for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
+  amount = Decimal(randint(10000,30000))/100
+  account = randacc(date, {'viogor'})
+  account.add(transaction(date=date, amount=amount, label=choice([
+      u'VIOLENTLY GORGEOUS %i HOUSTON TX' % randint(1000,9999),
+      u'VIOLENTLY GORGEOUS RETURN'])))
