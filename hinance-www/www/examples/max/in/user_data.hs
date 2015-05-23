@@ -337,11 +337,11 @@ instance Patchable Shop where
       refund 1369785600 15567 "VISA 4933",
       refund 1359763200 26484 "VISA 8394"]},
     Shop {sid="itchyback'", scurrency=USD, sorders=[
-      refund 1419897600 25534 "MASTERCARD 8385",
-      refund 1391472000 19296 "MASTERCARD 8385",
-      refund 1371859200 16349 "VISA 4933",
-      refund 1369526400 15456 "VISA 4933",
-      refund 1357430400 11820 "VISA 4933"]},
+      refund 1419897600 25534 "DEFAULT PAYMENT",
+      refund 1391472000 19296 "DEFAULT PAYMENT",
+      refund 1371859200 16349 "DEFAULT PAYMENT",
+      refund 1369526400 15456 "DEFAULT PAYMENT",
+      refund 1357430400 11820 "DEFAULT PAYMENT"]},
     Shop {sid="megarags'", scurrency=USD, sorders=[
       refund 1384300800 25373 "VISA 8394",
       refund 1371945600 24242 "VISA 8394",
