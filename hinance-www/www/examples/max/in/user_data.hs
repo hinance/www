@@ -329,7 +329,7 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
     yoga      = l=~"Yoga"
 
 instance Patchable Shop where
-  patched shops = shops ++ [
+  patched shops = (map patcheds shops) ++ [
     Shop {sid="awesome'", scurrency=USD, sorders=[
       refund 1411689600 21101 "MASTERCARD 8385",
       refund 1394841600 26159 "VISA 4933",
@@ -359,6 +359,19 @@ instance Patchable Shop where
                               soshipping=0, sodiscount=0,
         soitems=[ShopItem{silabel="Unknown refund", siprice= -a, siurl=""}],
         sopayments=[ShopPayment{sptime=t, spmethod=m, spamount= -a}]}
+      patcheds s = s {sorders=map patchedo $ sorders s} where
+        patchedo o@ShopOrder{soid=oi} = o {sopayments=concatMap patchedp $
+                                                          sopayments o} where
+          patchedp payment@ShopPayment{spamount=pa}
+            | oi=="209302" pa==2276 = split [112, 170, 239, 796, 959]
+            | oi=="331038" pa==2174 = split [75, 265, 523, 1311]
+            | oi=="336473" pa==2888 = split [37, 151, 742, 1958]
+            | oi=="353794" pa==3235 = split [253, 597, 1176, 1209]
+            | oi=="604180" pa==4070 = split [311, 3759]
+            | oi=="850732" pa==1282 = split [38, 151, 174, 366, 53]
+            | oi=="910114" pa==2198 = split [385, 1813]
+            | otherwise = split [pa]
+            where split parts = map (\x -> payment{spamount=x}) parts
 
 instance Patchable Bank where
   patched banks = (map patchedb banks) ++ [Bank {bid="virtual", baccs=[

@@ -802,7 +802,8 @@ YOGA = [
   [u'Yoga'],
   [u'Blocks', u'Chalk', u'Illustrated', u'Reference Manual', u'Mat', u'Strap']]
 
-def add_random_order(shopname, date, itemwords, paymtd, acclabel, manchance):
+def add_random_order(shopname, date, itemwords, paymtd, acclabel,
+                     manchance, divchance):
   items = [item(label=label, price=price, url=itemurl(label,price,shopname))
            for i, price, label in zip(xrange(randint(1,5)),
              iter(lambda: Decimal(randint(100,2000))/100, None),
@@ -824,8 +825,11 @@ def add_random_order(shopname, date, itemwords, paymtd, acclabel, manchance):
   payamts = randsum(int(100*ordersum), len(payaccs))
   for account, amount100 in zip(payaccs, payamts):
     amount = Decimal(amount100)/100
-    account.add(transaction(date=date, amount=-amount, label=acclabel(date)))
     order.add_payments(payment(date=date,amount=amount,method=paymtd(account)))
+    divs = randint(2,5) if random() < divchance and amount100 > 100 else 1
+    divamts = randsum(amount100, divs)
+    account.add(*[transaction(date=date, amount=-Decimal(a100)/100,
+                              label=acclabel(date)) for a100 in divamts])
   shop = globals()[shopname]
   shop.add(order)
 
@@ -834,7 +838,7 @@ def add_random_order(shopname, date, itemwords, paymtd, acclabel, manchance):
 #
 seed(82630)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
-  add_random_order(shopname='awesome', date=date, manchance=0.2,
+  add_random_order(shopname='awesome', date=date, manchance=0.2,divchance=0.01,
     itemwords=[BOOKS, CLOTHES, DRUGS, ELECTR, FOOD, GAMES, GROW, HOUSEHOLD,
                HYGIENE, KITCHEN, OTHER, OUTDOOR, WEIGHT, YOGA],
     paymtd=paymethod, 
@@ -862,7 +866,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
 #
 seed(76605)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
-  add_random_order(shopname='itchyback', date=date, manchance=0.2,
+  add_random_order(shopname='itchyback',date=date,manchance=0.2,divchance=0.01,
     itemwords=[CLOTHES, HOUSEHOLD, HYGIENE, KITCHEN],
     paymtd=lambda a: u'DEFAULT PAYMENT',
     acclabel=lambda d: choice([
@@ -883,7 +887,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
 #
 seed(57637)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
-  add_random_order(shopname='megarags', date=date, manchance=0.2,
+  add_random_order(shopname='megarags',date=date,manchance=0.2,divchance=0.01,
     itemwords=[CLOTHES, HOUSEHOLD, HYGIENE, KITCHEN],
     paymtd=paymethod, 
     acclabel=lambda d: choice([
@@ -905,7 +909,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
 seed(45401)
 # Purchases
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
-  add_random_order(shopname='viogor', date=date, manchance=0.2,
+  add_random_order(shopname='viogor', date=date, manchance=0.2, divchance=0.01,
     itemwords=[CLOTHES, HYGIENE],
     paymtd=paymethod, 
     acclabel=lambda d: choice([
