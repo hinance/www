@@ -316,7 +316,7 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
     clothes   = l=~"(Jacket|Hoodie|Pants|Shirt|Socks|Tank|Top)"
     drugs     = l=~"(Congestion|Explosion|Itchiness|Pain|Soreness)"
     electr    = l=~"(Monitor|Headphones|Phone|Laptop|Camera|Speakers)"
-    food      = l=~"(Chips|Cookie|Frog|Ice Cream|Pie|Slug|Syrup)"
+    food      = l=~"(Bacon|Chips|Cookie|Frog|Juice|Pie|Slug|Syrup)"
     games     = l=~"(Playstation|Nintendo|Vita|Wii|PC DVD)"
     grow      = l=~"(Growing|Seeds|Plant|in a Pot|Hydroponics)"
     household = l=~"(Carpet|Closet|Dishes|Fridge|Machine Gun|Robot)"

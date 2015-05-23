@@ -760,7 +760,7 @@ FOOD = [
   [u'', u'', u'Natural', u'Organic', u'Powdered', u'Sun-Dried', u'Canned'],
   [u'', u'', u'', u'', u'', u'Fat-Free', u'Gluten-Free', u'Parasite-Free'],
   [u'', u'Chocolate', u'Apple', u'Banana', u'Potato', u'Neptunian', u'Brain'],
-  [u'Cookie', u'Ice Cream', u'Syrup', u'Chips', u'Pie', u'Slug', u'Frog']]
+  [u'Cookie', u'Bacon', u'Juice', u'Syrup', u'Chips', u'Pie', u'Slug',u'Frog']]
 GAMES = [
   [u'', u'', u'Return of the', u'Super', u'Ultimate', u'Angry', u'Raging'],
   [u'', u'Zombie', u'Mutant', u'Aliens', u'Storm Trooper', u'Hamster'],
