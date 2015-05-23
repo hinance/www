@@ -317,8 +317,8 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
     games     = l=~"(Playstation|Nintendo|Vita|Wii|PC DVD)"
     grow      = l=~"(Growing|Seeds|Plant|in a Pot|Hydroponics)"
     household = l=~"(Carpet|Closet|Dishes|Fridge|Machine Gun|Robot)"
-    hygiene   = l=~("(Body|Cleanser|Claws|Enlarger|Eye|Face|Limbs|Lotion"++
-      "|Moisturizer|Nails|Polish|Softener|Tail|Teeth)")
+    hygiene   = l=~("(Body|Cleanser|Claws|Enlarger|Eye|Face|Lotion"++
+                    "|Moisturizer|Nails|Polish|Softener|Tail|Teeth|Tentacle)")
     kitchen   = l=~"(Blender|Chopper|Cooker|Grinder|Slicer|Steamer)"
     other     = l=~"(Bag|Duster|Journal|Lockpick|Map|Pencil|Ribbon)"
     outdoor   = l=~"(Tactical|Outdoor|Survival|Wilderness|Hillbilly)"

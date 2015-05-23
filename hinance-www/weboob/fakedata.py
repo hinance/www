@@ -776,8 +776,8 @@ HOUSEHOLD = [
   [u'Carpet', u'Closet', u'Dishes', u'Fridge', u'Machine Gun', u'Robot'],
   [u'Polish',u'Stain Remover',u'Freshener',u'Organizer',u'Repair Kit',u'Oil']]
 HYGIENE = [
-  [u'', u'Organic', u'Natural', u'Tibetan', u'Mineral', u'Dead Sea',u'Mom\'s'],
-  [u'Tail', u'Nails', u'Eye', u'Claws', u'Body', u'Face', u'Limbs', u'Teeth'],
+  [u'', u'Organic', u'Natural',u'Tibetan',u'Mineral',u'Radioactive',u'Mom\'s'],
+  [u'Tail', u'Nails', u'Eye', u'Claws', u'Body', u'Face',u'Tentacle',u'Teeth'],
   [u'Cleanser', u'Polish', u'Enlarger', u'Lotion', u'Moisturizer',u'Softener']]
 KITCHEN = [
   [u'', u'', u'Mom\'s', u'Mechanical', u'Electrical', u'Manual', u'Automatic'],
