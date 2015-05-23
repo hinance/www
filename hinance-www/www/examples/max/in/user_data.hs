@@ -368,7 +368,7 @@ instance Patchable Shop where
             | oi=="336473" && pa==2888 = split [37, 151, 742, 1958]
             | oi=="353794" && pa==3235 = split [253, 597, 1176, 1209]
             | oi=="604180" && pa==4070 = split [311, 3759]
-            | oi=="850732" && pa==1282 = split [38, 151, 174, 366, 53]
+            | oi=="850732" && pa==1282 = split [38, 151, 174, 366, 553]
             | oi=="910114" && pa==2198 = split [385, 1813]
             | otherwise = split [pa]
             where split parts = map (\x -> payment{spamount=x}) parts
