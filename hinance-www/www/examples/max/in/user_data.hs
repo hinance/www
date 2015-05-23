@@ -244,6 +244,7 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagSephora      = l=~"SEPHORA"
     | t==TagSprouts      = l=~"SPROUTS"
     | t==TagUniversal    = l=~"^UNIVERSAL STUDIOS"
+    | t==TagVioGor       = l=~"VIOLENTLY GORGEOUS"
     | t==TagWvSecur      = l=~"WINDY VAULT FOPS SECUREDCAR"
     | t==TagYosemRtl     = l=~"YOSEMITE VLG RETAIL"
     | t==TagZoidberg     = l=~"ZOIDBERG"
@@ -253,6 +254,7 @@ taggedshop Shop{sid=s} t
   | t==TagAwesome   = s=~"awesome"
   | t==TagItchyBack = s=~"itchyback"
   | t==TagMegaRags  = s=~"megarags"
+  | t==TagVioGor    = s=~"viogor"
   | otherwise    = False
 
 instance Taggable (Shop, ShopOrder, String) where
@@ -272,6 +274,7 @@ instance Taggable (Shop, ShopOrder, ShopPayment) where
       | t==TagAwsGiftAcc  = m=="GIFT CARD"
       | t==TagMaster8385  = m=~"(MASTERCARD|MasterCard).* 8385$"
       | t==TagPayment     = m=="DEFAULT PAYMENT"
+      | t==TagVioGor7260  = m=~"Violently.* 7260$"
       | t==TagVisa4933    = m=="VISA 4933"
       | t==TagVisa8394    = m=~"(VISA|Visa).* 8394$"
       | t==TagVisa4307    = m=~"(VISA|Visa).* 4307$"

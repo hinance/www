@@ -871,3 +871,16 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
       u'PURCHASE %s AWS*MEGARAGS.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
       % (d, randint(100000,999999)),
       u'AWS*MEGARAGS.COM AWSM.COM/BILL WA']))
+
+#
+# VIOLENTLY GORGEOUS
+#
+seed(45401)
+for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
+  add_random_order(shopname='viogor', date=date, manchance=0.2,
+    itemwords=[CLOTHES, HYGIENE],
+    paymtd=paymethod, 
+    acclabel=lambda d: choice([
+      u'VIOLENTLY GORGEOUS %i HOUSTON TX' % randint(1000,9999),
+      u'VIOLENTLY GORGEOUS CATA %i OH' % randint(100000,999999),
+      u'VIOLENTLY GORGEOUS PURCHASE']))
