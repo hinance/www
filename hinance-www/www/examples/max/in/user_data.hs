@@ -7,6 +7,7 @@ import Hinance.User.Type
 import Hinance.Bank.Type
 import Hinance.Shop.Type
 import Hinance.Currency
+import Text.Printf
 import Text.Regex.TDFA
 
 blue = "#337AB7"
@@ -326,7 +327,32 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
     yoga      = l=~"Yoga"
 
 instance Patchable Shop where
-  patched = id
+  patched shops = shops ++ [
+    Shop {sid="awesome'", scurrency=USD, sorders=[
+      refund 1392076800 21405 "VISA 4933",
+      refund 1370131200 20557 "VISA 4933",
+      refund 1352764800 12999 "VISA 4933"]},
+    Shop {sid="itchyback'", scurrency=USD, sorders=[
+      refund 1405728000 12314 "VISA 4933",
+      refund 1390435200 28116 "MASTER 8385",
+      refund 1376870400 14521 "VISA 4933",
+      refund 1359849600 21467 "VISA 4933",
+      refund 1357430400 14846 "VISA 4933"]},
+    Shop {sid="megarags'", scurrency=USD, sorders=[
+      refund 1410566400 12639 "MASTER 8385",
+      refund 1405296000 24514 "VISA 8394",
+      refund 1396310400 26441 "VISA 4933",
+      refund 1376697600 20452 "VISA 4933",
+      refund 1362268800 20707 "VISA 4933"]},
+    Shop {sid="viogor'", scurrency=USD, sorders=[
+      refund 1423612800 12858 "VISA 8394",
+      refund 1419465600 22981 "MASTER 8385",
+      refund 1383782400 19580 "VISA 8394"]}]
+    where
+      refund t a m=ShopOrder {soid=printf "refund-%i" t, sotime=t, sotax=0,
+                              soshipping=0, sodiscount=0,
+        soitems=[ShopItem{silabel="Unknown refund", siprice= -a, siurl=""}],
+        sopayments=[ShopPayment{sptime=t, spmethod=m, spamount= -a}]}
 
 instance Patchable Bank where
   patched banks = (map patchedb banks) ++ [Bank {bid="virtual", baccs=[

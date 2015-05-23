@@ -142,8 +142,8 @@ def matchingaccs(date, anytags=None, alltags=None):
           and ((anytags and any((t in ts) for t in anytags)) or
                (alltags and all((t in ts) for t in alltags)))]
 
-def randacc(date, tags):
-  return choice(matchingaccs(date, anytags=tags))
+def randacc(*args, **kwArgs):
+  return choice(matchingaccs(*args, **kwArgs))
 
 def paymethod(account):
   if account == visa0375:
@@ -445,7 +445,7 @@ for date in sample(list(datesrange((2013,5,1), (2015,5,1))), 20):
 seed(17040)
 for date in sample(list(datesrange((2012,7,1), (2013,12,1))), 20):
   amount = Decimal(randint(500,2000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=choice([
     u'CHECK CRD PURCHASE %s ABEBOOKS.COM 800-315-5335 WA XXXXXXXXXXXX1234 %i' \
     % (date, randint(10000,99999)),
@@ -457,7 +457,7 @@ for date in sample(list(datesrange((2012,7,1), (2013,12,1))), 20):
 seed(13383)
 for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 20):
   amount = Decimal(randint(5000,10000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=choice([
     u'PURCHASE AUTHORIZED ON %s ALDI 75432 1234 MARS VEGAS MA P%i CARD 4933' \
     % (date, randint(10000,99999)),
@@ -522,7 +522,7 @@ for date in sample(list(datesrange((2012,7,10), (2015,5,1))), 50):
 seed(82315)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
   amount = Decimal(randint(1000,5000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=choice([
     u'CAFE BRAZIL MARS VEGAS MA',
     u'UDIPI CAFE HOUSTON TX',
@@ -547,7 +547,7 @@ for date in sample(list(datesrange((2012,7,10), (2015,5,1))), 10):
 seed(93632)
 for date in sample(list(datesrange((2013,3,1), (2014,2,1))), 5):
   amount = Decimal(randint(10000,30000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=
     u'CUSTOM HOUSE LTD CUSTOM FX %i LEELA TURANGA' % randint(100000,999999)))
 
@@ -557,7 +557,7 @@ for date in sample(list(datesrange((2013,3,1), (2014,2,1))), 5):
 seed(54927)
 for date in sample(list(datesrange((2014,6,1), (2015,5,1))), 5):
   amount = Decimal(randint(2000,8000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount,
     label=u'TX DPS DL OFFICE AUSTIN TX'))
 
@@ -567,7 +567,7 @@ for date in sample(list(datesrange((2014,6,1), (2015,5,1))), 5):
 seed(32640)
 for date in sample(list(datesrange((2013,5,1), (2015,5,1))), 3):
   amount = Decimal(randint(30000,70000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount,
     label=u'GEICO *AUTO MACON DC'))
 
@@ -577,7 +577,7 @@ for date in sample(list(datesrange((2013,5,1), (2015,5,1))), 3):
 seed(27219)
 for date in sample(list(datesrange((2012,11,1), (2015,5,1))), 10):
   amount = Decimal(randint(1000,3000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=choice([
     u'PURCHASE AUTHORIZED ON %s THE HOME DEPOT MARS VEGAS MA P%i CARD 1234' \
     % (date, randint(100000,999999)),
@@ -591,7 +591,7 @@ for date in sample(list(datesrange((2012,11,1), (2015,5,1))), 10):
 seed(74679)
 for date in sample(list(datesrange((2012,11,1), (2015,5,1))), 10):
   amount = Decimal(randint(10000,70000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=choice([
     u'TRAVEL INSURANCE POLICY RICHMOND VA',
     u'TRAVEL INSURANCE POLICY 800-729-6021 VA'
@@ -604,7 +604,7 @@ for date in sample(list(datesrange((2012,11,1), (2015,5,1))), 10):
 seed(25061)
 for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 10):
   amount = Decimal(randint(10000,50000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=choice([
     u'JOHN A. ZOIDBERG M.D. MARS VEGAS MA',
     u'CHECK CRD PURCHASE %s JOHN A. ZOIDBERG M.D. MARS VEGAS MA XXXXXXXXXX1234'
@@ -626,7 +626,7 @@ for date in sample(list(datesrange((2013,6,1), (2015,5,1))), 5):
 seed(17920)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 20):
   amount = Decimal(randint(1000,3000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=choice([
     u'NINTENDO OF EUROPE NIN.3DS.WIIU DEU',
     u'PUR INTL %s NINTENDO OF EUROPE NIN.3DS.WIIU DF XXXXXXXXXXX1234 %i' \
@@ -648,7 +648,7 @@ for i in xrange(35):
 seed(11447)
 for date in sample(list(datesrange((2014,4,1), (2015,5,1))), 5):
   amount = Decimal(randint(5000,30000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount,
     label=u'REI COM SUMNER WA'))
 
@@ -670,7 +670,7 @@ for i in xrange(35):
 seed(38064)
 for date in sample(list(datesrange((2014,11,1), (2015,5,1))), 20):
   amount = Decimal(randint(500,3000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount,
     label=u'SEPHORA.COM 877-SEPHORA CA'))
 
@@ -680,7 +680,7 @@ for date in sample(list(datesrange((2014,11,1), (2015,5,1))), 20):
 seed(75751)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 160):
   amount = Decimal(randint(4000,16000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount, label=choice([
     u'SPROUTS FARMERS MARK MARS VEGAS MA',
     u'POS PURCHASE - %s MACH ID 00000 SPROUTS FARMERS MKT#99 MARS VEGAS MA %i'\
@@ -696,7 +696,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 160):
 seed(38064)
 for date in sample(list(datesrange((2014,7,1), (2014,9,1))), 5):
   amount = Decimal(randint(2000,6000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount,
     label=u'UNIVERSAL STUDIOS TICK UNIVERSAL CIT CA'))
 
@@ -706,7 +706,7 @@ for date in sample(list(datesrange((2014,7,1), (2014,9,1))), 5):
 seed(46335)
 for date in sample(list(datesrange((2014,8,1), (2015,5,1))), 5):
   amount = Decimal(randint(2000,6000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount,
     label=u'NAMASTE AWAY CLUB MARS VEGAS MA'))
 
@@ -728,7 +728,7 @@ for i in xrange(34):
 seed(16969)
 for date in sample(list(datesrange((2014,7,1), (2014,9,1))), 5):
   amount = Decimal(randint(1000,3000))/100
-  account = randacc(date, {'wv', 'cb'})
+  account = randacc(date, anytags={'wv', 'cb'})
   account.add(transaction(date=date, amount=-amount,
     label=u'YOSEMITE VLG RETAIL 209-372-1245 CA'))
 
@@ -847,7 +847,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
       u'AWESOME RETAIL SEATTLE WA']))
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
   amount = Decimal(randint(10000,30000))/100
-  account = randacc(date, {'awesome'})
+  account = randacc(date, alltags={'awesome', 'auto'})
   account.add(transaction(date=date, amount=amount, label=choice([
       u'RETURN %s AWESOME.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
       % (date, randint(100000,999999)),
@@ -870,7 +870,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
       u'ITCH.COM 888-835-1719 NY']))
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
   amount = Decimal(randint(10000,30000))/100
-  account = randacc(date, {'itchyback'})
+  account = randacc(date, alltags={'itchyback', 'auto'})
   account.add(transaction(date=date, amount=amount, label=choice([
       u'RETURN %s ITCHY.COM 888-835-1719 NY XXXXXXXXXXXX1234 %i' \
       % (date, randint(100000,999999)),
@@ -890,7 +890,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
       u'AWS*MEGARAGS.COM AWSM.COM/BILL WA']))
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
   amount = Decimal(randint(10000,30000))/100
-  account = randacc(date, {'megarags'})
+  account = randacc(date, alltags={'megarags', 'auto'})
   account.add(transaction(date=date, amount=amount, label=choice([
       u'RETURN %s AWS*MEGARAGS.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
       % (date, randint(100000,999999)),
@@ -911,7 +911,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
       u'VIOLENTLY GORGEOUS PURCHASE']))
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
   amount = Decimal(randint(10000,30000))/100
-  account = randacc(date, {'viogor'})
+  account = randacc(date, alltags={'viogor', 'auto'})
   account.add(transaction(date=date, amount=amount, label=choice([
       u'VIOLENTLY GORGEOUS %i HOUSTON TX' % randint(1000,9999),
       u'VIOLENTLY GORGEOUS RETURN'])))
