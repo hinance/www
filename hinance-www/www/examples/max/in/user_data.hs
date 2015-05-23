@@ -157,12 +157,16 @@ canmerge tsg tsng
   | both [TagAwesome, TagVisa4307]    = ng [TagWindyVault]
   | both [TagAwesome, TagVisa0375]    = ng [TagArpaBank]
   | both [TagAwesome, TagVisa3950]    = ng [TagBankOfMo]
-  | both [TagItchyBack] && g [TagPayment] = (ng [TagMaster8385]
-                 || ng [TagVisa4307] || ng [TagVisa4933] || ng [TagVisa0375])
+  | both [TagItchyBack] && g [TagPayment] =
+                                      (ng [TagMaster8385] || ng [TagVisa4307]
+                                    || ng [TagVisa4933]   || ng [TagVisa0375])
   | both [TagMegaRags, TagMaster8385] = ng [TagCrispyBills]
   | both [TagMegaRags, TagVisa4933]   = ng [TagWindyVault]
   | both [TagMegaRags, TagVisa8394]   = ng [TagWindyVault]
   | both [TagMegaRags, TagVisa4307]   = ng [TagWindyVault]
+  | both [TagVioGor, TagMaster8385]   = ng [TagCrispyBills]
+  | both [TagVioGor, TagVioGor7260]   = ng [TagVioGorCard]
+  | both [TagVioGor, TagVisa8394]     = ng [TagWindyVault]
   | otherwise                         = False
   where g = all (flip elem $ tsg)
         ng = all (flip elem $ tsng)
