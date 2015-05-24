@@ -449,8 +449,13 @@ instance Patchable Bank where
 
 planfrom = 1406937600
 planto = 1438387200
-planned = recur where
-  recur = rent ++ ins
+planned = recur ++ car ++ med ++ hhold ++ electronics ++ salary ++
+          fun ++ hobbies ++ clothes ++ food ++ other where
+  recur = rent ++ energy ++ ins ++ phone
+  car = carins ++ carpap ++ carmtn ++ gas
+  med = dentist ++ drugs
+  fun = movies ++ games
+  hobbies = projects ++ yoga ++ outdoor ++ weight
   ins = insphillip ++ insleela
   rent = concat [chpair a t "Rent"
     [TagExpense, TagRent] [TagAsset, TagChecking1042] | (t, a) <-
@@ -467,6 +472,48 @@ planned = recur where
     [TagExpense, TagInsurance] [TagAsset, TagChecking1042] | (t, a) <-
     [(1437609600, 30000), (1433116800, 30000),
      (1420070400, 33519), (1415491200, 11975)]]
+  phone = concat [chpair 7000 t "Mobile phones"
+    [TagExpense, TagPhone] [TagAsset, TagChecking1042] | t <- monthly]
+  energy = concat [chpair 5000 t "Electricity"
+    [TagExpense, TagEnergy] [TagAsset, TagChecking1042] | t <- monthly]
+  carins = concat [chpair a t "Car insurance"
+    [TagExpense, TagCar, TagCarInsur] [TagAsset, TagChecking1042] | (t, a) <-
+    [(1435708800, 40000), (1429401600, 42730)]]
+  carpap = concat [chpair 2000 t "Car state inspection"
+    [TagExpense, TagCar, TagCarPaper] [TagAsset, TagChecking1042]|t <- monthly]
+  carmtn = concat [chpair 25000 t "Car maintenance"
+    [TagExpense, TagCar, TagCarMtn] [TagAsset, TagChecking1042] | t <- monthly]
+  gas = concat [chpair 2000 t "Gas"
+    [TagExpense, TagCar, TagGas] [TagAsset, TagChecking1042] | t <- monthly]
+  salary = concat [chpair 260000 t "Phillip's salary"
+    [TagAsset, TagChecking1042] [TagIncome, TagSalary] | t <- monthly]
+  food = concat [chpair 80000 t "Food"
+    [TagExpense, TagFood] [TagAsset, TagChecking1042] | t <- monthly]
+  dentist = concat [chpair 20000 t "Dental services"
+    [TagExpense, TagMedSvc] [TagAsset, TagChecking1042] | t <- monthly]
+  drugs = concat [chpair 2000 t "Drugs and contacts"
+    [TagExpense, TagDrugs] [TagAsset, TagChecking1042] | t <- monthly]
+  hhold = concat [chpair 4000 t "Household"
+    [TagExpense, TagHousehold] [TagAsset, TagChecking1042] | t <- monthly]
+  electronics = concat [chpair 2000 t "Electronics"
+    [TagExpense, TagElectronics] [TagAsset, TagChecking1042] | t <- monthly]
+  movies = concat [chpair 3000 t "Movies"
+    [TagExpense, TagMovies] [TagAsset, TagChecking1042] | t <- monthly]
+  games = concat [chpair 3000 t "Games"
+    [TagExpense, TagGames] [TagAsset, TagChecking1042] | t <- monthly]
+  projects = concat [chpair 3000 t "Projects"
+    [TagExpense,TagHobby,TagProjects] [TagAsset,TagChecking1042] | t<-monthly]
+  yoga = concat [chpair 5000 t "Yoga"
+    [TagExpense,TagHobby,TagYoga] [TagAsset,TagChecking1042] | t<-monthly]
+  outdoor = concat [chpair 5000 t "Outdoor"
+    [TagExpense,TagHobby,TagOutdoor] [TagAsset,TagChecking1042] | t<-monthly]
+  weight = concat [chpair 2000 t "Weight lifting"
+    [TagExpense,TagHobby,TagWeight] [TagAsset,TagChecking1042] | t<-monthly]
+  clothes = concat [chpair 15000 t "Clothes"
+    [TagExpense, TagClothes] [TagAsset, TagChecking1042] | t <- monthly]
+  other = concat [chpair 2000 t "Other"
+    [TagExpense, TagOther] [TagAsset, TagChecking1042] | t <- monthly]
+  monthly = [planfrom, planfrom+3600*2*365 .. planto]
   chpair amount time label tagspos tagsneg = [
     Change {camount=amount, ctime=time, clabel=label, ccur=USD, curl="",
             cgroup=(printf "Planned %s on %i" label time), ctags=tagspos},
