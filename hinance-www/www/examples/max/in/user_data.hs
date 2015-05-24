@@ -447,16 +447,26 @@ instance Patchable Bank where
           | otherwise = trans
             where pl x = trans{btlabel=x}
 
-planfrom = 1406851200
+planfrom = 1406937600
 planto = 1438387200
-planned = rent where
+planned = recur where
+  recur = rent ++ ins
+  ins = insphillip ++ insleela
   rent = concat [chpair a t "Rent"
     [TagExpense, TagRent] [TagAsset, TagChecking1042] | (t, a) <-
     [(1438387200, 90000), (1435708800, 90000), (1433116800, 90000),
      (1430438400, 90000), (1427846400, 90000), (1425168000, 90000),
      (1422748800, 90000), (1420070400, 90000), (1417478400, 90000),
      (1414886400, 90000), (1412294400, 90000), (1409702400, 90000),
-     (1407110400, 90000)]
+     (1407110400, 90000)]]
+  insphillip = concat [chpair a t "Phillip's medical insurance"
+    [TagExpense, TagInsurance] [TagAsset, TagChecking1042] | (t, a) <-
+    [(1435881600, 50000), (1431648000, 50000),
+     (1418083200, 44965), (1409270400, 46638)]]
+  insleela = concat [chpair a t "Leela's medical insurance"
+    [TagExpense, TagInsurance] [TagAsset, TagChecking1042] | (t, a) <-
+    [(1437609600, 30000), (1433116800, 30000),
+     (1420070400, 33519), (1415491200, 11975)]]
   chpair amount time label tagspos tagsneg = [
     Change {camount=amount, ctime=time, clabel=label, ccur=USD, curl="",
             cgroup=(printf "Planned %s on %i" label time), ctags=tagspos},
