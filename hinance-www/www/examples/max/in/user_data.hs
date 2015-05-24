@@ -450,7 +450,7 @@ instance Patchable Bank where
 planfrom = 1406937600
 planto = 1438387200
 planned = recur ++ car ++ med ++ hhold ++ electronics ++ salary ++
-          fun ++ hobbies ++ clothes ++ food ++ other where
+          fun ++ hobbies ++ clothes ++ food ++ hygiene ++ other where
   recur = rent ++ energy ++ ins ++ phone
   car = carins ++ carpap ++ carmtn ++ gas
   med = dentist ++ drugs
@@ -487,15 +487,15 @@ planned = recur ++ car ++ med ++ hhold ++ electronics ++ salary ++
     [TagExpense, TagCar, TagGas] [TagAsset, TagChecking1042] | t <- monthly]
   salary = concat [chpair 260000 t "Phillip's salary"
     [TagAsset, TagChecking1042] [TagIncome, TagSalary] | t <- monthly]
-  food = concat [chpair 80000 t "Food"
+  food = concat [chpair 50000 t "Food"
     [TagExpense, TagFood] [TagAsset, TagChecking1042] | t <- monthly]
   dentist = concat [chpair 20000 t "Dental services"
     [TagExpense, TagMedSvc] [TagAsset, TagChecking1042] | t <- monthly]
   drugs = concat [chpair 2000 t "Drugs and contacts"
     [TagExpense, TagDrugs] [TagAsset, TagChecking1042] | t <- monthly]
-  hhold = concat [chpair 4000 t "Household"
+  hhold = concat [chpair 5000 t "Household"
     [TagExpense, TagHousehold] [TagAsset, TagChecking1042] | t <- monthly]
-  electronics = concat [chpair 2000 t "Electronics"
+  electronics = concat [chpair 3000 t "Electronics"
     [TagExpense, TagElectronics] [TagAsset, TagChecking1042] | t <- monthly]
   movies = concat [chpair 3000 t "Movies"
     [TagExpense, TagMovies] [TagAsset, TagChecking1042] | t <- monthly]
@@ -511,6 +511,8 @@ planned = recur ++ car ++ med ++ hhold ++ electronics ++ salary ++
     [TagExpense,TagHobby,TagWeight] [TagAsset,TagChecking1042] | t<-monthly]
   clothes = concat [chpair 15000 t "Clothes"
     [TagExpense, TagClothes] [TagAsset, TagChecking1042] | t <- monthly]
+  hygiene = concat [chpair 10000 t "Hygiene"
+    [TagExpense, TagHygiene] [TagAsset, TagChecking1042] | t <- monthly]
   other = concat [chpair 2000 t "Other"
     [TagExpense, TagOther] [TagAsset, TagChecking1042] | t <- monthly]
   monthly = [planfrom, planfrom+3600*2*365 .. planto]
