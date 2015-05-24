@@ -481,13 +481,13 @@ planned = recur ++ car ++ med ++ hhold ++ electronics ++ salary ++
     [(1435708800, 40000), (1429401600, 42730)]]
   carpap = concat [chpair 2000 t "Car state inspection"
     [TagExpense, TagCar, TagCarPaper] [TagAsset, TagChecking1042]|t <- monthly]
-  carmtn = concat [chpair 25000 t "Car maintenance"
+  carmtn = concat [chpair 20000 t "Car maintenance"
     [TagExpense, TagCar, TagCarMtn] [TagAsset, TagChecking1042] | t <- monthly]
   gas = concat [chpair 2000 t "Gas"
     [TagExpense, TagCar, TagGas] [TagAsset, TagChecking1042] | t <- monthly]
   salary = concat [chpair 260000 t "Phillip's salary"
     [TagAsset, TagChecking1042] [TagIncome, TagSalary] | t <- monthly]
-  food = concat [chpair 50000 t "Food"
+  food = concat [chpair 70000 t "Food"
     [TagExpense, TagFood] [TagAsset, TagChecking1042] | t <- monthly]
   dentist = concat [chpair 20000 t "Dental services"
     [TagExpense, TagMedSvc] [TagAsset, TagChecking1042] | t <- monthly]
@@ -509,7 +509,7 @@ planned = recur ++ car ++ med ++ hhold ++ electronics ++ salary ++
     [TagExpense,TagHobby,TagOutdoor] [TagAsset,TagChecking1042] | t<-monthly]
   weight = concat [chpair 2000 t "Weight lifting"
     [TagExpense,TagHobby,TagWeight] [TagAsset,TagChecking1042] | t<-monthly]
-  clothes = concat [chpair 15000 t "Clothes"
+  clothes = concat [chpair 10000 t "Clothes"
     [TagExpense, TagClothes] [TagAsset, TagChecking1042] | t <- monthly]
   hygiene = concat [chpair 10000 t "Hygiene"
     [TagExpense, TagHygiene] [TagAsset, TagChecking1042] | t <- monthly]
