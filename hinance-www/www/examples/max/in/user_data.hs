@@ -328,29 +328,29 @@ instance Taggable (Shop, ShopOrder, ShopItem) where
 instance Patchable Shop where
   patched shops = (map patcheds shops) ++ [
     Shop {sid="awesome'", scurrency=USD, sorders=[
-      refund 1411689600 21101 "MASTERCARD 8385",
-      refund 1394841600 26159 "VISA 4933",
-      refund 1376524800 24696 "VISA 4933",
-      refund 1369785600 15567 "VISA 4933",
-      refund 1359763200 26484 "VISA 8394"]},
+      refund 1411689600 2110 "MASTERCARD 8385",
+      refund 1394841600 2616 "VISA 4933",
+      refund 1376524800 2470 "VISA 4933",
+      refund 1369785600 1557 "VISA 4933",
+      refund 1359763200 2649 "VISA 8394"]},
     Shop {sid="itchyback'", scurrency=USD, sorders=[
-      refund 1419897600 25534 "DEFAULT PAYMENT",
-      refund 1391472000 19296 "DEFAULT PAYMENT",
-      refund 1371859200 16349 "DEFAULT PAYMENT",
-      refund 1369526400 15456 "DEFAULT PAYMENT",
-      refund 1357430400 11820 "DEFAULT PAYMENT"]},
+      refund 1419897600 2554 "DEFAULT PAYMENT",
+      refund 1391472000 1930 "DEFAULT PAYMENT",
+      refund 1371859200 1635 "DEFAULT PAYMENT",
+      refund 1369526400 1545 "DEFAULT PAYMENT",
+      refund 1357430400 1182 "DEFAULT PAYMENT"]},
     Shop {sid="megarags'", scurrency=USD, sorders=[
-      refund 1384300800 25373 "VISA 8394",
-      refund 1371945600 24242 "VISA 8394",
-      refund 1362873600 15910 "VISA 8394",
-      refund 1355788800 11218 "VISA 8394",
-      refund 1352764800 20833 "VISA 8394"]},
+      refund 1384300800 2538 "VISA 8394",
+      refund 1371945600 2424 "VISA 8394",
+      refund 1362873600 1591 "VISA 8394",
+      refund 1355788800 1121 "VISA 8394",
+      refund 1352764800 2083 "VISA 8394"]},
     Shop {sid="viogor'", scurrency=USD, sorders=[
-      refund 1406505600 12456 "MASTERCARD 8385",
-      refund 1391385600 27152 "VISA 4933",
-      refund 1371600000 18448 "VISA 4933",
-      refund 1371340800 15373 "VISA 4933",
-      refund 1351555200 26556 "VISA 4933"]}]
+      refund 1406505600 1245 "MASTERCARD 8385",
+      refund 1391385600 2716 "VISA 4933",
+      refund 1371600000 1845 "VISA 4933",
+      refund 1371340800 1537 "VISA 4933",
+      refund 1351555200 2656 "VISA 4933"]}]
     where
       refund t a m=ShopOrder {soid=printf "refund-%i" t, sotime=t, sotax=0,
                               soshipping=0, sodiscount=0,

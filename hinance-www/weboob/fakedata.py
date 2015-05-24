@@ -355,7 +355,7 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 5):
 # Online payments for Crispy Bills Bank credit card.
 seed(88798)
 for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 15):
-  amount = Decimal(randint(100,300))
+  amount = Decimal(randint(100,400))
   master8385.add(transaction(date=date, amount=amount,
     label=u'ONLINE PAYMENT, THANK YOU'))
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
@@ -375,7 +375,7 @@ for date in sample(list(datesrange((2014,5,1), (2015,5,1))), 10):
 # Payments for Violently Gorgeous store card.
 seed(42732)
 for date in sample(list(datesrange((2014,2,1), (2015,5,1))), 15):
-  amount = Decimal(randint(5,50))
+  amount = Decimal(randint(5,20))
   viogor7260.add(transaction(date=date, amount=amount,
     label=u'PAYMENT - THANK YOU'))
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
@@ -716,7 +716,7 @@ for date in sample(list(datesrange((2014,8,1), (2015,5,1))), 5):
 seed(59385)
 for i in xrange(34):
   date = datetime(2012,7,23) + timedelta(days=30*i)
-  amount = Decimal(3000)
+  amount = Decimal(2500)
   checking1042.add(transaction(date=date, amount=amount, label=choice([
     u'PLANET EXPRESS DIR DEP %s %i FRY,PHILLIP' \
     % (date, randint(100000,999999)),
@@ -851,7 +851,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
       u'AWESOME RETAIL SEATTLE WA']))
 seed(46460)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
-  amount = Decimal(randint(10000,30000))/100
+  amount = Decimal(randint(1000,3000))/100
   account = randacc(date, alltags={'awesome', 'auto'})
   account.add(transaction(date=date, amount=amount, label=choice([
       u'RETURN %s AWESOME.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
@@ -875,7 +875,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
       u'ITCH.COM 888-835-1719 NY']))
 seed(69446)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
-  amount = Decimal(randint(10000,30000))/100
+  amount = Decimal(randint(1000,3000))/100
   account = randacc(date, alltags={'itchyback', 'auto'})
   account.add(transaction(date=date, amount=amount, label=choice([
       u'RETURN %s ITCHY.COM 888-835-1719 NY XXXXXXXXXXXX1234 %i' \
@@ -896,7 +896,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
       u'AWS*MEGARAGS.COM AWSM.COM/BILL WA']))
 seed(62693)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
-  amount = Decimal(randint(10000,30000))/100
+  amount = Decimal(randint(1000,3000))/100
   account = randacc(date, alltags={'megarags', 'auto'})
   account.add(transaction(date=date, amount=amount, label=choice([
       u'RETURN %s AWS*MEGARAGS.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
@@ -918,7 +918,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
       u'VIOLENTLY GORGEOUS PURCHASE']))
 seed(62320)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 5):
-  amount = Decimal(randint(10000,30000))/100
+  amount = Decimal(randint(1000,3000))/100
   account = randacc(date, alltags={'viogor', 'auto'})
   account.add(transaction(date=date, amount=amount, label=choice([
       u'VIOLENTLY GORGEOUS %i HOUSTON TX' % randint(1000,9999),
