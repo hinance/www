@@ -334,7 +334,7 @@ for date in sample(list(datesrange((2012,7,10), (2015,5,1))), 5):
 # Payments for Windy Vault Bank credit card.
 seed(40726)
 for date in sample(list(datesrange((2012,11,1), (2015,5,1))), 10):
-  amount = Decimal(randint(600,2000))
+  amount = Decimal(randint(800,2000))
   visa8394.add(transaction(date=date, amount=amount,
     label=u'ONLINE PAYMENT'))
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
@@ -355,7 +355,7 @@ for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 5):
 # Online payments for Crispy Bills Bank credit card.
 seed(88798)
 for date in sample(list(datesrange((2013,12,1), (2015,5,1))), 15):
-  amount = Decimal(randint(100,400))
+  amount = Decimal(randint(160,400))
   master8385.add(transaction(date=date, amount=amount,
     label=u'ONLINE PAYMENT, THANK YOU'))
   checking1042.add(transaction(date=date, amount=-amount, label=choice([
