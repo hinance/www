@@ -439,11 +439,11 @@ instance Patchable Bank where
     patchedb b = b {baccs=map patcheda $ baccs b} where
       patcheda a = a {batrans=map patchedt $ batrans a} where
         patchedt trans@BankTrans{bttime=t, btlabel=l, btamount=m}
-          | t==1416960000 && m== -183700 = pl "BENDER'S CAR REPAIR"
-          | t==1410480000 && m==  -93900 = pl "BENDER'S CAR REPAIR"
-          | t==1397865600 && m==  -41000 = pl "BENDER'S CAR REPAIR"
+          | t==1416960000 && m==  -87300 = pl "BENDER'S CAR REPAIR"
+          | t==1410480000 && m== -163500 = pl "BENDER'S CAR REPAIR"
+          | t==1397865600 && m==  -42400 = pl "BENDER'S CAR REPAIR"
           | t==1381536000 && m==  -35400 = pl "BENDER'S CAR REPAIR"
-          | t==1372809600 && m==  -42400 = pl "BENDER'S CAR REPAIR"
+          | t==1372809600 && m== -153000 = pl "BENDER'S CAR REPAIR"
           | otherwise = trans
             where pl x = trans{btlabel=x}
 
