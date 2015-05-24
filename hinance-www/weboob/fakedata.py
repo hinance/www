@@ -716,7 +716,7 @@ for date in sample(list(datesrange((2014,8,1), (2015,5,1))), 5):
 seed(59385)
 for i in xrange(34):
   date = datetime(2012,7,23) + timedelta(days=30*i)
-  amount = Decimal(2500)
+  amount = Decimal(2600)
   checking1042.add(transaction(date=date, amount=amount, label=choice([
     u'PLANET EXPRESS DIR DEP %s %i FRY,PHILLIP' \
     % (date, randint(100000,999999)),
