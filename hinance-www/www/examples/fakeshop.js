@@ -9,7 +9,14 @@ function param(name) {
                                      results[1].replace(/\+/g, " "));
 }
 
-["shopname", "label", "price", "cur"].forEach(function(x){
+["label", "price", "cur"].forEach(function(x){
   $("#" + x).text(param(x));});
+
+$("#shop").text({
+  awesome: "Awesome Stuff",
+  itchyback: "Itchy Back",
+  viogor: "Violently Gorgeous",
+  megarags: "Mega Rags"
+}[param("shopname")]);
 
 })
