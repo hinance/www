@@ -252,14 +252,14 @@ instance Taggable (Bank, BankAcc, BankTrans) where
     | t==TagWvSecur      = l=~"WINDY VAULT FOPS SECUREDCAR"
     | t==TagYosemRtl     = l=~"YOSEMITE VLG RETAIL"
     | t==TagZoidberg     = l=~"ZOIDBERG"
-    | otherwise          = False where
+    | otherwise          = False
 
 taggedshop Shop{sid=s} t
   | t==TagAwesome   = s=~"awesome"
   | t==TagItchyBack = s=~"itchyback"
   | t==TagMegaRags  = s=~"megarags"
   | t==TagVioGor    = s=~"viogor"
-  | otherwise    = False
+  | otherwise       = False
 
 instance Taggable (Shop, ShopOrder, String) where
   tagged (s, _, l) t = (taggedshop s t) || tagged' where
