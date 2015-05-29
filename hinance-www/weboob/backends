@@ -1,0 +1,23 @@
+[crispybills]
+_module = fakebank
+
+[windyvault]
+_module = fakebank
+
+[awesome]
+_module = fakeshop
+
+[awesomecard]
+_module = fakebank
+
+[viogor]
+_module = fakeshop
+
+[viogorcard]
+_module = fakebank
+
+[megarags]
+_module = fakeshop
+
+[itchyback]
+_module = fakeshop
