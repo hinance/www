@@ -841,7 +841,7 @@ for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 250):
   add_random_order(shopname='awesome', date=date, manchance=0.2,divchance=0.01,
     itemwords=[BOOKS, CLOTHES, DRUGS, ELECTR, FOOD, GAMES, GROW, HOUSEHOLD,
                HYGIENE, KITCHEN, OTHER, OUTDOOR, WEIGHT, YOGA],
-    paymtd=paymethod, 
+    paymtd=paymethod,
     acclabel=lambda d: choice([
       u'PURCHASE %s AWESOME.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
       % (d, randint(100000,999999)),
@@ -889,7 +889,7 @@ seed(57637)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
   add_random_order(shopname='megarags',date=date,manchance=0.2,divchance=0.01,
     itemwords=[CLOTHES, HOUSEHOLD, HYGIENE, KITCHEN],
-    paymtd=paymethod, 
+    paymtd=paymethod,
     acclabel=lambda d: choice([
       u'PURCHASE %s AWS*MEGARAGS.COM AWSM.COM/BILL WA XXXXXXXXXXXX1234 %i' \
       % (d, randint(100000,999999)),
@@ -911,7 +911,7 @@ seed(45401)
 for date in sample(list(datesrange((2012,7,1), (2015,5,1))), 50):
   add_random_order(shopname='viogor', date=date, manchance=0.2, divchance=0.01,
     itemwords=[CLOTHES, HYGIENE],
-    paymtd=paymethod, 
+    paymtd=paymethod,
     acclabel=lambda d: choice([
       u'VIOLENTLY GORGEOUS %i HOUSTON TX' % randint(1000,9999),
       u'VIOLENTLY GORGEOUS CATA %i OH' % randint(100000,999999),
