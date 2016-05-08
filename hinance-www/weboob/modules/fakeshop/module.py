@@ -7,7 +7,7 @@ class FakeShopModule(Module, CapShop):
     NAME = 'fakeshop'
     MAINTAINER = u'Fake Maintainer'
     EMAIL = 'contact@hinance.org'
-    VERSION = '1.1'
+    VERSION = '1.2'
     LICENSE = 'AGPLv3+'
     DESCRIPTION = u'Fake shop module for Hinance examples'
 

@@ -7,7 +7,7 @@ class FakeBankModule(Module, CapBank):
     NAME = 'fakebank'
     MAINTAINER = u'Fake Maintainer'
     EMAIL = 'contact@hinance.org'
-    VERSION = '1.1'
+    VERSION = '1.2'
     LICENSE = 'AGPLv3+'
     DESCRIPTION = u'Fake bank module for Hinance examples'
 
