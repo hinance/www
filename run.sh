@@ -14,5 +14,5 @@ docker run --rm -t \
     -v /etc/hinance-www:/etc/hinance-www:ro \
     -v /var/tmp/hinance-www:/var/tmp/hinance-www \
     --name hinance-www -h hinance-www \
-    hinance/hinance-www:2draft \
+    hinance/hinance-www:2 \
     sudo -iu user /hinance-www/run/run.sh
